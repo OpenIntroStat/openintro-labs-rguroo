@@ -10,45 +10,23 @@ output:
 ---
 
 ```{r echo = FALSE}
-knitr::opts_chunk$set(eval = TRUE, results = FALSE, fig.show = "hide", message = FALSE)
+knitr::opts_chunk$set(eval = TRUE, results = FALSE, message = FALSE)
 ```
 
 In this lab, you'll investigate the probability distribution that is most central
 to statistics: the normal distribution.  If you are confident that your data are 
 nearly normal, that opens the door to many powerful statistical methods.  Here 
-we'll use the graphical tools of R to assess the normality of our data and also 
-learn how to generate random numbers from a normal distribution.
+we'll use Rguroo to assess the normality of our data and also 
+generate random numbers from a normal distribution.
 
 ## Getting Started
-
-### Load packages
-
-In this lab, we will explore and visualize the data using the **tidyverse** suite of packages as well as the **openintro** package.
-
-Let's load the packages.
-
-```{r load-packages, message=FALSE}
-library(tidyverse)
-library(openintro)
-```
-
-### Creating a reproducible lab report
-
-To create your new lab report, in RStudio, go to New File -> R Markdown... Then, choose From Template and then choose `Lab Report for OpenIntro Statistics Labs` from the list of templates.
 
 ### The data
 
 This week you'll be working with fast food data.  This data set contains data on
 515 menu items from some of the most popular fast food restaurants worldwide.
-Let's take a quick peek at the first few rows of the data.
 
-Either you can use `glimpse` like before, or `head` to do this.
-
-```{r load-data, results=TRUE}
-library(tidyverse)
-library(openintro)
-head(fastfood)
-```
+As usual, find the dataset in the Repository, view the codebook, and then import the dataset to your Data section. Then, view the `Dataset Summary` and the first 100 rows and 15 columns of the dataset.
 
 You'll see that for every observation there are 17 measurements, many of which are
 nutritional facts.
@@ -56,17 +34,19 @@ nutritional facts.
 You'll be focusing on just three columns to get started: restaurant, calories, 
 calories from fat.
 
-Let's first focus on just products from McDonalds and Dairy Queen.
+Let's first focus on just products from McDonalds and Dairy Queen. To do this, we'll need to use the Rguroo Subset dialog. In the Data sections, select Functions, then Subset. In the dialog that pops up, select your Dataset, then find the `Logical Expression` button and click it.
 
-```{r male-female}
-mcdonalds <- fastfood %>%
-  filter(restaurant == "McDonalds")
-dairy_queen <- fastfood %>%
-  filter(restaurant == "Dairy Queen")
+We'll need to include two logical expressions, one to select the McDonalds restaurants and one to select Dairy Queen. In the Logical Expression section, click the `+` button to add a new logical expression, then create the expression to select McDonalds restaurants using the dropdown menus.
+
+```{r male-female, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/subset1-1.png")
+knitr::include_graphics("img/subset1-2.png")
 ```
 
-1.  Make a plot (or plots) to visualize the distributions of the amount of calories
-from fat of the options from these two restaurants.  How do their centers, shapes,
+Once everything is set up correctly, click Done and view the output. Save the new dataset as `mcdonalds`. Repeat the Subset steps for Dairy Queen and save that dataset as `dairyqueen`.
+
+1.  Make plots to visualize the distributions of the amount of calories
+from fat (variable `cal_fat`) of the options from these two restaurants.  How do their centers, shapes,
 and spreads compare?
 
 ## The normal distribution
@@ -78,63 +58,45 @@ distribution.
 To see how accurate that description is, you can plot a normal distribution curve 
 on top of a histogram to see how closely the data follow a normal distribution. 
 This normal curve should have the same mean and standard deviation as the data. 
-You'll be focusing on calories from fat from Dairy Queen products, so let's store
-them as a separate object and then calculate some statistics that will be referenced 
-later. 
 
-```{r female-hgt-mean-sd}
-dqmean <- mean(dairy_queen$cal_fat)
-dqsd   <- sd(dairy_queen$cal_fat)
+In Rguroo, this can be done by opening the `Basics` menu for the histogram and, in the Smoothing section, checking the `Normal` box. The screenshot below shows this for the `dairyqueen` dataset.
+
+```{r normal curve, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/normalcurve1-1.png")
 ```
 
-Next, you make a density histogram to use as the backdrop and use the `lines` 
-function to overlay a normal probability curve. The difference between a 
+Strictly speaking, the normal distribution curve should display a normal probability density function that has area under the curve of 1. However, Rguroo scales this curve to an appropriate height on the y-axis.
+
+If this is annoying to you, you can reopen the `Basics` menu and change the `Type` option from `Frequency` to `Density`. The difference between a 
 frequency histogram and a density histogram is that while in a frequency 
 histogram the *heights* of the bars add up to the total number of observations, 
 in a density histogram the *areas* of the bars add up to 1. The area of each bar
-can be calculated as simply the height *times* the width of the bar. Using a 
-density histogram allows us to properly overlay a normal distribution curve over
-the histogram since the curve is a normal probability density function that also
-has area under the curve of 1. Frequency and density histograms both display the
-same exact shape; they only differ in their y-axis. You can verify this by
-comparing the frequency histogram you constructed earlier and the density
-histogram created by the commands below.
+can be calculated as simply the height *times* the width of the bar. Frequency and density histograms both display the
+same exact shape; they only differ in their y-axis. You should not see any obvious difference just looking at your new histogram.
 
-```{r hist-height}
-ggplot(data = dairy_queen, aes(x = cal_fat)) +
-        geom_blank() +
-        geom_histogram(aes(y = ..density..)) +
-        stat_function(fun = dnorm, args = c(mean = dqmean, sd = dqsd), col = "tomato")
+The default option for the normal curve is a solid red line. To change attributes of the line, open the `Details` dialog, select the `Bins, Bars, Smoothing` menu and `Normal` tab, then change the attributes of the line. In the screenshot below we have changed the line to be dotted and black.
+
+```{r normal curve details, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/normalcurve1-2.png")
 ```
-
-After initializing a blank plot with `geom_blank()`, the `ggplot2` package (within
-the `tidyverse`) allows us to add additional layers. The first layer is a density 
-histogram. The second layer is a statistical function -- the density of the normal
-curve, `dnorm`. We specify that we want the curve to have the same mean and 
-standard deviation as the column of female heights. The argument `col` simply sets
-the color for the line to be drawn. If we left it out, the line would be drawn in
-black.
 
 2.  Based on the this plot, does it appear that the data follow a nearly normal 
     distribution?
-
 
 ## Evaluating the normal distribution
 
 Eyeballing the shape of the histogram is one way to determine if the data appear
 to be nearly normally distributed, but it can be frustrating to decide just how 
-close the histogram is to the curve. An alternative approach involves 
+close the histogram is to the curve, especially if the shape noticeably changes when you choose a different set of bins! An alternative approach involves 
 constructing a normal probability plot, also called a normal Q-Q plot for 
 "quantile-quantile".
 
-```{r qq}
-ggplot(data = dairy_queen, aes(sample = cal_fat)) + 
-  geom_line(stat = "qq")
-```
+This plot is not part of the Plots section in Rguroo; instead, we will have to go to the Analytics section. In Analytics, click the Analysis button and find Mean Inference -> One Population. As usual, select the Dataset and Variable to be plotted. Then, check the `Normal Probability Plot` box and View the output.
 
-This time, you can use the `geom_line()` layer, while specifying that you will 
-be creating a Q-Q plot with the `stat` argument. It's important to note that here,
-instead of using `x` instead `aes()`, you need to use `sample`.
+```{r qq, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/normalqq1-1.png")
+knitr::include_graphics("img/G_NormalProbPlot1.png")
+```
 
 The x-axis values correspond to the quantiles of a theoretically normal curve 
 with mean 0 and standard deviation 1 (i.e., the standard normal distribution).  The 
@@ -146,27 +108,25 @@ from normality leads to deviations of these points from that line.
 
 The plot for Dairy Queen's calories from fat shows points that tend to follow the
 line but with some errant points towards the upper tail.  You're left with the same
-problem that we encountered with the histogram above: how close is close enough?
+problem that we encountered with the histogram above: how close is close enough and how far is too far?
 
 A useful way to address this question is to rephrase it as: what do probability 
 plots look like for data that I *know* came from a normal distribution?  We can 
-answer this by simulating data from a normal distribution using `rnorm`.
+answer this by simulating data from a normal distribution.
 
-```{r sim-norm}
-sim_norm <- rnorm(n = nrow(dairy_queen), mean = dqmean, sd = dqsd)
+As you might expect, you'll need to go to the Probability-Simulation section for this. In that section, click Probability and then Random Generator. The default distribution is Normal, but with mean 0 and standard deviation 1. If you go back to the tab with the normal probability plot, you should see a summary with the sample size, mean and standard deviation of `cal_fat` for the `dairyqueen` dataset. Fill in those values in the appropriate places in the `Random Number Generator` dialog, then View the output.
+
+```{r sim-norm, echo=FALSE, results = "asis"}
+knitr::include_graphics("img/sim-norm.png")
 ```
 
-The first argument indicates how many numbers you'd like to generate, which we 
-specify to be the same number of menu items in the `dairy_queen` data set using the 
-`nrow()` function.  The last two arguments determine the mean and standard 
-deviation of the normal distribution from which the simulated sample will be 
-generated.  You can take a look at the shape of our simulated data set, `sim_norm`, 
-as well as its normal probability plot.
+Save the dataset as `sim_norm`. Note that in Rguroo there are two `Save As` text boxes. The left box allows you to save the dialog that created the dataset to your Probability-Simulation section (for example, to use as a template any time you need to generate random numbers from a normal distribution). The right dialog box allows you to save the result as a dataset. We want to save the dataset, though it's not a bad idea to also save the dialog as well.
 
-3.  Make a normal probability plot of `sim_norm`.  Do all of the points fall on 
+3.  Make a normal probability plot of `sim_norm`. Note that the default variable name (which cannot be changed) is `Sample`.  Do all of the points fall on 
     the line?  How does this plot compare to the probability plot for the real 
-    data? (Since `sim_norm` is not a dataframe, it can be put directly into the 
-    `sample` argument and the `data` argument can be dropped.)
+    data?
+
+***I don't think we can do this in Rguroo. We need to figure out an alternative.***
 
 Even better than comparing the original plot to a single plot generated from a 
 normal distribution is to compare it to many more plots using the following 
@@ -174,7 +134,7 @@ function. It shows the Q-Q plot corresponding to the original data in the top
 left corner, and the Q-Q plots of 8 different simulated normal data.  It may be
 helpful to click the zoom button in the plot window.
 
-```{r qqnormsim}
+```{r qqnormsim, eval = FALSE}
 qqnormsim(sample = cal_fat, data = dairy_queen)
 ```
 
@@ -199,26 +159,29 @@ Queen product has more than 600 calories from fat?"
 If we assume that the calories from fat from Dairy Queen's menu are normally 
 distributed (a very close approximation is also okay), we can find this probability
 by calculating a Z score and consulting a Z table (also called a normal probability
-table).  In R, this is done in one step with the function `pnorm()`.
+table).  This is tedious to do by hand, so most statistical software (including Rguroo) has automated the process.
 
-```{r pnorm}
-1 - pnorm(q = 600, mean = dqmean, sd = dqsd)
+In the Probability-Simulation section, click Probability, then find Probability Calculator -> Continuous. Again, the default distribution is normal, so we don't have to change the Distribution, but we should change the Mean and Standard Deviation to their values for the `dairyqueen` dataset. Finally, we should tell Rguroo that we want the probability that a Dairy Queen item has `Above 600` calories from fat:
+
+```{r pnorm, echo=FALSE, results = "asis"}
+knitr::include_graphics("img/normalcalc1-1.png")
 ```
 
-Note that the function `pnorm()` gives the area under the normal curve below a 
-given value, `q`, with a given mean and standard deviation.  Since we're 
-interested in the probability that a Dairy Queen item has more than 600 calories
-from fat, we have to take one minus that probability.
+You can also see how the probability corresponds to the area under the normal density curve by checking the `Graph` box and Viewing the output.
+
+```{r pnorm 2, echo=FALSE, results = "asis"}
+knitr::include_graphics("img/normalcalc1-output.png")
+```
 
 Assuming a normal distribution has allowed us to calculate a theoretical 
 probability.  If we want to calculate the probability empirically, we simply 
 need to determine how many observations fall above 600 then divide this number 
 by the total sample size.
 
-```{r probability}
-dairy_queen %>% 
-  filter(cal_fat > 600) %>%
-  summarise(percent = n() / nrow(dairy_queen))
+There are a variety of ways to do this in Rguroo. Probably the easiest way to do this is with the `Transform` dialog. Note that here we add logical variables. Rguroo interprets TRUE as 1 and FALSE as 0, so this is essentially counting the number of Dairy Queen items with more than 600 calories, and dividing the result by the number of Dairy Queen items with at least 0 calories (i.e., all of them). One strange thing about the result is that the probability will be shown in every row of the output.
+
+```{r probability, echo=FALSE, results = "asis"}
+knitr::include_graphics("img/empirical1-1.png")
 ```
 
 Although the probabilities are not exactly the same, they are reasonably close. 
@@ -234,6 +197,8 @@ theoretical probabilities will be.
 * * *
 
 ## More Practice
+
+***Have to think about how to get multiple normal probability plots in Rguroo.***
 
 7.  Now let's consider some of the other variables in the dataset.  Out of all the
     different restaurants, which ones' distribution is the closest to normal for sodium?
