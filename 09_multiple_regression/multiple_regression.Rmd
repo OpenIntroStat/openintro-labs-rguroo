@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(eval = TRUE, results = FALSE, fig.show = "hide", message = FALSE)
+knitr::opts_chunk$set(eval = TRUE, results = FALSE, message = FALSE)
 ```
 
 ## Grading the professor
@@ -28,26 +28,6 @@ into a positive professor evaluation.
 
 ## Getting Started
 
-### Load packages
-
-In this lab, you will explore and visualize the data using the **tidyverse** suite of 
-packages. The data can be found in the companion package for OpenIntro resources, **openintro**.
-
-Let's load the packages.
-
-```{r load-packages, message=FALSE}
-library(tidyverse)
-library(openintro)
-library(GGally)
-```
-
-This is the first time we're using the `GGally` package. You will be using the
-`ggpairs` function from this package later in the lab.
-
-### Creating a reproducible lab report
-
-To create your new lab report, in RStudio, go to New File -> R Markdown... Then, choose From Template and then choose `Lab Report for OpenIntro Statistics Labs` from the list of templates.
-
 ### The data
 
 The data were gathered from end of semester student evaluations for a large 
@@ -56,16 +36,8 @@ students rated the professors' physical appearance. The result is a data frame
 where each row contains a different course and columns represent variables about 
 the courses and professors. It's called `evals`.
 
-```{r}
-glimpse(evals)
-```
-
 We have observations on 21 different variables, some categorical and some 
-numerical. The meaning of each variable can be found by bringing up the help file:
-
-```{r help-evals}
-?evals
-```
+numerical. The meaning of each variable can be found by bringing up the codebook before importing the dataset from the Repository.
 
 ## Exploring the data
 
@@ -87,72 +59,63 @@ The fundamental phenomenon suggested by the study is that better looking teacher
 are evaluated more favorably. Let's create a scatterplot to see if this appears 
 to be the case:
 
-```{r scatter-score-bty_avg}
-ggplot(data = evals, aes(x = bty_avg, y = score)) +
-  geom_point()
+```{r scatter-score-bty_avg, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/scatterplot1-1.png")
 ```
 
 Before you draw conclusions about the trend, compare the number of observations 
 in the data frame with the approximate number of points on the scatterplot. 
 Is anything awry?
 
+Add the line of the bet fit to your plot by checking the `LS Line` box:
+    
+```{r scatter-score-bty_avg-line, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/scatterplot1-2.png")
+```
+
+
+***Can't jitter in Rguroo!***
+
 4.  Replot the scatterplot, but this time use `geom_jitter` as your layer. What 
     was misleading about the initial scatterplot?
 
-```{r scatter-score-bty_avg-jitter}
+```{r scatter-score-bty_avg-jitter, eval = FALSE}
 ggplot(data = evals, aes(x = bty_avg, y = score)) +
   geom_jitter()
 ```
 
 5.  Let's see if the apparent trend in the plot is something more than
-    natural variation. Fit a linear model called `m_bty` to predict average
+    natural variation. Using Rguroo's `Linear Regression` module, fit a linear model to predict average
     professor score by average beauty rating. Write out the equation for the linear 
     model and interpret the slope. Is average beauty score a statistically significant
     predictor? Does it appear to be a practically significant predictor?
     
-Add the line of the bet fit model to your plot using the following:
-    
-```{r scatter-score-bty_avg-line-se}
-ggplot(data = evals, aes(x = bty_avg, y = score)) +
-  geom_jitter() +
-  geom_smooth(method = "lm")
-```
-
-The blue line is the model. The shaded gray area around the line tells you about the 
-variability you might expect in your predictions. To turn that off, use `se = FALSE`.
-
-```{r scatter-score-bty_avg-line}
-ggplot(data = evals, aes(x = bty_avg, y = score)) +
-  geom_jitter() +
-  geom_smooth(method = "lm", se = FALSE)
-```
 
 6.  Use residual plots to evaluate whether the conditions of least squares
-    regression are reasonable. Provide plots and comments for each one (see
-    the Simple Regression Lab for a reminder of how to make these).
+    regression are reasonable. Provide plots and comments for each one.
+
+Save your model and report as `m_bty`.
 
 ## Multiple linear regression
 
 The data set contains several variables on the beauty score of the professor: 
 individual ratings from each of the six students who were asked to score the 
 physical appearance of the professors and the average of these six scores. Let's 
-take a look at the relationship between one of these scores and the average 
+take a look at the relationship between one of these scores (f1_lower) and the average 
 beauty score.
 
-```{r bty-rel}
-ggplot(data = evals, aes(x = bty_f1lower, y = bty_avg)) +
-  geom_point()
-
-evals %>% 
-  summarise(cor(bty_avg, bty_f1lower))
+```{r bty-rel, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/scatterplot2-1.png")
 ```
+
+***Not sure how to do this in Rguroo***
 
 As expected, the relationship is quite strong---after all, the average score is 
 calculated using the individual scores. You can actually look at the 
 relationships between all beauty variables (columns 13 through 19) using the 
 following command:
 
-```{r bty-rels}
+```{r bty-rels, eval = FALSE}
 evals %>%
   select(contains("bty")) %>%
   ggpairs()
@@ -165,11 +128,11 @@ the average beauty score as the single representative of these variables.
 
 In order to see if beauty is still a significant predictor of professor score 
 after you've accounted for the professor's gender, you can add the gender term 
-into the model.
+into the model. To do this, we have to start with the `m_bty` model, open the `Basics`
+menu, click the `+` sign, and double-click `gender` to add it to the `Formula` box.
 
-```{r scatter-score-bty_avg_pic-color}
-m_bty_gen <- lm(score ~ bty_avg + gender, data = evals)
-summary(m_bty_gen)
+```{r scatter-score-bty_avg_gender, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/MLR1-1.png")
 ```
 
 7.  P-values and parameter estimates should only be trusted if the
@@ -180,7 +143,7 @@ summary(m_bty_gen)
     of `gender` to the model changed the parameter estimate for `gender`?
 
 Note that the estimate for `gender` is now called `gendermale`. You'll see this 
-name change whenever you introduce a categorical variable. The reason is that R 
+name change whenever you introduce a categorical variable. The reason is that Rguroo
 recodes `gender` from having the values of `male` and `female` to being an 
 indicator variable called `gendermale` that takes a value of $0$ for 
 female professors and a value of $1$ for male professors. (Such variables 
@@ -204,19 +167,22 @@ with the following  -->
 <!--   geom_smooth(method = "lm", formula = y ~ x, se = FALSE) -->
 <!-- ``` -->
 
-9.  What is the equation of the line corresponding to those with color pictures? 
-    (*Hint:* For those with color pictures, the parameter estimate is multiplied
-    by 1.) For two professors who received the same beauty rating, which color 
-    picture tends to have the higher course evaluation score?
+9.  What is the equation of the line corresponding to male professors? 
+    (*Hint:* For male professors, the parameter estimate is multiplied
+    by 1.) For two professors who received the same beauty rating, which gender tends to have the higher course evaluation score?
 
 The decision to call the indicator variable `gendermale` instead of 
-`genderfemale` has no deeper meaning. R simply codes the category that 
-comes first alphabetically as a $0$. (You can change the reference level of a categorical 
-variable, which is the level that is coded as a 0, using the`relevel()` function. 
-Use `?relevel` to learn more.)
+`genderfemale` has no deeper meaning. Rguroo simply codes the category that 
+comes first alphabetically as a $0$. You can change the reference level of a categorical variable, which is the level that is coded as a 0, by opening the `Level Editor`, selecting the variable of interest, and dragging-and-dropping the level of interest to the top of the list, as shown below:
 
-10. Create a new model called `m_bty_rank` with `gender` removed and `rank` 
-    added in. How does R appear to handle categorical variables that have more 
+```{r scatter-score-bty_avg_gender 2, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/MLR1-2.png")
+```
+
+Save the new model and report as `m_bty_gender`.
+
+10. Create a new model with `gender` removed and `rank` 
+    added in. How does Rguroo appear to handle categorical variables that have more 
     than two levels? Note that the rank variable has three levels: `teaching`, 
     `tenure track`, `tenured`.
 
@@ -239,22 +205,22 @@ picture color.
     Why? *Hint:* Think about which variable would you expect to not have any 
     association with the professor score.
 
-Let's run the model...
+Let's create and run the model...
 
-```{r m_full, tidy = FALSE}
-m_full <- lm(score ~ rank + gender + ethnicity + language + age + cls_perc_eval 
-             + cls_students + cls_level + cls_profs + cls_credits + bty_avg 
-             + pic_outfit + pic_color, data = evals)
-summary(m_full)
+```{r m_full,  echo = FALSE, results = "asis"}
+knitr::include_graphics("img/MLR-FULL.png")
 ```
 
-12. Check your suspicions from the previous exercise. Include the model output
+Save this model and report as `m_full`.
+
+12. Check your suspicions from the previous exercise. Include a screenshot of the model output
     in your response.
 
 13. Interpret the coefficient associated with the ethnicity variable.
 
-14. Drop the variable with the highest p-value and re-fit the model. Did the
-    coefficients and significance of the other explanatory variables change?
+Open the `Basics` menu. Delete the variable with the highest p-value from the `Formula` box and re-fit the model.
+
+14. Did the coefficients and significance of the other explanatory variables change?
     (One of the things that makes multiple regression interesting is that
     coefficient estimates depend on the other variables that are included in
     the model.) If not, what does this say about whether or not the dropped
@@ -264,6 +230,8 @@ summary(m_full)
     determine the best model. You do not need to show all steps in your
     answer, just the output for the final model. Also, write out the linear
     model for predicting score based on the final model you settle on.
+
+Save the final model and report as `m_final`.
 
 16. Verify that the conditions for this model are reasonable using diagnostic 
     plots.
@@ -280,8 +248,6 @@ summary(m_full)
 
 19. Would you be comfortable generalizing your conclusions to apply to professors
     generally (at any university)? Why or why not?
-
-## References
 
 * * *
 
