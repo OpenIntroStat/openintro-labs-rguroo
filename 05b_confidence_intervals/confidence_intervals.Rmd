@@ -11,7 +11,7 @@ output:
 ---
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(eval = TRUE, results = FALSE, fig.show = "hide", message = FALSE)
+knitr::opts_chunk$set(eval = TRUE, results = FALSE, message = FALSE)
 ```
 
 If you have access to data on an entire population, say the opinion of every adult in the United States on whether or not they think climate change is affecting their local community, it's straightforward to answer questions like, "What percent of US adults think climate change is affecting their local community?". 
@@ -20,29 +20,7 @@ If you have access to only a sample of the population, as is often the case, the
 What is your best guess for this proportion if you only have data from a small sample of adults?
 This type of situation requires that you use your sample to make inference on what your population looks like.
 
-<div id="boxedtext">
-**Setting a seed:** You will take random samples and build sampling distributions
-in this lab, which means you should set a seed on top of your lab. If this concept
-is new to you, review the lab on probability.
-</div>
-
 ## Getting Started
-
-### Load packages
-
-In this lab, we will explore and visualize the data using the **tidyverse** suite of packages, and perform statistical inference using **infer**.
-
-Let's load the packages.
-
-```{r load-packages, message=FALSE}
-library(tidyverse)
-library(openintro)
-library(infer)
-```
-
-### Creating a reproducible lab report
-
-To create your new lab report, in RStudio, go to New File -> R Markdown... Then, choose From Template and then choose `Lab Report for OpenIntro Statistics Labs` from the list of templates.
 
 ### The data
 
@@ -55,44 +33,26 @@ To keep our computation simple, we will assume a total population size of 100,00
 >**Source:** [Most Americans say climate change impacts their community, but effects vary by region](https://www.pewresearch.org/fact-tank/2019/12/02/most-americans-say-climate-change-impacts-their-community-but-effects-vary-by-region/)
 
 In this lab, you will assume this 62% is a true population proportion and learn about how sample proportions can vary from sample to sample by taking smaller samples from the population. 
-We will first create our population assuming a population size of 100,000. 
-This means 62,000 (62%) of the adult population think climate change impacts their community, and the remaining 38,000 does not think so.
 
-```{r}
-us_adults <- tibble(
-  climate_change_affects = c(rep("Yes", 62000), rep("No", 38000))
-)
+The dataset `us_adults` in the Rguroo Data Repository contains 100,000 simulated responses to the question *"Do you think climate change is affecting your local community?"*. The variable name is `climate_change_affects`. 62,000 responses (62%) are from people who think climate change impacts their community, and the remaining 38,000 do not think so.
+
+```{r import data, echo = FALSE}
+us_adults <- readr::read_csv("us_adults.csv")
 ```
 
-The name of the data frame is `us_adults` and the name of the variable that contains responses to the question *"Do you think climate change is affecting your local community?"* is `climate_change_affects`.
+Once you have imported the dataset, right-click the name of the dataset in the Data pane and select Summary to confirm that the dataset contains what we think it does. We can also quickly visualize the distribution of these responses using a bar plot.
 
-We can quickly visualize the distribution of these responses using a bar plot.
-
-```{r bar-plot-pop, fig.height=2.5, fig.width=10}
-ggplot(us_adults, aes(x = climate_change_affects)) +
-  geom_bar() +
-  labs(
-    x = "", y = "",
-    title = "Do you think climate change is affecting your local community?"
-  ) +
-  coord_flip() 
+```{r barplot, echo= FALSE, results = "asis"}
+knitr::include_graphics("img/barplot-1.png")
 ```
 
-We can also obtain summary statistics to confirm we constructed the data frame correctly.
+In this lab, you'll start with a simple random sample of size 60 from the population. Remember that we use the Random Selection dialog in the Probability-Simulation section to take random samples from our dataset. Again, change the Seed from 100 to a different number of your choice.
 
-```{r summ-stat-pop, results = TRUE}
-us_adults %>%
-  count(climate_change_affects) %>%
-  mutate(p = n /sum(n))
+```{r sample, echo= FALSE, results = "asis"}
+knitr::include_graphics("img/SRS-1.png")
 ```
 
-In this lab, you'll start with a simple random sample of size 60 from the population.
-
-```{r sample}
-n <- 60
-samp <- us_adults %>%
-  sample_n(size = n)
-```
+Save the dataset as `us_adults_sample`.
 
 1.  What percent of the adults in your sample think climate change affects their 
     local community? **Hint:** Just like we did with the population, we can calculate 
@@ -124,37 +84,38 @@ The bootstrapping scheme is as follows:
 - **Step 1.** Take a bootstrap sample - a random sample taken **with replacement** from the original sample, of the same size as the original sample.
 - **Step 2.** Calculate the bootstrap statistic - a statistic such as mean, median, proportion, slope, etc. computed on the bootstrap samples.
 - **Step 3.** Repeat steps (1) and (2) many times to create a bootstrap distribution - a distribution of bootstrap statistics.
-- **Step 4.** Calculate the bounds of the XX% confidence interval as the middle XX% j knof the bootstrap distribution.
+- **Step 4.** Calculate the bounds of the XX% confidence interval as the middle XX% of the bootstrap distribution.
 
-Instead of coding up each of these steps, we will construct confidence intervals using the **infer** package.
+Let's think about how to do this in Rguroo.
 
-Below is an overview of the functions we will use to construct this confidence interval:
+- **Step 1.** Use the Random Selection module to take a bootstrap sample from `us_adults_sample`. Again, change the seed to the same seed you've used throughout the lab.
 
-Function    | Purpose
------------ | -------
-`specify`   | Identify your variable of interest
-`generate`  | The number of samples you want to generate
-`calculate` | The sample statistic you want to do inference with, or you can also think of this as the population parameter you want to do inference for
-`get_ci`    | Find the confidence interval
-
-This code will find the 95 percent confidence interval for proportion of US adults who think climate change affects their local community.
-
-```{r confidence interval infer}
-samp %>%
-  specify(response = climate_change_affects, success = "Yes") %>%
-  generate(reps = 1000, type = "bootstrap") %>%
-  calculate(stat = "prop") %>%
-  get_ci(level = 0.95)
+```{r CI Step 1, echo= FALSE, results = "asis"}
+knitr::include_graphics("img/bootstrap-1.png")
 ```
 
-- In `specify` we specify the `response` variable and the level of that variable we are calling a `success`.
-- In `generate` we provide the number of resamples we want from the population in the `reps` argument (this should be a reasonably large number) as well as the type of resampling we want to do, which is `"bootstrap"` in the case of constructing a confidence interval.
-- Then, we `calculate` the sample statistic of interest for each of these resamples, which is `prop`ortion.
+- **Step 2.** Click the Statistic button and create the bootstrap statistic we want.
 
-Feel free to test out the rest of the arguments for these functions, since these commands will be used together to calculate confidence intervals and solve inference problems for the rest of the semester.
-But we will also walk you through more examples in future chapters.
+```{r CI Step 2, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/bootstrap-2.png")
+```
 
-To recap: even though we don't know what the full population looks like, we're 95% confident that the true proportion of US adults who think climate change affects their local community is between the two bounds reported as result of this pipeline.
+- **Step 3.** Go back to the Random Selection dialog and indicate the number of bootstrap samples we want as the number of Replications.
+
+```{r CI Step 3, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/bootstrap-3.png")
+```
+
+- **Step 4.** Save the process as `bootstrap_proportion` (you will want to use these steps later and it will be nice to have a template). Save the resulting dataset as `us_adults_bootstrap` and use the Transform dialog to calculate the bounds of the confidence interval. To get the middle 95% we need to look at the 2.5% and 97.5% quantiles.
+
+```{r CI Step 4, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/bootstrap-4a.png")
+knitr::include_graphics("img/bootstrap-4b.png")
+```
+
+Note that we don't need or want to save this transformed dataset. The lower and upper bounds of the confidence interval are repeated 1000 times in `CI_low` and `CI_high`.
+
+To recap: even though we don't know what the full population looks like, we're 95% confident that the true proportion of US adults who think climate change affects their local community is between the two bounds reported as result of this set of actions.
 
 ## Confidence levels
 
@@ -169,6 +130,8 @@ In this case, you have the rare luxury of knowing the true population proportion
 1.  Each student should have gotten a slightly different confidence interval. What 
     proportion of those intervals would you expect to capture the true population 
     mean? Why?
+
+*** BEGIN SHINY SECTION ***
 
 In the next part of the lab, you will collect many samples to learn more about how sample proportions and confidence intervals constructed based on those samples vary from one sample to another.
 
@@ -303,8 +266,7 @@ shinyApp(
     interval at this level to me wider or narrower than the confidence interval 
     you calculated at the 95% confidence level? Explain your reasoning.
 
-1.  Using code from the **infer** package and data fromt the one sample you have 
-    (`samp`), find a confidence interval for the proportion 
+1.  Find a confidence interval for the proportion 
     of US Adults who think climate change is affecting their local community with a 
     confidence level of your choosing (other than 95%) and interpret it.
 
@@ -316,8 +278,7 @@ shinyApp(
     
 1.  Lastly, try one more (different) confidence level. First, state how you expect the
     width of this interval to compare to previous ones you calculated. Then, 
-    calculate the bounds of the interval using the **infer** package and data 
-    from `samp` and interpret it. Finally, use the app to generate many intervals 
+    calculate the bounds of the interval and interpret it. Finally, use the app to generate many intervals 
     and calculate the proportion of intervals that are capture the true population 
     proportion.
 
@@ -325,8 +286,8 @@ shinyApp(
     widths of intervals change as sample size changes (increases and decreases).
     
 1.  Finally, given a sample size (say, 60), how does the width of the interval change 
-    as you increase the number of bootstrap samples. **Hint:** Does changing the 
-    number of bootstap samples affect the standard error?
+    as you increase the number of bootstrap samples. **Hint:** Change the number of Replications, save the dataset, and look at the Dataset Summary. Does changing the 
+    number of bootstrap samples affect the calculated standard deviation of `p_hat`?
 
 * * *
 
