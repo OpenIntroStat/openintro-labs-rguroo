@@ -10,7 +10,7 @@ output:
 ---
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(eval = TRUE, results = FALSE, fig.show = "hide", message = FALSE)
+knitr::opts_chunk$set(eval = TRUE, results = FALSE, message = FALSE)
 ```
 
 The Human Freedom Index is a report that attempts to summarize the idea of "freedom"
@@ -28,25 +28,9 @@ about freedom.
 
 ## Getting Started
 
-### Load packages
-
-In this lab, you will explore and visualize the data using the **tidyverse** suite of 
-packages. The data can be found in the companion package for OpenIntro resources, **openintro**.
-
-Let's load the packages.
-
-```{r load-packages, message=FALSE}
-library(tidyverse)
-library(openintro)
-```
-
-### Creating a reproducible lab report
-
-To create your new lab report, in RStudio, go to New File -> R Markdown... Then, choose From Template and then choose `Lab Report for OpenIntro Statistics Labs` from the list of templates.
-
 ### The data
 
-The data we're working with is in the openintro package and it's called `hfi`, 
+The data we're working with is in the Rguroo Data Repository and it's called `hfi`, 
 short for Human Freedom Index.
 
 1.  What are the dimensions of the dataset?
@@ -59,18 +43,14 @@ short for Human Freedom Index.
     controls on media content, would you be comfortable using a linear model to
     predict the personal freedom score?
 
+
+
 If the relationship looks linear, we can quantify the strength of the
-relationship with the correlation coefficient.
-
-```{r cor}
-hfi %>%
-  summarise(cor(pf_expression_control, pf_score, use = "complete.obs"))
-```
-
-Here, we set the `use` argument to "complete.obs" since there are some observations
-of NA.
+relationship with the correlation coefficient. Click `Basics` and check the `Show Correlation and LS Equation` box.
 
 ## Sum of squared residuals
+
+*** This doesn't work in Rguroo ***
 
 <div id="boxedtext">
 In this section, you will use an interactive function to investigate what we mean by "sum 
@@ -127,63 +107,45 @@ intercept of your line as well as the sum of squares.
 ## The linear model
 
 It is rather cumbersome to try to get the correct least squares line, i.e. the 
-line that minimizes the sum of squared residuals, through trial and error. 
-Instead, you can use the `lm` function in R to fit the linear model (a.k.a. 
-regression line).
+line that minimizes the sum of squared residuals, through trial and error. However, it is quite easy to obtain the model in Rguroo. In your plot, click `Basics` and check the `LS Line` button. Your plot should now show the least squares line and, if you also checked the box earlier to show the correlation, the equation of the line should be shown above the plot.
 
-```{r m1}
-m1 <- lm(pf_score ~ pf_expression_control, data = hfi)
+To get more information about the line, in the `Analytics` section, select `Linear Regression`. In the dialog, select `hfi` as the Dataset and `pf_score` as the Response. In the Formula box, type `pf_expression_control`:
+
+```{r linreg1, echo= FALSE, results = "asis"}
+knitr::include_graphics("img/linear-regression-1.png")
 ```
 
-The first argument in the function `lm` is a formula that takes the form 
-`y ~ x`. Here it can be read that we want to make a linear model of 
-`pf_score` as a function of `pf_expression_control`. The second argument specifies
-that R should look in the `hfi` data frame to find the two variables.
+The most important part of the output is the Regression Coefficient Estimates table:
 
-The output of `lm` is an object that contains all of the information we need 
-about the linear model that was just fit. We can access this information using 
-the summary function.
-
-```{r summary-m1}
-summary(m1)
+```{r linreg1 output, echo= FALSE, results = "asis"}
+knitr::include_graphics("img/linear-regression-1-output.png")
 ```
 
-Let's consider this output piece by piece. First, the formula used to describe 
-the model is shown at the top. After the formula you find the five-number 
-summary of the residuals. The "Coefficients" table shown next is key; its first 
-column displays the linear model's y-intercept and the coefficient of `at_bats`.
+Let's consider this output piece by piece. Its first column displays the linear model's y-intercept and the coefficient of `pf_expression_control`.
 With this table, we can write down the least squares regression line for the 
 linear model:
 
 \[
-  \hat{y} = 4.61707 + 0.49143 \times pf\_expression\_control
+  \hat{y} = 4.6171 + 0.49143 \times pf\_expression\_control
 \]
 
 One last piece of information we will discuss from the summary output is the 
-Multiple R-squared, or more simply, $R^2$. The $R^2$ value represents the 
+Multiple R-squared, or more simply, $R^2$. This value can be found in the table helpfully labeled Model Summary: Coefficient of Determination (R-Squared) The $R^2$ value represents the 
 proportion of variability in the response variable that is explained by the 
-explanatory variable. For this model, 63.42% of the variability in runs is 
-explained by at-bats.
+explanatory variable. For this model, 63.42% of the variability in pf_score is 
+explained by pf_expression_control.
+
+In Rguroo, the model and report need to be saved separately. Click the Save button, then save both the model and report as `hfi_model1`.
 
 1.  Fit a new model that uses `pf_expression_control` to predict `hf_score`, or
-    the total human freedom score. Using the estimates from the R output, write 
+    the total human freedom score. Using the estimates from the Rguroo output, write 
     the equation of the regression line. What does the slope tell us in the 
     context of the relationship between human freedom and the amount of political
     pressure on media content?
 
 ## Prediction and prediction errors
 
-Let's create a scatterplot with the least squares line for `m1` laid on top.
-
-```{r reg-with-line}
-ggplot(data = hfi, aes(x = pf_expression_control, y = pf_score)) +
-  geom_point() +
-  stat_smooth(method = "lm", se = FALSE)
-```
-
-Here, we are literally adding a layer on top of our plot. `geom_smooth` creates
-the line by fitting a linear model. It can also show us the standard error `se`
-associated with our line, but we'll suppress that for now.
+Go back to the scatterplot with the least squares line laid on top.
 
 This line can be used to predict $y$ at any value of $x$. When predictions are 
 made for values of $x$ that are beyond the range of the observed data, it is 
@@ -192,7 +154,7 @@ predictions made within the range of the data are more reliable. They're also
 used to compute the residuals.
 
 1.  If someone saw the least squares regression line and not the actual data, how
-    would they predict a country's personal freedom school for one with a 6.7 rating
+    would they predict a country's personal freedom score for one with a 6.7 rating
     for `pf_expression_control`? Is this an overestimate or an underestimate, and
     by how much? In other words, what is the residual for this prediction?
 
@@ -205,47 +167,37 @@ linearity, (2) nearly normal residuals, and (3) constant variability.
 `pf_expression_control' is linear using a scatterplot. We should also verify this
 condition with a plot of the residuals vs. fitted (predicted) values.
 
-```{r residuals}
-ggplot(data = m1, aes(x = .fitted, y = .resid)) +
-  geom_point() +
-  geom_hline(yintercept = 0, linetype = "dashed") +
-  xlab("Fitted values") +
-  ylab("Residuals")
+This plot can be found in the Rguroo Linear Regresion output as the plot labeled Residuals vs. Fit.
+
+```{r residual plot, echo= FALSE, results = "asis"}
+knitr::include_graphics("img/res_fit.png")
 ```
 
-Notice here that `m1` can also serve as a data set because stored within it are 
-the fitted values ($\hat{y}$) and the residuals. Also note that we're getting 
-fancy with the code here. After creating the scatterplot on the first layer 
-(first line of code), we overlay a horizontal dashed line at $y = 0$ (to help us
-check whether residuals are distributed around 0), and we also reanme the axis 
-labels to be more informative.
+The red dashed line is a horizontal line at $y = 0$ (to help us check whether the residuals are distributed around 0), and the green line is a moving average of sorts (to help us look for underlying patterns).
+
 
 1.  Is there any apparent pattern in the residuals plot? What does this indicate
     about the linearity of the relationship between the two variables?  
 
 </br>
 
-**Nearly normal residuals**: To check this condition, we can look at a histogram
+**Nearly normal residuals**: To check this condition, we can look at a histogram of the residuals. To do this, we need to save the residuals as an Rguroo dataset. Click `Details`, go to the `Diagnostic Indices Table` section, and check `Include Diagnostics Table`. Then View the output to re-run the model.
 
-```{r hist-res}
-ggplot(data = m1, aes(x = .resid)) +
-  geom_histogram(binwidth = 25) +
-  xlab("Residuals")
+Now we can save the dataset. Open the `Diagnostics Indices Table` section again and save the table as `hfi_residuals`.
+
+```{r save table, echo= FALSE, results = "asis"}
+knitr::include_graphics("img/diagnostic-table-1.png")
 ```
 
-or a normal probability plot of the residuals.
+Once you have the dataset saved, you can make a histogram of the `hfi_residuals` dataset, variable `Residuals`.
 
-```{r qq-res}
-ggplot(data = m1, aes(sample = .resid)) +
-  stat_qq()
+In Rguroo, it is much less work to look at a normal probability plot of the residuals, as the plot is shown in the default Rguroo output and labeled Normal Probability Plot: Residuals.
+
+```{r qq-res, echo= FALSE, results = "asis"}
+knitr::include_graphics("img/qq_res.png")
 ```
 
-Note that the syntax for making a normal probability plot is a bit different 
-than what you're used to seeing: we set `sample` equal to the residuals instead 
-of `x`, and we set a statistical method `qq`, which stands for "quantile-quantile",
-another name commonly used for normal probability plots.
-
-1.  Based on the histogram and the normal probability plot, does the nearly 
+1.  Based on the histogram and normal probability plot, does the nearly 
     normal residuals condition appear to be met?
 
 </br>
