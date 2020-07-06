@@ -11,35 +11,15 @@ output:
 ---
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(eval = TRUE, results = FALSE, fig.show = "hide", message = FALSE)
+knitr::opts_chunk$set(eval = TRUE, results = FALSE, message = FALSE)
 ```
 
 ## Getting Started
 
-### Load packages
-
-In this lab, we will explore and visualize the data using the **tidyverse** suite of 
-packages, and perform statistical inference using **infer**. The data can be found
-in the companion package for OpenIntro resources, **openintro**.
-
-Let's load the packages.
-
-```{r load-packages}
-library(tidyverse)
-library(openintro)
-library(infer)
-```
-
-### Creating a reproducible lab report
-
-To create your new lab report, in RStudio, go to New File -> R Markdown... Then, choose From Template and then choose `Lab Report for OpenIntro Statistics Labs` from the list of templates.
-
 ### The data
 
-You will be analyzing the same dataset as in the previous lab, where you delved 
-into a sample from the Youth Risk Behavior Surveillance System (YRBSS) survey,
-which uses data from high schoolers to help discover health patterns. The 
-dataset is called `yrbss`.
+In this lab, you will delve into a sample from the Youth Risk Behavior Surveillance System (YRBSS) survey, which uses data from high schoolers to help discover health patterns. The 
+dataset is called `yrbss`. Import it from the Rguroo Data Repository.
 
 1.   What are the counts within each category for the amount of days these students
 have texted while driving within the past 30 days?
@@ -47,22 +27,25 @@ have texted while driving within the past 30 days?
 1.  What is the proportion of people who have texted while driving every day in 
 the past 30 days and never wear helmets?
 
-Remember that you can use `filter` to limit the dataset to just non-helmet
-wearers. Here, we will name the dataset `no_helmet`.
+Remember that you can use Rguroo's `Subset` dialog to limit the dataset to just non-helmet
+wearers:
 
-```{r no helmet}
-no_helmet <- yrbss %>%
-  filter(helmet_12m == "never")
+```{r no helmet subset, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/subset1-1.png")
+knitr::include_graphics("img/subset1-2.png")
 ```
 
-Also, it may be easier to calculate the proportion if you create a new variable
+Save the dataset as `no_helmet`.
+
+It may be easier to calculate the proportion if you create a new variable
 that specifies whether the individual has texted every day while driving over the 
-past 30 days or not. We will call this variable `text_ind`.
+past 30 days or not. Use the `Transform` dialog to create a new variable, `text_ind`, taking the value `ifelse(text_while_driving_30d == "30", "yes", "no")` in the center box:
 
-```{r indicator-texting}
-no_helmet <- no_helmet %>%
-  mutate(text_ind = ifelse(text_while_driving_30d == "30", "yes", "no"))
+```{r indicator-texting, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/transform-1.png")
 ```
+
+Save the new dataset as `no_helmet2`.
 
 ## Inference on proportions
 
@@ -75,33 +58,32 @@ past 30 days?" is answered with an estimate of the parameter.
 
 The inferential tools for estimating population proportion are analogous to 
 those used for means in the last chapter: the confidence interval and the 
-hypothesis test.
+hypothesis test. These can both be found in the `Proportion Inference - One Population` dialog under Analytics.
 
-```{r nohelmet-text-ci}
-no_helmet %>%
-  specify(response = text_ind, success = "yes") %>%
-  generate(reps = 1000, type = "bootstrap") %>%
-  calculate(stat = "prop") %>%
-  get_ci(level = 0.95)
+First, we have to set up the dialog to indicate the `no_helmet2` dataset. Then, we want to select text_ind as our `Factor` variable and look at "yes" as the `Success` level.
+
+```{r proportion-inference-setup, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/OneProp1-1.png")
 ```
 
-Note that since the goal is to construct an interval estimate for a 
-proportion, it's necessary to both include the `success` argument within `specify`,
-which accounts for the proportion of non-helmet wearers than have consistently texted
-while driving the past 30 days, in this example, and that `stat` within `calculate`
-is here "prop", signaling that you are trying to do some sort of inference on a 
-proportion.
+Note that when you select the success level, you have three options: yes, no, and NA. NA means that the data is missing, but Rguroo treats missing data as a separate level. To remove the missing values when calculating the proportion, click `Level Editor` to bring up the Factor Level Editor. Select text_ind as the variable, then drag-and-drop the NA level to the `Dropped Level` section:
+
+```{r proportion-inference-FLE, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/OneProp1-FLE.png")
+```
+
+*** Mori: this section does a bootstrap CI. I do not remember if the new functionalities for one proportion include a bootstrap option. If not, suggest an alternative. ***
 
 
 1.  What is the margin of error for the estimate of the proportion of non-helmet 
     wearers that have texted while driving each day for the past 30 days based on 
     this survey?
 
-1.  Using the `infer` package, calculate confidence intervals for two other 
-    categorical variables (you'll need to decide which level to call "success", 
-    and report the associated margins of error. Interpet the interval in context 
-    of the data. It may be helpful to create new data sets for each of the two 
-    countries first, and then use these data sets to construct the confidence intervals.
+1.  Using the `no_helmet2` dataset and the `One Population Proportion Inference` dialog, calculate confidence intervals for two other 
+    categorical variables (you'll need to decide which level to call `Success`, 
+    and report the associated margins of error. Interpret the interval in context 
+    of the data.
+    
 
 ## How does the proportion affect the margin of error?
 
@@ -121,10 +103,12 @@ Since the population proportion $p$ is in this $ME$ formula, it should make sens
 that the margin of error is in some way dependent on the population proportion. 
 We can visualize this relationship by creating a plot of $ME$ vs. $p$.
 
-Since sample size is irrelevant to this discussion, let's just set it to
-some value ($n = 1000$) and use this value in the following calculations:
+*** Mori: is there a way to make this dataset in Rguroo? Right now my "hack" way is to use Random Generator to get 1000 data points and then use transform to do p and margin of error ***
 
-```{r n-for-me-plot}
+Since sample size is irrelevant to this discussion, let's just set it to
+some value ($n = 1000$) and use this value in the calculations:
+
+```{r n-for-me-plot, eval = FALSE}
 n <- 1000
 ```
 
@@ -133,7 +117,7 @@ each number incremented by 0.01. You can then create a variable of the margin of
 error (`me`) associated with each of these values of `p` using the familiar 
 approximate formula ($ME = 2 \times SE$).
 
-```{r p-me}
+```{r p-me, eval = FALSE}
 p <- seq(from = 0, to = 1, by = 0.01)
 me <- 2 * sqrt(p * (1 - p)/n)
 ```
@@ -142,7 +126,7 @@ Lastly, you can plot the two variables against each other to reveal their
 relationship. To do so, we need to first put these variables in a data frame that
 you can call in the `ggplot` function.
 
-```{r me-plot}
+```{r me-plot, eval = FALSE}
 dd <- data.frame(p = p, me = me)
 ggplot(data = dd, aes(x = p, y = me)) + 
   geom_line() +
