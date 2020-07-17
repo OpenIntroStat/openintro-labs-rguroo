@@ -10,28 +10,10 @@ output:
 ---
 
 ```{r global_options, include=FALSE}
-knitr::opts_chunk$set(eval = TRUE, results = FALSE, fig.show = "hide", message = FALSE)
+knitr::opts_chunk$set(eval = TRUE, message = FALSE)
 ```
 
 ## Getting Started
-
-### Load packages
-
-In this lab, we will explore and visualize the data using the **tidyverse** suite of 
-packages, and perform statistical inference using **infer**. The data can be found
-in the companion package for OpenIntro resources, **openintro**.
-
-Let's load the packages.
-
-```{r load-packages, message=FALSE}
-library(tidyverse)
-library(openintro)
-library(infer)
-```
-
-### Creating a reproducible lab report
-
-To create your new lab report, in RStudio, go to New File -> R Markdown... Then, choose From Template and then choose `Lab Report for OpenIntro Statistics Labs` from the list of templates.
 
 ### The data
 
@@ -39,42 +21,14 @@ Every two years, the Centers for Disease Control and Prevention conduct the Yout
 Risk Behavior Surveillance System (YRBSS) survey, where it takes data from high 
 schoolers (9th through 12th grade), to analyze health patterns. You will work 
 with a selected group of variables from a random sample of observations during 
-one of the years the YRBSS was conducted.
-
-Load the `yrbss` data set into your workspace.
-
-```{r load-data}
-data(yrbss)
-```
-
-There are observations on 13 different variables, some categorical and some 
-numerical. The meaning of each variable can be found by bringing up the help file:
-
-```{r help-nc}
-?yrbss
-```
-
-
-1.  What are the cases in this data set? How many cases are there in our sample?
-
-Remember that you can answer this question by viewing the data in the data viewer or
-by using the following command:
-
-```{r str}
-glimpse(yrbss)
-```
+one of the years the YRBSS was conducted. We have already seen this dataset in the previous lab and it should already be in your Data pane.
 
 ## Exploratory data analysis
 
 You will first start with analyzing the weight of the participants in kilograms:
 `weight`.
 
-Using visualization and summary statistics, describe the distribution of weights.
-The `summary` function can be useful.
-
-```{r summary}
-summary(yrbss$weight)
-```
+Using the `Dataset Summary` and `Histogram` functions in Rguroo, describe the distribution of weights.
 
 1.  How many observations are we missing weights from?
 
@@ -84,27 +38,22 @@ us quickly visualize trends, identify strong associations, and develop research
 questions.
 
 First, let's create a new variable `physical_3plus`, which will be coded as either
-"yes" if they are physically active for at least 3 days a week, and "no" if not.
+"yes" if they are physically active for at least 3 days a week, and "no" if not. Remember that we do this with `Transform`.
 
-```{r create new var}
-yrbss <- yrbss %>% 
-  mutate(physical_3plus = ifelse(yrbss$physically_active_7d > 2, "yes", "no"))
+```{r create new var, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/transform1-1.png")
 ```
 
+Let's save the dataset as `yrbss_transformed`.
 
 1.  Make a side-by-side boxplot of `physical_3plus` and `weight`. Is there a 
 relationship between these two variables? What did you expect and why?
 
 The box plots show how the medians of the two distributions compare, but we can
-also compare the means of the distributions using the following to 
-first group the data by the `physical_3plus` variable, and then calculate the mean
-`weight` in these groups using the `mean` function while ignoring missing values
-by setting the `na.rm` argument to `TRUE`.
+also compare the means of the distributions using the `Summary Statistic` function:
 
-```{r by-means}
-yrbss %>%
-  group_by(physical_3plus) %>%
-  summarise(mean_weight = mean(weight, na.rm = TRUE))
+```{r by-means1, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/summarystat1-1.png")
 ```
 
 There is an observed difference, but is this difference statistically 
@@ -113,62 +62,30 @@ significant? In order to answer this question we will conduct a hypothesis test.
 ## Inference
 
 1.  Are all conditions necessary for inference satisfied? Comment on each. You can 
-compute the group sizes with the `summarize` command above by defining a new variable
-with the definition `n()`.
+see the group sizes in the same Summary Statistic output.
 
 1.  Write the hypotheses for testing if the average weights are different for those
 who exercise at least times a week and those who don't.
 
-Next, we will introduce a new function, `hypothesize`, that falls into the `infer` 
-workflow. You will use this method for conducting hypothesis tests. 
+Next, we will use the `Mean Inference` dialogs to conduct hypothesis tests. Since we are looking at a difference between two groups, we want the `One and Two Population` version.
 
-But first, we need to initialize the test, which we will save as `obs_diff`.
+First, select the `yrbss_transformed` dataset. We want to look at the values of a numerical `Variable`, weight, grouped `By Factor`, physical_3plus. Select the appropriate Population ` and Population 2 `Level`. In the screenshot below, Population 1 represents the people who are physically active at least 3 days a week ("yes") and Population 2 represents the people who are not ("no").
 
-```{r inf-weight-habit-ht-initial, tidy=FALSE, warning = FALSE}
-obs_diff <- yrbss %>%
-  specify(weight ~ physical_3plus) %>%
-  calculate(stat = "diff in means", order = c("yes", "no"))
+```{r HT1, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/hypothesistest1-1.png")
 ```
 
-Notice how you can use the functions `specify` and `calculate` again like you did
-for calculating confidence intervals. Here, though, the statistic you are searching
-for is the difference in means, with the order being `yes - no != 0`.
+In the tabs below, click `Population 1-2` to indicate that we are comparing two populations, then click the `Test of Hypothesis` tab. The default option in Rguroo is to do a test using a `z-statistic`; uncheck that box and instead check the `Permutation Unscaled` box to do a simulation-based test for the difference of means. Fill in the appopriate alternative hypothesis and view the results.
 
-After you have initialized the test, you need to simulate the test on the null
-distribution, which we will save as `null`.
-
-```{r inf-weight-habit-ht-null, tidy=FALSE, warning = FALSE}
-null_dist <- yrbss %>%
-  specify(weight ~ physical_3plus) %>%
-  hypothesize(null = "independence") %>%
-  generate(reps = 1000, type = "permute") %>%
-  calculate(stat = "diff in means", order = c("yes", "no"))
-```
-
-Here, `hypothesize` is used to set the null hypothesis as a test for independence.
-In one sample cases, the `null` argument can be set to "point" to test a hypothesis
-relative to a point estimate.
-
-Also, note that the `type` argument within `generate` is set to `permute`, which 
-is the argument when generating a null distribution for a hypothesis test.
-
-We can visualize this null distribution with the following code:
-
-```{r}
-ggplot(data = null_dist, aes(x = stat)) +
-  geom_histogram()
+```{r HT2, echo = FALSE, results = "asis"}
+knitr::include_graphics("img/hypothesistest1-2a.png")
 ```
 
 
-1. How many of these `null` permutations have a difference of at least `obs_stat`?
 
-Now that the test is initialized and the null distribution formed, you can calculate
-the p-value for your hypothesis test using the function `get_p_value`.
+We can visualize the null distribution by finding in the output the graph labeled "Distribution of Permutation Replicates".
 
-```{r inf-weight-habit-ht-pvalue}
-null_dist %>%
-  get_p_value(obs_stat = obs_diff, direction = "two_sided")
-```
+1. According to the graph, what is the p-value? How many replicates were generated, and how many of them produced a difference of at least `obs_stat`?
 
 This the standard workflow for performing hypothesis tests.
 
