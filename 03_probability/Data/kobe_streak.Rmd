@@ -1,0 +1,15 @@
+---
+title: "Kobe Streak"
+
+output: html_document
+---
+
+### Description
+This dataset contains the Kobe Bryant's free throw streak lengths using the data from the five games the Los Angeles Lakers played against the Orlando Magic in the 2009 NBA finals. Kobe Bryant's performance against the Orlando Magic in the 2009 NBA finals earned him the title of Most Valuable Player and many spectators commented on how he appeared to show a hot hand.
+
+### Size 
+
+A data frame with 76 rows and 1 variable:
+
+### Variables
+`kobe_streak`: The streak length of free throws that Kobe hit.
