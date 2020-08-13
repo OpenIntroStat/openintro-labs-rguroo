@@ -54,7 +54,7 @@ is coded according to the following system.
     + `YV`:          Mesa Airlines Inc.
 
 
-When you are done reading the information about the data, import the dataset to your Data section.
+When you are done reading the information about the data, import the dataset to your **Data** toolbox.
 
 ```{r data_repository_nucflights, echo=FALSE, results="asis", , fig.align = "center", fig.cap = "*Rguroo Dataset Repository - Open Intro to import nycflights*", out.width="75%"}
 knitr::include_graphics("img/figure_1_data_repository_nyflights.png")
@@ -84,7 +84,7 @@ departing flights?
 ### Departure delays
 
 Let's start by examining the distribution of departure delays of all flights with a 
-histogram. Since this is a plot, we need to open the **Plots** section, click **Create Plot**, and select **Histogram**.
+histogram. Since this is a plot, we need to open the **Plots** toolbox, click **Create Plot**, and select **Histogram**.
 
 We start by selecting the *nycflights* `Dataset` and the `Variable` *dep_delay* to plot.
 
@@ -98,14 +98,14 @@ Histograms are generally a very good way to see the shape of a single distributi
 **A note about the border color: ** The default border color for bins in Rguroo is light gray. In this example, the bins are so small that with the default border color the bars blend into the background! So, we have changed the border color to black in the screenshot above. You should do the same for this example.
 </div>
 
-In Rguroo you can easily define the bin width you want to use. To define your own bins, click Details and open the `Bins, Bars, Smoothing` section. In the `Bins & Bars` tab go to the `Bin Breakpoints` section. In this section there are different methods for setting the bin locations and bin widths. Let's select the `Center` and `Width` option. As shown in the figure below, type *100*  in the `Center` box and type *15* in the `Width` box. click the `Preview` button ![eye](../icon_images/preview.png) to see the histogram. 
+In Rguroo you can easily define the bin width you want to use. To define your own bins, click ![Details](../icon_images/details.png) and open the `Bins, Bars, Smoothing` section. In the `Bins & Bars` tab go to the `Bin Breakpoints` section. In this section there are different methods for setting the bin locations and bin widths. Let's select the `Center` and `Width` option. As shown in the figure below, type *100*  in the `Center` box and type *15* in the `Width` box. click the `Preview` button ![eye](../icon_images/preview.png) to see the histogram. 
 
 
 ```{r hist-dep-delay-bins, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Selecting Bin Center 100 and Bin Width 15*", out.width="80%"}
 knitr::include_graphics("img/histogram-2.png")
 ```
 
-Once you have seen the histogram, go back to the `Bin Breakpoints` section in the **Details** dialog box and change to a bin width of 150, as shown below.
+Once you have seen the histogram, go back to the `Bin Breakpoints` section in the ![Details](../icon_images/details.png) dialog box and change to a bin width of 150, as shown below.
 
 ```{r hist-dep-delay-bins2, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Selecting Bin Center 100 and Bin Width 150*", out.width="50%"}
 knitr::include_graphics("img/histogram-2a_bins.png")
@@ -118,7 +118,7 @@ knitr::include_graphics("img/histogram-2a_bins.png")
 **Tip: ** To view all three histograms at the same time, either copy-paste them to your report, or make each one in a separate tab by selecting the **Histogram** dialog box three times, with each dialog box consisting of one of the three options.
 </div>
 
-If you want to visualize only delays of flights headed to Los Angeles, you need to first filter the data for flights with the destination (LAX). There are two options: One is to filter the data within the **Histogram** function. Another option is to use the **Subset** function in the **Data** section to obtain the subset of the data consisting of only flights with LAX destination, and then use this dataset to plot your histogram. We explain both methods below.
+If you want to visualize only delays of flights headed to Los Angeles, you need to first filter the data for flights with the destination (LAX). There are two options: One is to filter the data within the **Histogram** function. Another option is to use the **Subset** function in the **Data** toolbox to obtain the subset of the data consisting of only flights with LAX destination, and then use this dataset to plot your histogram. We explain both methods below.
 
 #### Subsetting in the Histogram function directly
 
@@ -132,7 +132,7 @@ Let's understand this command. Square brackets that follow a variable name are u
 
 #### Subsetting by using the Subset function
 
-As noted earlier, another way to get a histogram of departure delays for LAX is to get a subset of the data that only includes data values with destination LAX, and then use that dataset in the **Histogram** function to plot the variable *dep_delay*. To do this, go to the **Data** section, select **Functions**, and then click on **Subset**. A dialog box titled **Data Subset** should appear.
+As noted earlier, another way to get a histogram of departure delays for LAX is to get a subset of the data that only includes data values with destination LAX, and then use that dataset in the **Histogram** function to plot the variable *dep_delay*. To do this, go to the **Data** toolbox, select **Functions**, and then click on **Subset**. A dialog box titled **Data Subset** should appear.
 
 As usual, we first need to select the *nycflights* `Dataset`. Next, we want to filter to get specific observations in the dataset (rows), so we look at the `Row Selection` section. There are two buttons in this box. The `Sequence` button is used when we know the specific row numbers we want to include. The `Logical Expression` button is used when we know the condition(s) that the rows that we want to include from the dataset should satisfy. In our case here, we want the `Logical Expression` option. Specifically, we want to subset based on the logical expression ```dest == "LAX"```. 
 
@@ -168,7 +168,7 @@ analysis are as follows:
 knitr::include_graphics("img/histogram2-1.png")
 ```
 
-You can also obtain a custom numerical summary of the departure delays for these flights by going to the **Data** section, clicking **Function** and then selecting **Summary Statistic**:
+You can also obtain a custom numerical summary of the departure delays for these flights by going to the **Data** toolbox, clicking **Function** and then selecting **Summary Statistic**:
 
 ```{r lax-flights-summary, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Summary Statistic dialog box*", out.width="80%"}
 knitr::include_graphics("img/summarystat-1.png")
@@ -191,7 +191,7 @@ single numerical variable are as follows:
 See if you can find each of those summary statistics in the Rguroo dialog. Check the boxes for those statistics, then View ![eye](../icon_images/preview.png) the output. Note that you will have to click the **+** sign next to "All Observations" to view the values. 
 
 You can also filter based on multiple criteria. Suppose you are interested in
-flights headed to San Francisco (SFO) in February. To do this, you need to find flights that are headed to SFO **AND** are in February. This consists of a combination of two logical expressions. To set this up, in the **Data** section, click **Functions**, select **Subset**, select the *nycflights* dataset, then click `Logical Expression`, just like we did earlier. First, we'll put in a logical expression for flights headed to SFO, and then we'll put in another logical expression for the flights in February (month 2). Note that we'll have to type in both *'SFO'* and the number *2* in the `Value` column, as shown in the figure below. 
+flights headed to San Francisco (SFO) in February. To do this, you need to find flights that are headed to SFO **AND** are in February. This consists of a combination of two logical expressions. To set this up, in the **Data** toolbox, click **Functions**, select **Subset**, select the *nycflights* dataset, then click `Logical Expression`, just like we did earlier. First, we'll put in a logical expression for flights headed to SFO, and then we'll put in another logical expression for the flights in February (month 2). Note that we'll have to type in both *'SFO'* and the number *2* in the `Value` column, as shown in the figure below. 
 
 ```{r sfo-feb-flights, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Combining logical expressions*", out.width="80%"}
 knitr::include_graphics("img/figure_4_subset-2.png")
@@ -250,7 +250,7 @@ Click `Update` to make the changes, and click `Close` to close the dialog box. N
 knitr::include_graphics("img/summarystat3-1.png")
 ```
 
-Use the **Save As** text box at the top of the output tab to save the summary as *nycflights_month*. We'll use this dataset to perform the last step of sorting the dataset. In the **Data** section, click **Functions**, then select **Sort**. Select *nycflights_month* as the `Dataset`. Click the plus sign ![plus](../icon_images/add.png) to add a variable to sort by. We want to sort by the `Variable` *Mean* in *Descending* `Order`:
+Use the **Save As** text box at the top of the output tab to save the summary as *nycflights_month*. We'll use this dataset to perform the last step of sorting the dataset. In the **Data** toolbox, click **Functions**, then select **Sort**. Select *nycflights_month* as the `Dataset`. Click the plus sign ![plus](../icon_images/add.png) to add a variable to sort by. We want to sort by the `Variable` *Mean* in *Descending* `Order`:
 
 ```{r mean-dep-delay-months-3, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Data Sort dialog box*", out.width="50%"}
 knitr::include_graphics("img/sort-1.png")
@@ -295,17 +295,15 @@ you can
 percentage.
 
 Let's start with classifying each flight as "on time" or "delayed" by
-creating a new variable. In the **Data** section, click **Functions** and select **Transform**. Then add a new variable called *dep_type* to the *nycflights* `Dataset` using the same sequence we learned in the previous lab. First, click the plus sign ![plus](../icon_images/add.png) to add the variable, then give it an informative name (*dep_type*), then type some code in the middle box to indicate how to create *dep_type*. In this case, the code `ifelse(dep_delay < 5, "on time", "delayed")` indicates to classify the flight as `"on time"` if the flight is delayed by less than 5 minutes and `"delayed"` if not, i.e., if the flight is delayed by 5 or more minutes.
+creating a new variable. In the **Data** toolbox, click **Functions** and select **Transform**. Then add a new variable called *dep_type* to the *nycflights* `Dataset` using the same sequence we learned in the previous lab. First, click the plus sign ![plus](../icon_images/add.png) to add the variable, then give it an informative name (*dep_type*), then type some code in the middle box to indicate how to create *dep_type*. In this case, the code `ifelse(dep_delay < 5, "on time", "delayed")` indicates to classify the flight as `"on time"` if the flight is delayed by less than 5 minutes and `"delayed"` if not, i.e., if the flight is delayed by 5 or more minutes.
 
 ```{r dep-type, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Creating the variable dep_delay using the Transform function*", out.width="80%"}
 knitr::include_graphics("img/figure_6_transform-1.png")
 ```
 
-Save the new dataset as *nycflights_ontime*.
+**Save** the new dataset as *nycflights_ontime*.
 
-<span style="color: red;"> *** At this point there is a problem as Rguroo does not want to save the output. I have reported it to Shahram. Let's try in the next deployment***</span> 
-
-With the new dataset saved, we can find the proportion of on-time flights out of each airport. In the **Analytics** Section, select **Tabulation**. Click `Add Table` to add a table. We want to find the distribution of *dep_type* conditional on *origin*, so select those variables as `Factor 1` and `Factor 2` respectively. Check the `Cond.` box and `Proportions` box to tell Rguroo to calculate conditional proportions.
+With the new dataset saved, we can find the proportion of on-time flights out of each airport. In the **Analytics** toolbox, select **Tabulation**. Click `Add Table` to add a table. We want to find the distribution of *dep_type* conditional on *origin*, so select those variables as `Factor 1` and `Factor 2` respectively. Check the `Cond.` box and `Proportions` box to tell Rguroo to calculate conditional proportions.
 
 ```{r ot-dep-rate, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Tabulating New York flights based on delay_type and origin*", out.width="80%"}
 knitr::include_graphics("img/tabulation-1.png")
@@ -327,7 +325,7 @@ You may want to play around with changing from `Side by side` to `Stacked` and/o
 
 ## More Practice
 
-1.  Using the **Transform** dialog, add a new variable to the dataset that contains the 
+1.  Using the **Transform** function, add a new variable to the dataset that contains the 
     average speed, *avg_speed* traveled by the plane for each flight (in mph).
     **Hint:** Average speed can be calculated as distance divided by
     number of hours of travel, and note that *air_time* is given in minutes.
@@ -336,7 +334,7 @@ You may want to play around with changing from `Side by side` to `Stacked` and/o
     between average speed and distance.
     
 
-1.  Replicate the following plot. **Hint:** The plot shows only flights from American Airlines (AA), Delta Airlines (DL), and United Airlines (UA), and the points are colored based on the `Factor` variable *carrier*. Rather than using **Subset**, you can click ![Level Edtior](../icon_images/level_editor2_Selected.png) and use the **Factor Level Editor** attached to the plot to drop the unused levels and change the colors. Once you replicate
+1.  Replicate the following plot. **Hint:** The plot shows only flights from American Airlines (AA), Delta Airlines (DL), and United Airlines (UA), and the points are colored based on the `Factor` variable *carrier*. Rather than using **Subset**, you can click ![Level Edtior](../icon_images/level_editor2_Selected.png) and use the **Factor Level Editor** attached to the plot to drop the unused levels and change the colors/symbols. Once you replicate
     the plot, determine (roughly) what the cutoff point is for departure
     delays where you can still expect to get to your destination on time.
 
@@ -346,4 +344,4 @@ knitr::include_graphics("img/scatterplot-to-replicate.png")
 
 * * *
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. Rguroo.com, the Rguroo.com logo, and all other trademarks, service marks, graphics and logos used in connection with Rguroo.com or the Website are trademarks or registered trademarks of Soflytics Corp. in the USA and other countries and are not included under the CC-BY-SA license.

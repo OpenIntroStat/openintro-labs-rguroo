@@ -54,7 +54,8 @@ To create your new lab report, in RStudio, go to New File -> R Markdown... Then,
 Your investigation will focus on the performance of one player: [Kobe Bryant](https://en.wikipedia.org/wiki/Kobe_Bryant) of the Los Angeles Lakers. 
 His performance against the Orlando Magic in the [2009 NBA Finals](https://en.wikipedia.org/wiki/2009_NBA_Finals) earned him the title *Most Valuable Player* and many spectators commented on how he appeared to show a hot hand. The data file we'll use is called `kobe_basket`.
 
-```{r glimpse-data}
+```{r glimpse-data, echo = FALSE, eval = FALSE}
+# note: this doesn't work
 glimpse(kobe_basket)
 ```
 

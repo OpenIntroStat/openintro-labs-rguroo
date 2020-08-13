@@ -35,7 +35,7 @@ data in order to determine if the hot hand phenomenon appears to be real.
 ### Data
 
 Your investigation will focus on the performance of one player: [Kobe Bryant](https://en.wikipedia.org/wiki/Kobe_Bryant) of the Los Angeles Lakers. 
-His performance against the Orlando Magic in the [2009 NBA Finals](https://en.wikipedia.org/wiki/2009_NBA_Finals) earned him the title *Most Valuable Player* and many spectators commented on how he appeared to show a hot hand. The data file we'll use is called *kobe_basket*. Import this dataset from the `Open Intro` Dataset Repository  into your Rguroo environment (see figure below). After importing the dataset, the name *kobe_basket* appears in the **Data** section of your account. Double-click on the name to view the data.
+His performance against the Orlando Magic in the [2009 NBA Finals](https://en.wikipedia.org/wiki/2009_NBA_Finals) earned him the title *Most Valuable Player* and many spectators commented on how he appeared to show a hot hand. The data file we'll use is called *kobe_basket*. Import this dataset from the `Open Intro` Dataset Repository  into your Rguroo environment (see figure below). After importing the dataset, the name *kobe_basket* appears in the **Data** toolbox. Double-click on the name to view the data.
 
 ```{r kobe_basket_repository, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Importing the kobe_basket data from the Open Intro Dataset Repository*", out.width="80%"}
 knitr::include_graphics("img/kobe_basket.png")
@@ -95,7 +95,7 @@ In the R code above, line number 1, which starts with `#`, is a comment and not 
 
 The variable *basket* in the dataset *kobe_basket* consists of "H" and "M" values. Line 13 shows how you can apply the function `calc_streak` to the variable *basket* to obtain a vector comprising the streak lengths of "H" in the *basket* variable.
 
-To use the above code in Rguroo's **Transform** function, go to the **Data** section of Rguroo, and in the **Functions** dropdown select **Transform**. The **Transform** dialog box opens. Select the dataset *kobe_basket* from the `Dataset` dropdown, and click the plus sign ![plus](../icon_images/add.png) to create a new `Transform`. A `Transform` in Rguroo consists of a new variable and the set of R code that you write to create it. On the left column, name your variable `kobe_streak` and copy and paste the above R code in the center panel of the `Transformation` function dialog, as shown below. You will notice that the variable *kobe_streak* gets added to the top  of the `Returned Variable` column on the right. We only like to retain the streak lengths, so drag all other variables to the lower panel labeled `Excluded Variable`. Click the `Preview` button ![eye](../icon_images/preview.png), and you will see a dataset with the *kobe_streak* variable only. **Save** the dataset as *kobe_streak*. 
+To use the above code in Rguroo's **Transform** function, go to the **Data** toolbox, and in the **Functions** dropdown select **Transform**. The **Transform** dialog box opens. Select the dataset *kobe_basket* from the `Dataset` dropdown, and click the plus sign ![plus](../icon_images/add.png) to create a new `Transform`. A `Transform` in Rguroo consists of a new variable and the set of R code that you write to create it. On the left column, name your variable `kobe_streak` and copy and paste the above R code in the center panel of the `Transformation` function dialog, as shown below. You will notice that the variable *kobe_streak* gets added to the top  of the `Returned Variable` column on the right. We only like to retain the streak lengths, so drag all other variables to the lower panel labeled `Excluded Variable`. Click the `Preview` button ![eye](../icon_images/preview.png), and you will see a dataset with the *kobe_streak* variable only. **Save** the dataset as *kobe_streak*. 
 
 ```{r kobe_streak_transform, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Using Rguroo's Transform function to compute streak lengths*", out.width="90%"}
 knitr::include_graphics("img/kobe_streak_Transform.png")
@@ -112,7 +112,7 @@ From this point on, when we refer to the *kobe_streak* dataset, we refer to the 
 
 Now let's take a look at the distribution of these streak lengths by looking at a barplot of the streak lengths.
 
-To create the barplot, in the **Plots** section of Rguroo, select **Create Plot** and click on **Barplot**. The **Barplot** dialog box, shown below, opens. This dialog box has two tabs labeled `Categorical` and `Numerical`. These tabs are used to draw barplots for categorical and numerical variables, respectively. Since the variable *kobe_streak* is numerical, we choose the `Numerical` tab. Then, select the *kobe_streak* `Dataset`; you will see that the variable *kobe_streak* appears in the list box below the `Dataset` dropdown. Move this variable to the `Selected` column on the right. Finally, from the `Function` dropdown on the right, select the option *Counts*. Click the `Preview` button ![eye](../icon_images/preview.png) to see a barplot of the streak lengths. If you select the `Value Labels` option, you will see the counts of each streak length on top of each bar.
+To create the barplot, in the **Plots** toolbox of Rguroo, select **Create Plot** and click on **Barplot**. The **Barplot** dialog box, shown below, opens. This dialog box has two tabs labeled `Categorical` and `Numerical`. These tabs are used to draw barplots for categorical and numerical variables, respectively. Since the variable *kobe_streak* is numerical, we choose the `Numerical` tab. Then, select the *kobe_streak* `Dataset`; you will see that the variable *kobe_streak* appears in the list box below the `Dataset` dropdown. Move this variable to the `Selected` column on the right. Finally, from the `Function` dropdown on the right, select the option *Counts*. Click the `Preview` button ![eye](../icon_images/preview.png) to see a barplot of the streak lengths. If you select the `Value Labels` option, you will see the counts of each streak length on top of each bar.
 
 ```{r barplot_kobe_streak_lengths, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Barplot dialog box to get a plot of Kobe streak lengths*", out.width="80%"}
 knitr::include_graphics("img/barplot_kobe_streak_lengths.png")
@@ -172,9 +172,9 @@ that sort of data is very easy to simulate in Rguroo. In a simulation, you set t
 ground rules of a random process and then the computer uses random numbers to 
 generate an outcome that adheres to those rules. 
 
-As a simple example, you can simulate flipping a fair coin using the **Random Selection** function in the **Probability-Simulation** section of Rguroo. 
+As a simple example, you can simulate flipping a fair coin using the **Random Selection** function in the **Probability-Simulation** toolbox of Rguroo. 
 
-First, open Rguroo's data editor by selecting **Create New Dataset** in the **Data** section. In the data editor, create the variable *coin_outcomes* with two values of "heads" and "tails." To add variables click `Add Column`  ![add column](../icon_images/add_column.png) and to add rows click *Add Row* ![add row](../icon_images/add_row.png). Save this dataset with the name *Coin*, as shown below. The variable *coin_outcomes* can be thought of as a hat with two slips of paper in it: 
+First, open Rguroo's data editor by selecting **Create New Dataset** in the **Data** toolbox. In the data editor, create the variable *coin_outcomes* with two values of "heads" and "tails." To add variables click `Add Column`  ![add column](../icon_images/add_column.png) and to add rows click *Add Row* ![add row](../icon_images/add_row.png). Save this dataset with the name *Coin*, as shown below. The variable *coin_outcomes* can be thought of as a hat with two slips of paper in it: 
 one slip says *heads* and the other says *tails*. 
 
 ```{r coin_data_editor, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Rguroo data editor to create the Coin dataset*", out.width="80%"}
@@ -207,17 +207,17 @@ The result of the 100 flips will appear in the Rguroo **Data Viewer**. The figur
 knitr::include_graphics("img/sim_fair_coin.png")
 ```
 
-You see two text boxes labeled **Save As ...** and **Save Dataset As ...** on top of the **Data Viewer**. These are used to save your work. The **Save As ...** option saves all the parameters of the dialog box. Type *sim_fair_coin* in that box, and click the **Save As ...** button. The name *sim_fair_coin* appears in the **Probability-Simulation** section. If you sign out of Rguroo, or close your simulation tab, by double-clicking on this name, you will get back the dialog box that you were working on along with the data that you generated. 
+You see two text boxes labeled **Save As ...** and **Save Dataset As ...** on top of the **Data Viewer**. These are used to save your work. The **Save As ...** option saves all the parameters of the dialog box. Type *sim_fair_coin* in that box, and click the **Save As ...** button. The name *sim_fair_coin* appears in the **Probability-Simulation** toolbox. If you sign out of Rguroo, or close your simulation tab, by double-clicking on this name, you will get back the dialog box that you were working on along with the data that you generated. 
 
-Now, in the text box next to **Save Dataset As ...**, type in  *sim_fair_coin*, and click the **Save Dataset As ...** button. This will save the dataset containing the  *coin_outcomes* variable as an independent dataset in the **Data** section. The  *sim_fair_coin* dataset can now be used in all functions of Rguroo.
+Now, in the text box next to **Save Dataset As ...**, type in  *sim_fair_coin*, and click the **Save Dataset As ...** button. This will save the dataset containing the  *coin_outcomes* variable as an independent dataset in the **Data** toolbox. The  *sim_fair_coin* dataset can now be used in all functions of Rguroo.
 
-You can tabulate the results of your simulation in Rguroo. Go to the **Analytics** section, and in the **Analysis** dropdown, select **Tabulation** to open the **Data Tabulation** dialog box shown below.
+You can tabulate the results of your simulation in Rguroo. Go to the **Analytics** toolbox, and in the **Analysis** dropdown, select **Tabulation** to open the **Data Tabulation** dialog box shown below.
 
 ```{r tabulate_fair_coin, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Tabulation dialog to tabulate the result of the fair coin simlation*", out.width="75%"}
 knitr::include_graphics("img/tabulate_fair_coin.png")
 ```
 
-Select the `Dataset` *sim_fair_coin*. Click on `Add Table`, and type in a  name like *Fair Coin Flips*. In the `Parameters` section of the dialog, choose *Coin_outcomes* from the `Factor 1` dropdown to tabulate this variable's values. Also, check `Totals` and `Proportions`, and click the `Preview` button ![eye](../icon_images/preview.png). You will see two tables that show the number of heads and tails and the proportion of heads and tails that your simulation resulted in.
+Select the `Dataset` *sim_fair_coin*. Click on `Add Table`, and type in a  name like *Fair Coin Flips*. In the `Parameters` toolbox of the dialog, choose *Coin_outcomes* from the `Factor 1` dropdown to tabulate this variable's values. Also, check `Totals` and `Proportions`, and click the `Preview` button ![eye](../icon_images/preview.png). You will see two tables that show the number of heads and tails and the proportion of heads and tails that your simulation resulted in.
 
 Since there are only two elements in *coin_outcomes*, the probability that we "flip" 
 a coin and it lands heads is 0.5. Say we're trying to simulate an unfair coin 
@@ -227,7 +227,7 @@ that we know only lands heads 20% of the time. To simulate this unfair coin, we 
 knitr::include_graphics("img/unfair_coin.png")
 ```
 
-Now, open the **Random Selection** dialog box and select the `Dataset` *unfair_coin*. This time we chose the seed "32658" arbitrarily. You can choose a seed of your own. Also, in the `Probability` dropdown, we select the *Probability* column that we added to the *unfair_coin* dataset. This ensures that heads is selected with probability 0.2, and tails is selected with probability 0.8. One more detail: in the section **Sample a subset**, type in the number 1 for `Columns`, as shown in the figure below. This is because the dataset *unfair_coin* has two columns of *Coin_outcome* and *Probability*, and we want to only to sample the first column, which is *Coin_outcome*.
+Now, open the **Random Selection** dialog box and select the `Dataset` *unfair_coin*. This time we chose the seed "32658" arbitrarily. You can choose a seed of your own. Also, in the `Probability` dropdown, we select the *Probability* column that we added to the *unfair_coin* dataset. This ensures that heads is selected with probability 0.2, and tails is selected with probability 0.8. One more detail: in the section `Sample a subset`, type in the number 1 for `Columns`, as shown in the figure below. This is because the dataset *unfair_coin* has two columns of *Coin_outcome* and *Probability*, and we want to only to sample the first column, which is *Coin_outcome*.
 
 ```{r unfair_coin_random_selection, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Simulating an unfair coin*", out.width="75%"}
 knitr::include_graphics("img/unfair_coin_random_selection.png")
@@ -245,7 +245,7 @@ In a sense, we've shrunken the size of the slip of paper that says "heads",
 making it less likely to be drawn, and we've increased the size of the slip of 
 paper saying "tails", making it more likely to be drawn. When you simulated the 
 fair coin, both slips of paper were the same size. This happens by default if 
-you don't provide a a variable for `Probability` in the **Random Selection** dialog; without specifying `Probability`, all elements in the *outcomes* vector have 
+you don't provide a variable for `Probability` in the **Random Selection** dialog; without specifying `Probability`, all elements in the *outcomes* vector have 
 an equal probability of being drawn.
 
 If you want to learn more about the **Random Selection** function  or any other function, recall that you can always check out [Rguroo's User's Guide](https://rguroo.com/latest_userguide.pdf) or watch [Rguroo's video tutorials](https://rguroo.com/video-tutorials).
@@ -306,4 +306,4 @@ a hot hand.
 
 * * *
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. Rguroo.com, the Rguroo.com logo, and all other trademarks, service marks, graphics and logos used in connection with Rguroo.com or the Website are trademarks or registered trademarks of Soflytics Corp. in the USA and other countries and are not included under the CC-BY-SA license.

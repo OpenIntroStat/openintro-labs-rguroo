@@ -36,24 +36,24 @@ Once you have set up your Rguroo account, you should see a fairly open browser w
 knitr::include_graphics("img/rguroo-interface-v1_4_7.png")
 ```
 
-The sidebar to the right contains five sections: **Data**, **Plots**, **Analytics**, **Probability-Simulation**, and **Applets**. You can click on any of these sections to view your saved Rguroo objects. You can also access a specific section via the keyboard by pressing Alt + the second letter of the section name (Alt + A for **Data**, Alt + L for **Plots**, Alt + N for **Analytics**, Alt + R for **Probability-Simulation**, and Alt + P for **Applets**). There is also a **Quick Access Tools** button on the top right that you can use to access a few frequently used functions, such as **Import Dataset** or a list of shortcut keys.
+The sidebar on the left contains five toolboxes: **Data**, **Plots**, **Analytics**, **Probability-Simulation**, and **Applets**. You can click on any of these toolboxes to view the Rguroo objects you have saved to that toolbox. You can also access a specific toolbox via the keyboard by pressing Alt + the second letter of the toolbox name (Alt + A for **Data**, Alt + L for **Plots**, Alt + N for **Analytics**, Alt + R for **Probability-Simulation**, and Alt + P for **Applets**). There is also a **Quick Access Tools** button on the top right that you can use to access a few frequently used functions, such as **Import Dataset** or a list of shortcut keys.
 
 
 ## Dr. Arbuthnot's Baptism Records
 
-To get started, let's take a peek at the data. To access the data, go to the **Data** section, on the right panel, select **Data Import**, and click on **Dataset Repository**, as shown in the figure below. In the dialog box that opens, type *open intro* in the search box, select the `Open Intro` repository, and in the lower panel of the dialog box select *arbuthnot* and click on the `Import` button. You should now see an Rguroo data file called *arbuthnot* in the **Data** section of the sidebar. This dataset is now available for use in Rguroo functions. 
+To get started, let's take a peek at the data. To access the data, go to the **Data** toolbox, select **Data Import**, and click on **Dataset Repository**, as shown in the figure below. In the dialog box that opens, type *open intro* in the search box, select the `Open Intro` repository, and in the lower panel of the dialog box select *arbuthnot* and click on the `Import` button. You should now see an Rguroo data file called *arbuthnot* in the **Data** toolbox on the sidebar. This dataset is now available for use in Rguroo functions. 
 
 ```{r arbuthnot-upload, echo=FALSE, results="asis", fig.align="center", fig.cap = "*Importing data from the Rguroo Dataset Repository*", out.width = "90%"}
 knitr::include_graphics("img/figure_2_data_repository.png")
 ```
 
-As you work with Rguroo, you will create a series of objects. Objects include datasets, plots, output reports, etc., which can be saved under the **Data**, **Plots**, **Analytics**, and **Probability-Simulation** sections of Rguroo.  Sometimes you import objects as we have done here, but most of the time, you create them as the byproduct of computation or some analysis you have performed. 
+As you work with Rguroo, you will create a series of objects. Objects include datasets, plots, output reports, etc., which can be saved under the **Data**, **Plots**, **Analytics**, and **Probability-Simulation** toolboxes in Rguroo.  Sometimes you import objects as we have done here, but most of the time, you create them as the byproduct of computation or some analysis you have performed. 
 
 As you add Rguroo objects to your account, it will become difficult to find the object you want immediately. Thus, you can type text in the "Search" box to filter the objects in each section. You can also take advantage of the folder system to organize your objects.
 
 The Arbuthnot dataset refers to the work of Dr. John Arbuthnot, an 18th-century physician, writer, and mathematician. He was interested in the ratio of newborn boys to newborn girls, so he gathered the baptism records for children born in London every year from 1629 to 1710. 
 
-To view the *arbuthnot* dataset that you imported, select the dataset's name in the **Data** section sidebar and press Enter to view it. Alternatively, you can double-click the dataset name. The dataset opens in Rguroo's **Data Viewer**, as shown in the figure below. You should see four columns of numbers, each row representing a different year: the first entry in each row is simply the case number (an index we can use to access the data from individual years if we want), the second is the year, and the third and fourth are the numbers of boys and girls baptized that year, respectively. Use the scroll bar on the right side of the window to examine the complete data set. By default, Rguroo will show up to 100 rows and 15 columns of the dataset. You can use the **Row** and **Column** options at the bottom of the **Data Viewer** window to navigate any part of the data. 
+To view the *arbuthnot* dataset that you imported, select the dataset's name in the **Data** toolbox (in the sidebar) and press Enter to view it. Alternatively, you can double-click the dataset name. The dataset opens in Rguroo's **Data Viewer**, as shown in the figure below. You should see four columns of numbers, each row representing a different year: the first entry in each row is simply the case number (an index we can use to access the data from individual years if we want), the second is the year, and the third and fourth are the numbers of boys and girls baptized that year, respectively. Use the scroll bar on the right side of the window to examine the complete data set. By default, Rguroo will show up to 100 rows and 15 columns of the dataset. You can use the **Row** and **Column** options at the bottom of the **Data Viewer** window to navigate any part of the data. 
 
 ```{r arbuthnot-data-view, echo=FALSE, results="asis", fig.align="center", fig.cap="*A portion of the Arbuthnot dataset*", out.width = "80%"}
 knitr::include_graphics("img/Figure_3_arbuthnot_data.png")
@@ -74,19 +74,19 @@ knitr::include_graphics("img/Figure_4_exploring_columns.png")
 
 ### Data visualization
 
-Rguroo has some powerful modules for making graphics. Let's start by creating a simple plot of the number of girls baptized per year. First, we need to open the **Plots** section and click **Create Plot**. The plot we want to make is a scatterplot, so let's select that, as shown in the figure below. This opens up the **Scatterplot** dialog box. When we open up an Rguroo dialog, usually the first thing we need to do is select the `Dataset` we will be using. Let's select *arbuthnot* as our `Dataset`. Then, we need to select the `Predictor (x)` and  `Response (y)` variables on our plot using the dropdown menus.
+Rguroo has some powerful modules for making graphics. Let's start by creating a simple plot of the number of girls baptized per year. First, we need to open the **Plots** toolbox and click **Create Plot**. The plot we want to make is a scatterplot, so let's select that, as shown in the figure below. This opens up the **Scatterplot** dialog box. When we open up an Rguroo dialog, usually the first thing we need to do is select the `Dataset` we will be using. Let's select *arbuthnot* as our `Dataset`. Then, we need to select the `Predictor (x)` and  `Response (y)` variables on our plot using the dropdown menus.
 
 ```{r plot-girls-vs-year-dialog, echo=FALSE, results="asis", fig.align= "center", fig.cap = "Creating the scatterplot of number of girls baptized versus year", out.width = "90%"}
 knitr::include_graphics("img/figure_5_scatterplot_dialog.png")
 ```
 
-To apply your selections and see results, click the `Preview` button, ![eye](../icon_images/preview.png) which can be found at the top right of every dialog box or on the top bar on the Rguroo panel. The graph below is the scatterplot of girls versus year created using these steps.
+To apply your selections and see results, click the `Preview` button ![eye](../icon_images/preview.png), which can be found at the top right of every dialog box or on the top bar on the Rguroo panel. The graph below is the scatterplot of girls versus year created using these steps.
 
 ```{r plot-girls-vs-year, echo=FALSE, results="asis", fig.align="center", fig.cap = "*Scatterplot of number of girls baptized versus year*", out.width= "80%"}
 knitr::include_graphics("img/scatterplot-1-output.png")
 ```
 
-Let's say we want to visualize the above plot using a line graph instead. In the **Scatterplot** menu, you can select `Line` under the `Superimpose` part of the dialog box. This will connect the points consecutively by lines. If you would like to hide the points, click the **Details** button and select the `Attributes of Scatterplot Points, LS Line, LOESS, and Identified Points` menu. Once open, check the `Show Line` box. To remove the points, uncheck the `Show Points` box, as shown in the figure below.
+Let's say we want to visualize the above plot using a line graph instead. In the **Scatterplot** menu, you can select `Line` under the `Superimpose` part of the dialog box. This will connect the points consecutively by lines. If you would like to hide the points, click the ![Details](../icon_images/details.png) button and select the `Attributes of Scatterplot Points, LS Line, LOESS, and Identified Points` menu. Once open, check the `Show Line` box. To remove the points, uncheck the `Show Points` box, as shown in the figure below.
 
 ```{r plot-girls-vs-year-line, echo=FALSE, results="asis", fig.align = "center", fig.cap = "*A dialog box to customize points and lines*", out.width="80%"}
 knitr::include_graphics("img/linegraph-1.png")
@@ -122,7 +122,7 @@ This brings up the selected calculator from [https://www.desmos.com/](https://ww
 
 We'll want to compute the total number of baptisms for every year and use it to generate some plots, so we'll want to save it as a permanent column in our dataset.
 
-To modify our dataset, go back to the **Data** section, select the **Functions** menu, and select **Transform**. As usual, the first thing to select in the dialog is the appropriate `Dataset`. Select the *arbuthnot* dataset.
+To modify our dataset, go back to the **Data** toolbox, select the **Functions** menu, and select **Transform**. As usual, the first thing to select in the dialog is the appropriate `Dataset`. Select the *arbuthnot* dataset.
 
 In the `Variable` section to the left, click the green plus sign ![plus](../icon_images/add.png) to add a new variable to the dataset. The default name for the variable will be something uninformative like *Transform_1*. Change the name to *total*. In the `Returned Variable` section on the right, you should see *total* added to the list of variables.
 
@@ -148,14 +148,14 @@ Now, to be able to create plots with this new dataset, we need to save it to Rgu
 knitr::include_graphics("img/transform-2.png")
 ```
 
-Note that since the **Save Parameters** box is checked, two things will happen. First, a new dataset will be added to the **Data** section with a different icon. This icon indicates that when you open the dataset, you can also open the **Transform** dialog that created it. Second, the original *arbuthnot* dataset name in the **Data** section is now shown with a bold-face green font. A dataset name that has the bold-face green format indicates that one or more **Rguroo objects** have been saved using this dataset. To see the datasets, plots, and reports that have been created from this dataset, right-click the dataset and select the option **Show Dependencies**.
+Note that since the **Save Parameters** box is checked, two things will happen. First, a new dataset will be added to the **Data** toolbox with a different icon. This icon indicates that when you open the dataset, you can also open the **Transform** dialog that created it. Second, the original *arbuthnot* dataset name in the **Data** toolbox is now shown with a bold-face green font. A dataset name that has the bold-face green format indicates that one or more **Rguroo objects** have been saved using this dataset. To see the datasets, plots, and reports that have been created from this dataset, right-click the dataset and select the option **Show Dependencies**.
 
 <div id="boxedtext">
 **Tip: ** If you want to save a dataset created in the **Transform** function as an *independent dataset*, uncheck the **Save Parameters** box. An *independent dataset* is one whose  origin is not recorded in Rguroo. To remember information about a dataset, you can right-click on its name and add a **Comment**. 
 </div>
 
 
-You can make a line plot of the total number of baptisms per year by opening a new **Scatterplot** dialog (in the **Plots** section). Remember to open the **Details** menu to remove the points and add the line! The following figures should help.
+You can make a line plot of the total number of baptisms per year by opening a new **Scatterplot** dialog (in the **Plots** toolbox). Remember to open the ![Details](../icon_images/details.png) menu to remove the points and add the line! The following figures should help.
 
 ```{r plot-total-vs-year_dialog, echo=FALSE, results="asis", fig.align = "center", fig.cap = "*Scatterplot's Basics dialog box*", out.width="80%"}
 knitr::include_graphics("img/scatterplot2-1.png")
@@ -240,7 +240,7 @@ You can learn more about them by clicking the the information icon ![info](../ic
 
 1.  In what year did we see the most total number of births in the U.S.? **Hint:**
     First, use the **Transform** dialog to add a `total` variable to the dataset. 
-    Then, sort your dataset in descending order based on the total column. You can do this using the **Sort** dialog (in the **Data** section, click **Functions**, then **Sort**) as shown in the screenshot below.
+    Then, sort your dataset in descending order based on the total column. You can do this using the **Sort** dialog (in the **Data** toolbox, click **Functions**, then **Sort**) as shown in the screenshot below.
     
 ```{r sort-function, echo=FALSE, results="asis", fig.align = "center", fig.cap = "*Rguroo `Sort` function*", out.width="60%"}
 knitr::include_graphics("img/sort.png")
@@ -267,4 +267,4 @@ knitr::include_graphics("img/rguroo-help-2.png")
 ```
 * * *
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. Rguroo.com, the Rguroo.com logo, and all other trademarks, service marks, graphics and logos used in connection with Rguroo.com or the Website are trademarks or registered trademarks of Soflytics Corp. in the USA and other countries and are not included under the CC-BY-SA license.
