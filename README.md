@@ -3,14 +3,11 @@ OpenIntro Labs - Rguroo
 
 OpenIntro Labs promote the understanding and application of statistics through applied data analysis. Labs are titled based on topic area, which correpond to particular chapters in all three versions of OpenIntro Statistics, a free and open-source textbook. The textbook as well as the html version of the labs can be found at [http://www.openintro.org/stat/labs.php](http://www.openintro.org/stat/labs.php).
 
-This repository is a fork of the [tidyverse labs](https://github.com/openintrostat/oilabs-tidy). It incorporates the [Rguroo](https://rguroo.com/) web-based statistical software. Since Rguroo is primarily GUI-based, most code chunks have been replaced with screenshots.
-
-Put something here about the difficulty of using markdown/notebooks with Rguroo.
+This repository is a fork of the [tidyverse labs](https://github.com/openintrostat/oilabs-tidy), converted to use the [Rguroo](https://rguroo.com/) web-based statistical software by [Dwight Wynne](https://github.com/dpwynne) and Mori Jamshidian. Since Rguroo is primarily GUI-based, most code chunks have been replaced with screenshots. The screenshots accurately display Rguroo function dialogs as of Version 1.5.3.
 
 We currently support our source files in the RMarkdown (.Rmd) format, which can be output into
 html format (though output to pdf is also possible). The source files are processed
 using the [knitr](http://yihui.name/knitr/) package in R, and are easiest to use in [RStudio](https://www.rstudio.com/products/rstudio/download/).
-
 
 ## Labs
 
@@ -34,5 +31,5 @@ pedagogy, etc.) please create an issue so to start the conversation.
 
 * * *
 
-<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>. Rguroo.com, the Rguroo.com logo, and all other trademarks, service marks, graphics and logos used in connection with Rguroo.com or the Website are trademarks or registered trademarks of Soflytics or Soflytics licensors and are not included under the CC-BY-SA license. 
 
