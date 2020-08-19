@@ -35,9 +35,9 @@ data in order to determine if the hot hand phenomenon appears to be real.
 ### Data
 
 Your investigation will focus on the performance of one player: [Kobe Bryant](https://en.wikipedia.org/wiki/Kobe_Bryant) of the Los Angeles Lakers. 
-His performance against the Orlando Magic in the [2009 NBA Finals](https://en.wikipedia.org/wiki/2009_NBA_Finals) earned him the title *Most Valuable Player* and many spectators commented on how he appeared to show a hot hand. The data file we'll use is called *kobe_basket*. Import this dataset from the `Open Intro` Dataset Repository  into your Rguroo environment (see figure below). After importing the dataset, the name *kobe_basket* appears in the **Data** toolbox. Double-click on the name to view the data.
+His performance against the Orlando Magic in the [2009 NBA Finals](https://en.wikipedia.org/wiki/2009_NBA_Finals) earned him the title *Most Valuable Player* and many spectators commented on how he appeared to show a hot hand. The data file we'll use is called *kobe_basket*. Import this dataset from the `OpenIntro` **Dataset Repository**  into your Rguroo environment (see figure below). After importing the dataset, the name *kobe_basket* appears in the **Data** toolbox. Double-click on the name to view the data.
 
-```{r kobe_basket_repository, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Importing the kobe_basket data from the Open Intro Dataset Repository*", out.width="80%"}
+```{r kobe_basket_repository, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Importing the kobe_basket data from the OpenIntro Dataset Repository*", out.width="80%"}
 knitr::include_graphics("img/kobe_basket.png")
 ```
 
