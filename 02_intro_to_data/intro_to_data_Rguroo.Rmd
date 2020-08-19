@@ -32,7 +32,7 @@ Technology Administration (RITA). As its name implies, BTS collects and makes
 transportation data available, such as the flights data we will be working with 
 in this lab.
 
-As usual, you can import this data from Rguroo's `OpenIntro` Dataset Repository. The dataset we want to import is `nycflights`. Locate the dataset in the repository and click on the information icon ![i](../icon_images/info.png) to the right of the dataset name to read some information about the dataset. In particular, you can see the **codebook** (description of the variables) on that page. One of the variables refers to the carrier (i.e. airline) of the flight, which 
+As usual, you can import this data from Rguroo's `OpenIntro` **Dataset Repository**. The dataset we want to import is `nycflights`. Locate the dataset in the repository and click on the information icon ![i](../icon_images/info.png) to the right of the dataset name to read some information about the dataset. In particular, you can see the **codebook** (description of the variables) on that page. One of the variables refers to the carrier (i.e. airline) of the flight, which 
 is coded according to the following system.
 
 - `carrier`: Two letter carrier abbreviation.
