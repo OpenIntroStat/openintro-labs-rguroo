@@ -59,7 +59,7 @@ To see how accurate that description is, you can plot a normal distribution curv
 on top of a histogram to see how closely the data follow a normal distribution. 
 This normal curve should have the same mean and standard deviation as the data. 
 
-In Rguroo, this can be done by opening the `Basics` menu for the histogram and, in the Smoothing section, checking the `Normal` box. The screenshot below shows this for the `dairyqueen` dataset.
+In Rguroo, this can be done by opening the ![Basics](../icon_images/basics2_Selected.png) menu for the histogram and, in the Smoothing section, checking the `Normal` box. The screenshot below shows this for the `dairyqueen` dataset.
 
 ```{r normal curve, echo = FALSE, results = "asis"}
 knitr::include_graphics("img/normalcurve1-1.png")
@@ -67,7 +67,7 @@ knitr::include_graphics("img/normalcurve1-1.png")
 
 Strictly speaking, the normal distribution curve should display a normal probability density function that has area under the curve of 1. However, Rguroo scales this curve to an appropriate height on the y-axis.
 
-If this is annoying to you, you can reopen the `Basics` menu and change the `Type` option from `Frequency` to `Density`. The difference between a 
+If this is annoying to you, you can reopen the ![Basics](../icon_images/basics2_Selected.png) menu and change the `Type` option from `Frequency` to `Density`. The difference between a 
 frequency histogram and a density histogram is that while in a frequency 
 histogram the *heights* of the bars add up to the total number of observations, 
 in a density histogram the *areas* of the bars add up to 1. The area of each bar
