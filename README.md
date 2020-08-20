@@ -3,7 +3,7 @@ OpenIntro Labs - Rguroo
 
 OpenIntro Labs promote the understanding and application of statistics through applied data analysis. Labs are titled based on topic area, which correpond to particular chapters in all three versions of OpenIntro Statistics, a free and open-source textbook. The textbook as well as the html version of the labs can be found at [http://www.openintro.org/stat/labs.php](http://www.openintro.org/stat/labs.php).
 
-This repository is a fork of the [tidyverse labs](https://github.com/openintrostat/oilabs-tidy), converted to use the [Rguroo](https://rguroo.com/) web-based statistical software by [Dwight Wynne](https://github.com/dpwynne) and [Mortaza (Mori) Jamshidian](http://www.fullerton.edu/math/faculty/jamshidian/index.php). Since Rguroo is primarily GUI-based, most code chunks have been replaced with screenshots. The screenshots accurately display Rguroo function dialogs as of Version 1.5.3.
+This repository is a fork of the [tidyverse labs](https://github.com/openintrostat/oilabs-tidy), converted to use the [Rguroo](https://rguroo.com/) web-based statistical software by [Dwight Wynne](https://github.com/dpwynne) and [Mortaza (Mori) Jamshidian](http://www.fullerton.edu/math/faculty/jamshidian/index.php). Since Rguroo is primarily GUI-based, most code chunks have been replaced with screenshots. The screenshots accurately display Rguroo function dialogs as of Version 1.5.8.
 
 We currently support our source files in the RMarkdown (.Rmd) format, which can be output into
 html format (though output to pdf is also possible). The source files are processed
@@ -11,7 +11,7 @@ using the [knitr](http://yihui.name/knitr/) package in R, and are easiest to use
 
 ## Labs
 
-1. Intro to R
+1. Intro to Rguroo
 2. Intro to data
 3. Probability
 4. Normal distributions
