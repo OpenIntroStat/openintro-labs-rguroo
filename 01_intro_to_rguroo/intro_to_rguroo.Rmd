@@ -41,7 +41,7 @@ The sidebar on the left contains five toolboxes: **Data**, **Plots**, **Analytic
 
 ## Dr. Arbuthnot's Baptism Records
 
-To get started, let's take a peek at the data. To access the data, go to the **Data** toolbox, select **Data Import**, and click on **Dataset Repository**, as shown in the figure below. In the dialog box that opens, type *open* in the upper search box and you should see the option to select the `OpenIntro` repository. Once selected, the lower panel of the dialog box should show all the datasets in the repository; type *arb* in the lower search box to find the *arbuthnot* dataset, select it, and click on the `Import` button. You should now see an Rguroo data file called *arbuthnot* in the **Data** toolbox on the sidebar. This dataset is now available for use in Rguroo functions. 
+To get started, let's take a peek at the data. To access the data, go to the **Data** toolbox, select **Data Import**, and click on **Dataset Repository**, as shown in the figure below. In the dialog box that opens, type *open* in the upper search box and you should see the option to select the `OpenIntro` repository. Once selected, the lower panel of the dialog box should show all the datasets in the repository. Click on the `Dataset` column in the lower panel to sort the datasets alphabetically, then find the *arbuthnot* dataset, select it, and click on the `Import` button. You should now see an Rguroo data file called *arbuthnot* in the **Data** toolbox on the sidebar. This dataset is now available for use in Rguroo functions. 
 
 ```{r arbuthnot-upload, echo=FALSE, results="asis", fig.align="center", fig.cap = "*Importing data from the Rguroo Dataset Repository*", out.width = "90%"}
 knitr::include_graphics("img/figure_2_data_repository.png")
