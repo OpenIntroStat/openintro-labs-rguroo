@@ -23,10 +23,10 @@ schoolers (9th through 12th grade), to analyze health patterns. You will work
 with a selected group of variables from a random sample of observations during 
 one of the years the YRBSS was conducted.
 
-The dataset is called *yrbss* and can be imported to your Rguroo workspace from Rguroo's `OpenIntro` **Dataset Repository**. Before importing the dataset, remind yourself of the variables in the dataset by clicking on the information icon ![info](../icon_images/info.png), shown on the right of the dataset name. 
+The dataset is called *yrbss* and can be imported to your Rguroo workspace from Rguroo's `OpenIntro` **Dataset Repository**. Before importing the dataset, remind yourself of the variables in the dataset by clicking on the information icon ![info](../icon_images/info.png), shown to the right of the dataset name. 
 
 1.   What are the counts within each category for the number of days these students
-have texted while driving within the past 30 days? **Hint:** Go to the **Analytics** toolbox, select *Analysis* $\rightarrow$ *Tabulation*, select the dataset *yrbss*, and tabulate the values for the variable *text_while_driving_30d*. If you need help using the **Data Tabulation** dialog, click the video icon [![video](../icon_images/video_blue_Over.png)](https://youtu.be/GEYd98LwxiE) here or on the dialog box to watch the video tutorial *Tabulation and Distribution of Categorical Data*.
+have texted while driving within the past 30 days? **Hint:** Go to the **Analytics** toolbox, select **Analysis** $\rightarrow$ **Tabulation**, select the `Dataset` *yrbss*, and tabulate the values for the variable *text_while_driving_30d*. If you need help using the **Data Tabulation** dialog, click the video icon [![video](../icon_images/video_blue_Over.png)](https://youtu.be/GEYd98LwxiE) here or on the dialog box to watch the video tutorial *Tabulation and Distribution of Categorical Data*.
 
 1.  What is the proportion of people who have texted while driving every day in 
 the past 30 days and never wear helmets? **Hint:** Select the two relevant factors in the **Data Tabulation** dialog, and select the option `Proportions`.
@@ -41,7 +41,7 @@ To get a cleaner output, you can click ![Level Editor](../icon_images/level_edit
 
 Let's calculate the above proportions in another way, namely by subsetting the data. When we calculated the conditional proportion in the Exercise above, we were only concerned with those who had stated that they never wore a helmet. Also, it will be easier if we create a new variable, *text_ind*, that specifies whether the individual has texted every day while driving over the past 30 days or not. We could use Rguroo's **Subset** function to get the subset with only those that never wore a helmet, and then use the **Transform** function on the subsetted data to create the variable *text_ind*. However, by using the **Transform** function cleverly, we can accomplish both in the **Transform** function.
 
-Go to the **Data** toolbox and select **Functions** $\rightarrow$ **Transform**. Select the dataset *yrbss*, click the plus sign ![plus](../icon_images/add.png), and create the variable *text_ind* by typing in the following code in the center panel:
+Go to the **Data** toolbox and select **Functions** $\rightarrow$ **Transform**. Select the `Dataset` *yrbss*, click the plus sign ![plus](../icon_images/add.png), and create the variable *text_ind* by typing in the following code in the center panel:
 
 ```{r, eval=FALSE}
 ifelse(text_while_driving_30d == "30", "yes", "no")
@@ -53,7 +53,7 @@ Click the plus icon ![plus](../icon_images/add.png) again, and add a another var
 ifelse(helmet_12m == "never", "never", NA)
 ```
 
-The *never_only* variable will consist of the word "*never*" whenever the variable *helmet_12m* is *never*, and it will be *NA*, otherwise. *NA* is the missing data code in R. So, by selecting `Complete Cases Only` in the **Data Transform** dialog, all the cases that are *NA* will be removed when you preview the data. Thus, in our example, only cases with the value of *never* for the *helmet_12m* variable remain. This is a trick in getting a subset of a dataset using the **Transform** function.
+The *never_only* variable will have the value "*never*" whenever the value of the variable *helmet_12m* is *never*, and it will be *NA* otherwise. *NA* is the missing data code in R. So, by selecting `Complete Cases Only` in the **Data Transform** dialog, all the cases that are *NA* will be removed when you preview the data. Thus, in our example, only cases with the value of *never* for the *helmet_12m* variable remain. This is a trick in getting a subset of a dataset using the **Transform** function.
 
 Since we only need the *text_ind* variable to compute our proportion, we move all other variables to the `Excluded Variable` list (See the **Data Transform** dialog below). We have also retained the *never_only* variable, mostly as a reminder. Click the `Preview` button ![eye](../icon_images/preview.png), then **Save** the new dataset as *never_helmet*.
  
@@ -61,7 +61,7 @@ Since we only need the *text_ind* variable to compute our proportion, we move al
 knitr::include_graphics("img/transform_never_only.png")
 ```
 
-Now, right-click on the *never_helmet* dataset in the **Data** toolbox and select **Dataset Summary**. Then, in the *Categorical Variables* table, you will see the counts of the variable *text_ind* for its levels *yes* and *no*. Use these values to see if you can come up with the same conditional proportion that you computed in Exercise 3.
+Now, right-click on the *never_helmet* dataset in the **Data** toolbox and select **Dataset Summary**. Then, in the **Categorical Variables** table, you will see the counts of the variable *text_ind* for its levels *yes* and *no*. Use these values to see if you can come up with the same conditional proportion that you computed in Exercise 3.
 
 ## Inference on proportions
 
@@ -79,14 +79,14 @@ To do so, we use the dataset *never_helmet* that we created, which consists of d
 
 To construct a confidence interval for a population proportion, open the **Analytics** toolbox, then click on **Analysis** $\rightarrow$ **Proportion Inference** $\rightarrow$ **One Population**. In the **One Population Proportion Inference** dialog, select the dataset *never_helmet*. Select *text_ind* in the `Factor` dropdown and choose *yes* from the `Success` dropdown. The three gray textboxes showing the sample size (`Sample Size`), number of successes (`# of Succ.`), and proportion of successes (`Prop. of Succ.`) auto-fill with their corresponding value. The value for the proportion of successes should be familiar! 
 
-Rguroo has nine different options for constructing confidence intervals for a population proportion, although only three are shown in the main **One Population Proportion Inference** dialog. To see all options, click ![Details](../icon_images/details.png). In the **Advanced Features** dialog, select the section `Confidence Interval and Test of Hypothesis`, and in the tab `Confidence Interval` you will find all nine options.  Select the options `Bootstrap Percentile` and `Bootstrap SE`, then click the `Preview` button ![eye](../icon_images/preview.png) to see the result.
+Rguroo has nine different options for constructing confidence intervals for a population proportion, although only three are shown in the main **One Population Proportion Inference** dialog. To see all options, click ![Details](../icon_images/details.png). In the **Advanced Features** dialog, select the section `Confidence Interval and Test of Hypothesis`, and in the tab `Confidence Interval` you will find all nine options.  Select the options `Bootstrap (Percentile)` and `Bootstrap (SE)`, then click the `Preview` button ![eye](../icon_images/preview.png) to see the result.
 
-```{r ci_text_ind, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Constructing confidence intervals, using bootstrap methods*",out.width="95%"}
+```{r ci_text_ind, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Constructing confidence intervals using bootstrap methods*",out.width="95%"}
 knitr::include_graphics("img/ci_text_ind.png")
 ```
 
 <div id="boxedtext">
-**Rguroo's Bootstrap Method Defaults:** The default number of bootstrap samples in Rguroo is 10,000 and can be changed in the **Advanced Features** dialog by changing the value in the `Replication` textbox. There, you can also change the seed from the default value of 100 in the `Seed` textbox. The default confidence level is 95%, and you can change it in the ![Basics](../icon_images/basics2_Selected.png) dialog in the `Confidence Level` textbox. 
+**Rguroo's Bootstrap Method Defaults:** The default number of bootstrap samples in Rguroo is 10,000 and can be changed in the **Advanced Features** dialog (![Details](../icon_images/details.png)) by changing the value in the `Replication` textbox. There, you can also change the seed from the default value of 100 in the `Seed` textbox. The default confidence level is 95%, and you can change it in the **One Population Proportion Inference** dialog (![Basics](../icon_images/basics2_Selected.png)) in the `Confidence Level` textbox. 
 </div>
 
 <div id="boxedtext">
@@ -123,27 +123,26 @@ Since the population proportion $p$ is in this $ME$ formula, it should make sens
 that the margin of error is in some way dependent on the population proportion. 
 We can visualize this relationship by creating a plot of $ME$ vs. $p$.
 
-Import the dataset *values_of_p* from Rguroo's OpenIntro dataset repository. Double-click on the dataset name to view the data. This dataset consists of a single variable "*p*" with 101 values that start from 0 and go to 1 by increments of 0.01 (the values are 0, 0.01, 0.02, ... , 0.99, 1$). Now, open the **Transform** function from the **Data** toolbox, select the dataset *values_of_p*, click the plus icon ![](../icon_images/add.png) and define a new variable, call it *ME*. We have the **Transform** function compute the margin of error formula. To do so, in the middle section of the **Data Transform** type the following R code:
+Import the dataset *values_of_p* from Rguroo's `OpenIntro` **Dataset Repository**. Double-click on the dataset name to view the data. This dataset consists of a single variable "*p*" with 101 values that start from 0 and go to 1 in increments of 0.01 (the values are 0, 0.01, 0.02, ..., 0.99, 1). Now, open the **Transform** function from the **Data** toolbox, select the `Dataset` *values_of_p*, click ![plus](../icon_images/add.png), and define a new variable called *ME*. Now, use the **Transform** function to compute the margin of error by typing the following R code in the center box:
 
-```{r, eval=FALSE}
+```{r compute margin of error, eval=FALSE}
 n = 1000
-ME = 2 * sqrt(p * (1 - p)/n)
+ME = 1.96 * sqrt(p * (1 - p)/n)
 ```
 
 Since the sample size is irrelevant to this discussion, we set it to
-$n = 1000$. Click the `Preview` button ![](../icon_images/preview.png). You should see the new variable *ME* in the dataset. Save this dataset with the name *margin_of_error*.
+$n = 1000$. Click the `Preview` button ![eye](../icon_images/preview.png). You should see the new variable *ME* in the dataset. Save this dataset with the name *margin_of_error*.
 
 ```{r margin_of_error, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Computing margin of error as a function of p*",out.width="80%"}
 knitr::include_graphics("img/margin_of_error.png")
 ```
 
 Lastly, you can plot the two variables against each other to reveal their 
-relationship. To do so, open the **Scatterplot** dialog in the **Plots** toolbox. Select the dataset *margin_of_error*, set `Predictor (x)` to *p*, and `Response (y)` to *ME*. Set the `X-Axis` label to "Population Proportion" and the `Y-Axis` label to "Margin of error." Finally, select the option `Line Graph` in the **superimpose** section of the **Scatterplot** dialog box. In a less important detail, if you want to remove the dots from the graph, uncheck the box `Show Points` in the first section of the **Graph Settings** dialog in the **Details**.
+relationship. To do so, go to the **Plots** toolbox and select **Create Plots** $\rightarrow$ **Scatterplot**. Select the `Dataset` *margin_of_error*, then set `Predictor (x)` to *p* and `Response (y)` to *ME*. Set the `X-Axis` label to read *Population Proportion* and the `Y-Axis` label to read *Margin of Error*. Finally, look in the ``Superimpose`` section of the dialog and check the option `Line Graph`. If you want to remove the dots from the graph, click ![Details](../icon_images/details.png), and in the top menu `Attributes of Scatterplot Points, LS Line, LOESS and Identified Points` find the `Point-Line` tab and uncheck the box `Show Points`; however, this is not necessary.
 
 ```{r scatter_margin_of_error, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Graphing the relationship between p and margin of error*",out.width="95%"}
 knitr::include_graphics("img/scatter_margin_of_error.png")
 ```
-
 
 1.  Describe the relationship between *p* and *ME*. Include the margin of
     error vs. population proportion plot you constructed in your answer. For
@@ -161,7 +160,7 @@ about the number 10?
 The short answer is: nothing. You could argue that you would be fine with 9 or 
 that you really should be using 11. What is the "best" value for such a rule of 
 thumb is, at least to some degree, arbitrary. However, when $np$ and $n(1-p)$ 
-reaches 10 the sampling distribution is sufficiently normal to use confidence 
+both reach 10, the sampling distribution is sufficiently normal to use confidence 
 intervals and hypothesis tests that are based on the normal approximation.
 
 You can investigate the interplay between $n$ and $p$ and the shape of the 
@@ -169,7 +168,7 @@ sampling distribution by using simulations. Let's see how we can visualize the s
 
 A Bernoulli random variable has an associated success probability $p$; we denote this random variable by $Bernoulli(p)$. Each simulated value from a $Bernoulli(p)$ random variable, is either 1 (success) with probability $p$ or 0 (failure) with probability $1-p$. Say we would like to investigate the sampling distribution of the sample proportion $\hat p$, for a sample of size $n=300$ and population probability of success $p = 0.1$. Let's begin by simulating one sample of size 300.
 
-In the **Probability-Simulation** toolbox select **Probability** $\rightarrow$ **Multiple Distribution Generator**. In the **Multiple Distribution Random Generator** dialog that opens click the plus icon ![](../icon_images/add.png) to define your simulation. Change the name *Sample_1* to *Bern*. This name can be anything, as long as it has no spaces. This function allows simulating from various types of random variables. For our example, select *Bernoulli* from the `Distribution` dropdown, type-in 0.1 in the `Prob. of Success` textbox, and type-in 300 in the `Sample Size` textbox. Click the `Preview` button ![](../icon_images/preview.png) to see the result.
+In the **Probability-Simulation** toolbox, select **Probability** $\rightarrow$ **Multiple Distribution Generator**. In the **Multiple Distribution Random Generator** dialog that opens click ![plus](../icon_images/add.png) to define your simulation. Change the name *Sample_1* to *Bern* (this name can be anything, as long as it has no spaces). The **Multiple Distribution Generator** function allows simulating from various types of random variables. For our example, select *Bernoulli* from the `Distribution` dropdown, set the `Prob. of Success` to 0.1, and set the `Sample Size` to 300. Here we have kept the default `Seed` value of 100, but you should change it to another number of your choice. Click the `Preview` button ![eye](../icon_images/preview.png) to see the result.
 
 ```{r bernoulli, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Generating a sample of size 300 from Bernoulli(p=0.1)*",out.width="75%"}
 knitr::include_graphics("img/bernoulli.png")
@@ -177,18 +176,18 @@ knitr::include_graphics("img/bernoulli.png")
 
 You should have 300 rows of data (by default 100 is shown), with most of the values (approximately 90%) being 0, and the others (approximately 10%) being 1. Thus, we have simulated one sample of size 300 from a population with a proportion of successes 0.1. 
 
-Now click the  to the ![](../icon_images/simulate.png) button to reopen the **Multiple Distribution Random Generator** dialog. Leave everything as is, except change the value of `Replications` from 1 to 5, and click the `Preview` button ![](../icon_images/preview.png).  This time you should see five columns labeled *Bern_1*, *Bern_2* ... *Bern_5* with each column being a sample of size 300 from $Bernoulli(p=0.1)$.
+Now click the ![Simulate](../icon_images/simulate.png) button to reopen the **Multiple Distribution Random Generator** dialog. Leave everything as is, except change the value of `Replications` from 1 to 5, and click the `Preview` button ![eye](../icon_images/preview.png).  This time you should see five columns labeled *Bern_1*, *Bern_2* ... *Bern_5* with each column being a sample of size 300 from $Bernoulli(p=0.1)$.
 
 Now let's have Rguroo compute the sample proportions $\hat p$ for each of the samples. 
-Again, click the ![](../icon_images/simulate.png) button to reopen the **Multiple Distribution Random Generator** dialog. Click the `Custom Statistic` button at the bottom of the dialog to open the **Custom Statistic** dialog. Click the plus icon ![](../icon_images/add.png) and change the name *Statistic_1* to *phat*, and in the text area to the right type in the following R code:
+Again, click the ![Simulate](../icon_images/simulate.png) button to reopen the **Multiple Distribution Random Generator** dialog. Click the `Custom Statistic` button at the bottom of the dialog to open the **Custom Statistic** dialog. Click ![plus](../icon_images/add.png) and change the name *Statistic_1* to *phat*, and in the text area to the right type in the following R code:
 
 ```{r, eval = FALSE}
 sum(x) / length(x)
 ```
 
-The command `sum(x)` adds all the values in each sample (in our example the zeros and ones), thus its result is the total number of successes for each sample. The command `length(x)` counts the number of values in each sample, which is the sample size. Dividing these two quantities give the sample proportion of successes. Click the `Preview` button ![](../icon_images/preview.png) to see the result.
+The command `sum(x)` adds all the values in each sample (in our example the zeros and ones), thus its result is the total number of successes for each sample. The command `length(x)` counts the number of values in each sample, which is the sample size. Dividing these two quantities give the sample proportion of successes. Click the `Preview` button ![eye](../icon_images/preview.png) to see the result.
 
-```{r custom_stats, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*A custom statistic to compute sample proportion*",out.width="75%"}
+```{r custom_stats, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Computing the sample proportion by creating a Custom Statistic*",out.width="75%"}
 knitr::include_graphics("img/custom_stats.png")
 ```
 
@@ -196,13 +195,13 @@ The result is five values, under the variable name *Bern_phat* that are the prop
 
 Now that we know how to simulate sample proportions $\hat p$, we can investigate its  sampling distribution for various values of $n$ and $p$ by simulating a large number of $\hat p$'s.
 
-Increase the number of replications to 1000, and save the resulting dataset as *phat_n300*. It's best to save both the parameters and the standalone dataset. When you save the parameters, you can come back to the dialog box and change values of $n$ and $p$ to see other sampling distributions.
+Click ![Simulate](../icon_images/simulate.png) to reopen the dialog, increase the number of `Replications` to 1000, `Preview` ![eye](../icon_images/preview.png), and **Save** the resulting dataset as *phat_n300*. It's best to **Save** the process as well; call it *simulating_phat*. When you save the process, you can come back to the dialog box and change values of `Sample Size` ($n$) and `Prob. of Success` ($p$) to see other sampling distributions.
 
-By right-clicking on the dataset name *phat_n300*, you can see the mean and standard deviation of the variable *Bern_phat*. Compare these values to the values of $p$ and $SE = \sqrt{np(1-p)}$. 
+By right-clicking on the dataset name *phat_n300*, you can see the mean and standard deviation of the variable *Bern_phat*. Compare these values to the values of $p$ and $SE = \sqrt{p(1-p)/n}$. 
 
-To see the shape of the distribution, in the **Plots** toolbox select **Create Plot** $\rightarrow$ **Dotplot**. In the **Dotplot** dialog select the dataset *phat_n300* and in the **Numerical Variables** section of the dialog move the variable name *Bern_phat* to the `Selected` column. Click the `Preview` button ![](../icon_images/preview.png) to see the distribution of $\hat p$ for $n=300$ and $p=10$. 
+To see the shape of the distribution, in the **Plots** toolbox select **Create Plot** $\rightarrow$ **Dotplot**. In the **Dotplot** dialog select the `Dataset` *phat_n300* and in the `Numerical Variables` section of the dialog move the variable name *Bern_phat* to the `Selected` column. Click the `Preview` button ![eye](../icon_images/preview.png) to see the distribution of $\hat p$ for $n=300$ and $p=10$. 
 
-```{r phat_dotplot, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Creating dotplot of the simulated p-hat values*",out.width="75%"}
+```{r phat_dotplot, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Creating a dotplot of the simulated p-hat values*",out.width="75%"}
 knitr::include_graphics("img/phat_dotplot.png")
 ```
 
@@ -210,14 +209,14 @@ knitr::include_graphics("img/phat_dotplot.png")
     $p = 0.1$. Be sure to note the center, spread, and shape.
 
 1.  Keep $n=300$ constant and change $p$. How does the shape, center, and spread 
-    of the sampling distribution vary as $p$ changes? For example try the following values for $p$: 0.005, 0.01, 0.2, 0.5, 0.7, 0.99, and 0.995. Hint: Go back to the *phat_n300* simulation that you saved and click on the plus icon ![](../icon_images/add.png) and fill-in the same information as the one that we did for the case $n=300$ and $p = 0.1$, except change the $p$ to each of the above values for each case. When you preview the result, you should see eight columns of data, each corresponding to one of the probability values.
+    of the sampling distribution vary as $p$ changes? For example try the following values for $p$: 0.005, 0.01, 0.2, 0.5, 0.7, 0.99, and 0.995. **Hint**: Go back to the *simulating_phat* simulation that you saved to the **Probability-Simulation** toolbox. For each of the above values of $p$, click ![plus](../icon_images/add.png) and create a new *Bernoulli* `Distribution` variable with `Sample Size` equal to 300, 1000 `Replications`, and `Prob. of Success` equal to the value of $p$. Make sure to click `Custom Statistic` and add the *phat* variable (= `sum(x)/length(x)`) before clicking the ![plus](../icon_images/add.png) button to add the next simulation. If you have added all seven simulations correctly, when you `Preview` ![eye](../icon_images/preview.png) the result, you should see eight columns of data, each corresponding to one of the probability values.
     
 <div id="boxedtext">
-**How to see all plots simultaneously: ** If you want to see all of the distributions at the same time, use the option `Stacked with Sample IDs` in the **Multiple Distribution Random Generator** dialog box, and plot the values by the factor ID in the **dotplot** function.
+**How to see all plots simultaneously: ** If you want to see all of the distributions at the same time, use the option `Stacked with Sample IDs` in the **Multiple Distribution Random Generator** dialog box, and plot the values by the `Factor Variable` *ID* in the **Dotplot** function.
 </div>
 
     
-1.  Now also change $n$. How does $n$ appear to affect the distribution of $\hat{p}$? For example, keep $p = 0.1$ and try the following values of $n$: 10, 50, 100, 300, and 1000.
+1.  Now also change $n$. How does $n$ appear to affect the distribution of $\hat{p}$? For example, keep `Prob. of Success` $p = 0.1$ and try the following values of $n$ (`Sample Size`): 10, 50, 100, 300, and 1000. Again, if you open up the original *simulating_phat* simulation and add all five simulations correctly, when you `Preview` ![eye](../icon_images/preview.png) the result, you should see six columns of data, each corresponding to one of the sample size values.
 
 * * *
 
@@ -235,37 +234,41 @@ explanatory variable.
     for inference. If you find a significant difference, also quantify this 
     difference with a confidence interval. See instructions below on how to use Rguroo to solve this problem.
     
-As a first step, use the **Transform** function to create two variables from the yrbss data that are indicators for sleep 10+ hours and strength training every day. Call the variables *sleep_10_plus* and *train_every_day*. Use the R code:
+As a first step, use the **Transform** function to create two variables from the yrbss data that are indicators for sleep 10+ hours and strength training every day. Call the variables *sleep_10_plus* and *train_every_day*. For *sleep_10_plus*, in the center box type the R code:
 
-```{r eval=FALSE}
+```{r sleep_10_plus, eval=FALSE}
 ifelse(school_night_hours_sleep == "10+", "sleep_10_plus_hours","not_sleep_10_plus_hours")
+```
+
+For *train_every_day*, in the center box type the R code:
+
+```{r train_every_day, eval = FALSE}
 ifelse(strength_training_7d == 7, "train_every_day", "not_train_every_day")
 ```
 
 
-```{r subset_train_sleep, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Data Transform dialog a obtain a subset of the yrbss dataset*",out.width="75%"}
+```{r subset_train_sleep, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Using Transform to obtain a subset of the yrbss dataset*",out.width="75%"}
 knitr::include_graphics("img/subset_train_sleep.png")
 ```
 
-In the **Analytics** toolbox select **Proportion Inference** $\rightarrow$ **Two Populations**. ill-out the **Two Population Proportion Inference** dialog as shown below.
+In the **Analytics** toolbox, select **Proportion Inference** $\rightarrow$ **Two Populations**. Fill out the **Two Population Proportion Inference** dialog as shown in the screenshot below.
 
 
-```{r Entering_data_two_pop, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Entering data to test hyposeses about difference of two population proportions.*",out.width="75%"}
+```{r Entering_data_two_pop, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Entering data to test a hypothesis about a difference of two population proportions.*",out.width="75%"}
 knitr::include_graphics("img/Entering_data_two_pop.png")
 ```
 
-Click on the `Test of Hypothesis` tab, and fill-in the information, and preview the result. You will obtain a p-value.
+Click on the `Test of Hypothesis` tab, enter the appropriate alternative hypothesis, select `Permutation Test`, and `Preview` ![eye](../icon_images/preview.png) the result. In the output you will find the p-value.
 
-```{r two_pop_proportion_test_of_hypothesis, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Specifying method and the alternative hypothesis*",out.width="75%"}
+```{r two_pop_proportion_test_of_hypothesis, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Specifying the test method and the alternative hypothesis*",out.width="75%"}
 knitr::include_graphics("img/two_pop_proportion_test_of_hypothesis.png")
 ```
 
-To obtain a confidence interval for the difference of the two proportions, select the `Confidence Interval` tab and check the method `Bootstrap (Percentile).
+To obtain a confidence interval for the difference of the two proportions, select the `Confidence Interval` tab and check the method `Bootstrap (Percentile)`.
 
-```{r ci_diff_two_prop, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Obtaining bootstrap confidence intervals for difference of two proportions*",out.width="75%"}
+```{r ci_diff_two_prop, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Obtaining a bootstrap confidence interval for difference of two proportions*",out.width="75%"}
 knitr::include_graphics("img/ci_diff_two_prop.png")
 ```
-
 
 
 1.  Let's say there has been no difference in likeliness to strength train every
@@ -278,7 +281,7 @@ knitr::include_graphics("img/ci_diff_two_prop.png")
     the guidelines, the estimate must have a margin of error no greater than 
     1% with 95% confidence. You have no idea what to expect for $p$. How many 
     people would you have to sample to ensure that you are within the 
-    guidelines?\
+    guidelines?
     *Hint:* Refer to your plot of the relationship between $p$ and margin of 
     error. This question does not require using a dataset.
 
