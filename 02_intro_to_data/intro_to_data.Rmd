@@ -306,7 +306,7 @@ You may want to play around with changing from `Side by side` to `Stacked` and/o
     between average speed and distance.
     
 
-1.  Replicate the following plot. **Hint:** The plot shows only flights from American Airlines (AA), Delta Airlines (DL), and United Airlines (UA), and the points are colored based on the `Factor` variable `carrier`. Rather than using Subset, you can use the Factor Level Editor attached to the Scatterplot to drop the unused levels and change the colors. Once you replicate
+1.  Replicate the following plot. **Hint:** The plot shows only flights from American Airlines (AA), Delta Airlines (DL), and United Airlines (UA), and the points are colored based on the `Factor` variable `carrier`. Rather than using **Subset**, you can create the scatterplot first, then click ![Level Editor](../icon_images/level_editor2_Selected.png) and use the **Factor Level Editor** to drop the unused levels and change the colors. Once you replicate
     the plot, determine (roughly) what the cutoff point is for departure
     delays where you can still expect to get to your destination on time.
 
