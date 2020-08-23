@@ -11,17 +11,17 @@ using the [knitr](http://yihui.name/knitr/) package in R, and are easiest to use
 
 ## Labs
 
-1. [Intro to Rguroo](https://dpwynne.github.io/oiLabs-Rguroo/01_intro_to_rguroo/intro_to_rguroo.html)
-2. [Intro to data](https://dpwynne.github.io/oiLabs-Rguroo/02_intro_to_data/intro_to_data_Rguroo.html)
-3. [Probability](https://dpwynne.github.io/oiLabs-Rguroo/03_probability/probability_rguroo.html)
-4. [Normal distributions](https://dpwynne.github.io/oiLabs-Rguroo/04_normal_distribution/normal_distribution_rguroo.html)
+1. [Intro to Rguroo](https://openintrostat.github.io/openintro-labs-rguroo/01_intro_to_rguroo/intro_to_rguroo.html)
+2. [Intro to data](https://openintrostat.github.io/openintro-labs-rguroo/02_intro_to_data/intro_to_data_Rguroo.html)
+3. [Probability](https://openintrostat.github.io/openintro-labs-rguroo/03_probability/probability_rguroo.html)
+4. [Normal distributions](https://openintrostat.github.io/openintro-labs-rguroo/04_normal_distribution/normal_distribution_rguroo.html)
 5. Foundations of inference
-    a. [Sampling distributions](https://dpwynne.github.io/oiLabs-Rguroo/05a_sampling_distributions/sampling_distributions_Rguroo.html)
-    b. [Confidence intervals](https://dpwynne.github.io/oiLabs-Rguroo/05b_confidence_intervals/confidence_intervals_rguroo.html)
-6. [Inference for categorical data](https://dpwynne.github.io/oiLabs-Rguroo/06_inf_for_categorical_data/inf_for_categorical_data_Rguroo.html)
-7. [Inference for numerical data](https://dpwynne.github.io/oiLabs-Rguroo/07_inf_for_numerical_data/inf_for_numerical_data_rguroo.html)
-8. [Simple linear regression](https://dpwynne.github.io/oiLabs-Rguroo/08_simple_regression/simple_regression_rguroo.html)
-9. [Multiple linear regression](https://dpwynne.github.io/oiLabs-Rguroo/09_multiple_regression/multiple_regression_Rguroo.html)
+    a. [Sampling distributions](https://openintrostat.github.io/openintro-labs-rguroo/05a_sampling_distributions/sampling_distributions_Rguroo.html)
+    b. [Confidence intervals](https://openintrostat.github.io/openintro-labs-rguroo/05b_confidence_intervals/confidence_intervals_rguroo.html)
+6. [Inference for categorical data](https://openintrostat.github.io/openintro-labs-rguroo/06_inf_for_categorical_data/inf_for_categorical_data_Rguroo.html)
+7. [Inference for numerical data](https://openintrostat.github.io/openintro-labs-rguroo/07_inf_for_numerical_data/inf_for_numerical_data_rguroo.html)
+8. [Simple linear regression](https://openintrostat.github.io/openintro-labs-rguroo/08_simple_regression/simple_regression_rguroo.html)
+9. [Multiple linear regression](https://openintrostat.github.io/openintro-labs-rguroo/09_multiple_regression/multiple_regression_Rguroo.html)
 
 ## Feedback / collaboration
 
