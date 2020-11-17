@@ -115,7 +115,7 @@ knitr::include_graphics("img/histogram-2a_bins.png")
     revealed in one that are obscured in another? 
     
 <div id="boxedtext">
-**Tip: ** To view all three histograms at the same time, either copy-paste them to your report, or make each one in a separate tab by selecting the **Histogram** dialog box three times, with each dialog box consisting of one of the three options.
+**Tip:** To view all three histograms at the same time, either copy and paste each graph to your report separately, or make each one in a separate tab by selecting the **Histogram** dialog box three times, with each dialog box consisting of one of the three options.
 </div>
 
 If you want to visualize only delays of flights headed to Los Angeles, you need to first filter the data for flights with the destination (LAX). There are two options: One is to filter the data within the **Histogram** function. Another option is to use the **Subset** function in the **Data** toolbox to obtain the subset of the data consisting of only flights with LAX destination, and then use this dataset to plot your histogram. We explain both methods below.

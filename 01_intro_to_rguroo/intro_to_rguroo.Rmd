@@ -70,7 +70,7 @@ Let’s start to examine the data a little more closely. As mentioned earlier, y
 knitr::include_graphics("img/Figure_4_exploring_columns.png")
 ```
 
-1. How would you view only the counts of girls baptized? Right-click on one of the columns and deselect all variables except for girls. Copy and paste the first ten cases. 
+1. In the **Data Viewer**, view *only* the counts of girls baptized by right-clicking on one of the columns and deselecting all variables except for "girls." Take a screenshot showing (at least) the first ten cases and include it below.
 
 ### Data visualization
 
@@ -116,7 +116,7 @@ Now, suppose we want to plot the total number of baptisms. To do basic calculati
 knitr::include_graphics("img/calculator-applets.png")
 ```
 
-This brings up the selected calculator from [https://www.desmos.com/](https://www.desmos.com/) directly within Rguroo. Use the calculator to compute the total number of baptisms in 1629 by adding `5218 + 4613`. We could repeat this once for each year, but there is a faster way. You can add a new variable to your dataset (data frame) that includes the sums for each row. 
+This brings up the selected calculator from [https://www.desmos.com/](https://www.desmos.com/) directly within Rguroo. Use the calculator to compute the total number of baptisms in 1629 by adding `5218 + 4683`. We could repeat this once for each year, but there is a faster way. You can add a new variable to your dataset (data frame) that includes the sums for each row. 
 
 ### Adding a new variable to the data frame
 

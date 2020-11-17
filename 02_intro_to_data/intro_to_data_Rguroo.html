@@ -1263,6 +1263,15 @@ window.buildTabsets = function(tocID) {
 
 </script>
 
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+      </style>
+
 
 
 
@@ -1562,7 +1571,7 @@ div.tocify {
 <li>Look carefully at these three histograms. How do they compare? Are features revealed in one that are obscured in another?</li>
 </ol>
 <div id="boxedtext">
-<p><strong>Tip: </strong> To view all three histograms at the same time, either copy-paste them to your report, or make each one in a separate tab by selecting the <strong>Histogram</strong> dialog box three times, with each dialog box consisting of one of the three options.</p>
+<p><strong>Tip:</strong> To view all three histograms at the same time, either copy and paste each graph to your report separately, or make each one in a separate tab by selecting the <strong>Histogram</strong> dialog box three times, with each dialog box consisting of one of the three options.</p>
 </div>
 <p>If you want to visualize only delays of flights headed to Los Angeles, you need to first filter the data for flights with the destination (LAX). There are two options: One is to filter the data within the <strong>Histogram</strong> function. Another option is to use the <strong>Subset</strong> function in the <strong>Data</strong> toolbox to obtain the subset of the data consisting of only flights with LAX destination, and then use this dataset to plot your histogram. We explain both methods below.</p>
 <div id="subsetting-in-the-histogram-function-directly" class="section level4">
@@ -1817,7 +1826,7 @@ $(document).ready(function ()  {
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
       },
       ignoreSelector: ".toc-ignore",
       scrollTo: 0
