@@ -109,8 +109,8 @@ To draw a normal probability plot for each level of the factor $restaurant$, sel
 knitr::include_graphics("img/normal_probability_plot_GUI.png")
 ```
 
-```{r normal_probability_plot, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Normal probability plot for calories from fat for Dairy Queen menu items*", out.width="75%"}
-knitr::include_graphics("img/normal_probability_plot.png")
+```{r normal_probability_plot, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Data summary and normal probability plot for calories from fat for Dairy Queen menu items*", out.width="80%"}
+knitr::include_graphics("img/normal_probability_plot2.png")
 ```
 
 The x-axis values correspond to the quantiles of a theoretically normal curve 
@@ -129,17 +129,9 @@ A useful way to address this question is to rephrase it as: what do probability
 plots look like for data that I *know* came from a normal distribution?  We can 
 answer this by simulating data from a normal distribution with the same sample size, mean, and standard deviation.
 
-As you might expect, you'll need to go to the **Probability-Simulation** toolbox for this. But first, we need to know the sample size, mean, and standard deviation for the Dairy Queen data. To get these values, go to the **Data** toolbox and select **Functions** $\rightarrow$ **Summary Statistic**. Select the *fastfood* `Dataset`. Then, from the `Numerical` dropdown, select *cal_fat*, and from the `Factor 1` dropdown, select *restaurant*. There are a few selected default statistics, including the mean, standard deviation, and sample size (count). You can deselect what you don't need or leave the default statistics selected. Click the `Preview` button ![eye](../icon_images/preview.png) to see the result. Below we show the **Basic Summary Statistic** dialog box and the resulting output. We have highlighted the values that we need for Dairy Queen.
+As you might expect, you'll need to go to the **Probability-Simulation** toolbox for this. But first, we need to know the sample size, mean, and standard deviation for the Dairy Queen data. You can find these values in the summary table above the normal probability plot, or you can click the ![Basics](../icon_images/basics2_Selected.png) button and read the values from the `Summary` tab.
 
-```{r summary_dialog, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Computing summary data of the variable cal_fat by restaurant*", out.width="75%"}
-knitr::include_graphics("img/summary_dialog.png")
-```
-
-```{r summary_data, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Summary of cal_fat data for each restaurant*", out.width="85%"}
-knitr::include_graphics("img/summary_data.png")
-```
-
-For the *cal_fat* variable of the Dairy Queen data, the sample size is 42, the sample mean is 260.48, and the standard deviation is 156.49. Therefore we should simulate 42 values from a normal distribution with mean 260.48 and standard deviation 156.49.
+For the *cal_fat* variable of the Dairy Queen data, you should find that the sample size is 42, the sample mean is 260.48 calories, and the standard deviation is 156.49 calories. Therefore we should simulate 42 values from a normal distribution with mean 260.48 and standard deviation 156.49.
 
 Go to the **Probability-Simulation** toolbox, select **Probability** $\rightarrow$ **Multiple Distribution Generator**. Click the ![plus](../icon_images/add.png) button and in the text box that appears type *sim* (or any other name). 
 The default distribution, shown on the right panel, is Normal, but with mean 0 and standard deviation 1. Fill in the values that we got for *cal_fat* in the appropriate places in the **Multiple Distribution Random Generator** dialog, then click the `Preview` button ![eye](../icon_images/preview.png) to preview the output.
@@ -152,11 +144,13 @@ knitr::include_graphics("img/simulate_single.png")
 
 3.  Make a normal probability plot of the variable *sim* in the dataset *sim_norm*. It is easier in this case to use the **Mean Inference** $\rightarrow$ **One Population** dialog.  Do all of the points fall on the line?  How does this plot compare to the probability plot for the real data (i.e., Dairy Queen's fat calories)?
 
-Even better than comparing the normal probability of the observed data to a single normal probability plot of simulated values is to compare it to a few plots of simulated values. To do so, an option is to repeat the steps described in this section a few times. Specifically, each time change the `Seed` for the random number generator, create a plot for the generated values, copy and paste the graph to your report, and then at the end, compare the plots. If you are happy with this approach, you can skip reading the next section.
+Even better than comparing the normal probability plot of the observed data to a single normal probability plot of simulated values is to compare it to a few plots of simulated values. To do so, click ![Simulate](../icon_images/simulate.png) to reopen the simulation dialog, change the `Seed` for the random generator to a number you have not used before, click the `Preview` button ![eye](../icon_images/preview.png) to get the output, **Save** the dataset as *sim_norm2*, create a normal probability plot of the *sim_norm2* dataset using the **Mean Inference** $\rightarrow$ **One Population** dialog, and copy and paste the graph to your report.
 
-4.  Does the normal probability plot for the calories from fat look similar to the plots created for the simulated data?  That is, do the plots provide evidence that the female heights are nearly normal?
+You can repeat these steps several times, but remember to save each newly simulated dataset with a new name, for example, *sim_norm3*, *sim_norm4*, etc., and make a normal probability plot of that newly simulated dataset. If you are happy with this approach, you can skip reading the next section.
 
-5.  Using the same technique, determine whether or not the calories from the McDonald's
+4.  Does the normal probability plot for the calories from fat look similar to the plots created for the simulated data?  That is, do the plots provide evidence that the calories from fat for the Dairy Queen menu are nearly normal?
+
+5.  Using the same technique, determine whether or not the calories from fat for the McDonald's
     menu appear to come from a normal distribution.
 
 ### Creating a graph with a few normal probability plots
