@@ -260,19 +260,18 @@ independent shooter with a shooting percentage of 50%, you make a dataset, call 
 knitr::include_graphics("img/basket_data_editor.png")
 ```
 
-```{r basket_random_selection, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Random selection function dialog to simulate shots with 50% success*", out.width="70%"}
+```{r basket_random_selection, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Random selection function dialog to simulate 100 shots with 50% success*", out.width="70%"}
 knitr::include_graphics("img/basket_random_selection.png")
 ```
 
 To make a valid comparison between Kobe and your simulated independent shooter, 
 you need to align both their shooting percentage and the number of attempted shots.
 
-1.  What change needs to be made to the *basket* dataset and the **Random Selection** dialog so that it reflects a 
-    shooting percentage of 45%? Make this adjustment, then run a simulation to 
-    sample 133 shots. Show a screenshot of the **Random Selection** dialog that you use.  Save the output of this simulation in a dataset called
-    *sim_basket*.
+1.  Create a new dataset, called *independent_kobe*, using the **Data Editor**. This dataset should have two variables, *basket* and *Probability*, with values reflecting a shooting percentage of 45%. Show a screenshot of the dataset you created.
 
-With the results of the simulation saved as *sim_basket*, you have the data 
+1. Now, use the *independent_kobe* dataset to run a simulation to sample 133 shots. Show a  screenshot of the **Random Selection** dialog that you use.  Save the output of this simulation in a dataset called *sim_basket*.
+
+With the results of the simulation saved as *sim_basket*, you now have the data 
 necessary to compare Kobe to our independent shooter.
 
 Both data sets represent the results of 133 shot attempts, each with the same 
@@ -286,8 +285,7 @@ a hot hand.
 
 ### Comparing Kobe Bryant to the Independent Shooter
 
-1.  Using the `calc_streak` streak function in Rguroo's **Transform** function (see [Method 2](#method-2)), compute the streak lengths of *sim_basket*, and
-    save the results in a data frame called *sim_streak*.
+1.  Using the `calc_streak` streak function in Rguroo's **Transform** function, compute the streak lengths of the variable *basket* in your *sim_basket* data frame, and save the results in a data frame called *sim_streak*. **Hint:** Use [Method 2](#method-2).
 
 1.  Describe the distribution of streak lengths. What is the typical streak 
     length for this simulated independent shooter with a 45% shooting percentage?
