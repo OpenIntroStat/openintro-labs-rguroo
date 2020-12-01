@@ -16,7 +16,7 @@ library(tidyverse)
 ```
 
 ```{r load data, echo = FALSE}
-global_monitor <- readr::read_csv("global_monitor.csv")
+#global_monitor <- readr::read_csv("global_monitor.csv")
 ```
 
 In this lab, you will investigate the ways in which the statistics from a random 
@@ -71,11 +71,11 @@ knitr::include_graphics("img/sample-1-save.png")
 
 Now, you should see an Rguroo object called *gm_randomsample* in the **Probability-Simulation** toolbox and an Rguroo dataset called *gm_sample1* in the **Data** toolbox.
 
-Working with these 50 names is considerably simpler than working with all 100,000 people in the population.
+Working with these 50 randomly selected people is considerably simpler than working with all 100,000 people in the population.
 
 1.  Create a plot to show the distribution of responses in this sample. Describe the distribution. How does it compare to the distribution of responses in the population? Make sure to label your plot so that it is clear that the data is from a sample.
 
-If you're interested in estimating the proportion of all people who do not believe that the work scientists benefits them, but you do not have access to the population data, your best single guess is the sample proportion. You can find the sample counts by right-clicking the *gm_sample1* dataset in the **Data** toolbox, selecting **Dataset Summary**, and looking at the summary of the **Categorical Variable** *scientist_work*. Under **Level 1**, you should see "Benefits: " followed by the count of people in your sample who responded that scientists' work does benefit them. Under **Level 2**, you should see "Does Not Benefit: " followed by the count of people in your sample who responded that scientists' work does not benefit them.
+If you're interested in estimating the proportion of all people who do not believe that the work scientists do benefits them, but you do not have access to the population data, your best single guess is the sample proportion. You can find the sample counts by right-clicking the *gm_sample1* dataset in the **Data** toolbox, selecting **Dataset Summary**, and looking at the summary of the **Categorical Variable** *scientist_work*. Under **Level 1**, you should see "Benefits: " followed by the count of people in your sample who responded that scientists' work does benefit them. Under **Level 2**, you should see "Does Not Benefit: " followed by the count of people in your sample who responded that scientists' work does not benefit them.
 
 So to find the proportion of people in your sample who believe that scientists' work does not benefit them, take the number following  "Does Not Benefit" and divide by 50. This would be your estimate, which you denote by $\hat p$.
 
@@ -89,7 +89,7 @@ or a bit below the true population proportion of 0.20. In general, though, the s
 
 1.  Open the **Random Selection** dialog, change the seed again, and take a second sample of size 50. **Save** the new dataset as *gm_sample2*. How does the sample proportion of "Does Not Benefit" in *gm_sample2* compare with that in *gm_sample1*? Suppose we took two more samples, one of size 100 and one of size 1000. Which would you think would provide a more accurate estimate of the population proportion?
 
-Not surprisingly, every time you take another random sample, you might get a different sample proportion. It's useful to get a sense of just how much variability you should expect when estimating the population mean this way. 
+Not surprisingly, every time you take another random sample, you might get a different sample proportion. It's useful to get a sense of just how much variability you should expect when estimating the population proportion this way. 
 The distribution of sample proportions, called the *sampling distribution (of the proportion)*, can help you understand this variability. 
 In this lab, because you have access to the population, you can build up the sampling distribution for the sample proportion by repeating the above steps many times. 
 
@@ -115,7 +115,7 @@ knitr::include_graphics("img/histogram-1.png")
     distribution, and be sure to specifically note its center. Make sure to include 
     your histogram in your answer.
 
-## Interlude: Sampling distributions
+## Interlude: Sampling distributions {#interlude}
 
 In the first part of this lab, you took a single sample of size `n` (50) from the population of all people in the population. In the part you just did, you repeated the procedure 15,000 times, summarized each sample with the same sample statistic, and built a distribution of a series of sample statistics, which is called the **sampling distribution**. 
 
@@ -138,23 +138,22 @@ Because the sample proportion is an unbiased estimator, the sampling distributio
 
 ## More Practice
 
-So far, you have only focused on estimating the proportion of those you think the work scientists doesn't benefit them. 
-Now, you'll try to estimate the proportion of those who think it does.
+So far, you have only focused on estimating the proportion of people who think that scientists' work does not benefit them. Now, you'll try to estimate the proportion of people who think that scientists' work *does* benefit them.
 
 1.  Using Rguroo's **Random Selection** function, take a sample of size 15 from the population and calculate the proportion of 
-    people in this sample who think the work scientists do enhances their lives. 
+    people in this sample who think the work scientists do enhances their lives ("Benefits"). 
     Using this sample, what is your best point estimate of the population proportion 
     of people who think the work scientists do enhances their lives?
 
 1.  Since you have access to the population, simulate the sampling 
     distribution of proportion of those who think the work scientists do enhances 
-    their lives for samples of size 15. Modify the **Dataset Random Selection** dialog to take 2000 samples of size 15 from the population 
-    and compute 2000 sample proportions, **Save** these proportions 
+    their lives (`scientist_work == "Benefits"`) for samples of size 15. Modify the **Dataset Random Selection** dialog to take 2000 samples of size 15 from the population 
+    and compute 2000 sample proportions (**Hint:** What did you change in [Interlude: Sampling Distributions](#interlude) to get 25 sample proportions from samples of size 10? What should you change those numbers to now?). **Save** these proportions 
     in a dataset called *sample_props15*, plot the data, and describe the shape of this sampling distribution. Based on this sampling distribution, what would you guess the 
     true proportion of those who think the work scientists do enhances their lives 
     to be? Finally, calculate and report the population proportion.
 
-1.  Modify your **Dataset Random Selection** dialog to change your sample size from 15 to 150, then **Save** these proportions in a 
+1.  Modify your **Dataset Random Selection** and **Custom Statistic** dialogs to take 2000 samples of size 150 from the population and compute 2000 sample proportions. **Save** these proportions in a 
     dataset called *sample_props150* and plot their distribution. Describe the shape of this sampling 
     distribution and compare it to the sampling distribution for a sample 
     size of 15. Based on this sampling distribution, what would you guess to 
