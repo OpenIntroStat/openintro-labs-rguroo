@@ -28,16 +28,17 @@ The dataset is called *yrbss* and can be imported to your Rguroo workspace from 
 1.   What are the counts within each category for the number of days these students
 have texted while driving within the past 30 days? **Hint:** Go to the **Analytics** toolbox, select **Analysis** $\rightarrow$ **Tabulation**, select the `Dataset` *yrbss*, and tabulate the values for the variable *text_while_driving_30d*. If you need help using the **Data Tabulation** dialog, click the video icon [![video](../icon_images/video_blue_Over.png)](https://youtu.be/GEYd98LwxiE) here or on the dialog box to watch the video tutorial *Tabulation and Distribution of Categorical Data*.
 
-1.  What is the proportion of people who have texted while driving every day in 
-the past 30 days and never wear helmets? **Hint:** Select the two relevant factors in the **Data Tabulation** dialog, and select the option `Proportions`.
+Note that *text_while_driving_30d* has a level *NA*. Because this *NA* value represents missing data, you should click ![Level Editor](../icon_images/level_editor2_Selected.png) and drop the *NA* level for *text_while_driving_30d*.
 
-1. Of those who never wore a helmet, what proportion have texted while driving every day in the past 30 days? **Hint:** Here, you are asked to compute a conditional proportion. That is, you need to find proportion of those who have texted while driving everyday in the past 30 days, conditional on never wearing a helmet. See the **Data Tabulation** dialog below, where the option `Cond` is checked. 
+1.  What is the proportion of people who have texted while driving every day in 
+the past 30 days and never wear helmets? **Hint:** Select the two relevant factors in the **Data Tabulation** dialog, and select the option `Proportions`. Make sure to remove the *NA* levels for each factor using the ![Level Editor](../icon_images/level_editor2_Selected.png).
+
+1. Of those who never wore a helmet, what proportion have texted while driving every day in the past 30 days? **Hint:** Here, you are asked to compute a conditional proportion. That is, you need to find proportion of those who have texted while driving everyday in the past 30 days, conditional on never wearing a helmet. See the **Data Tabulation** dialog below, where the option `Cond` is checked. To get a cleaner output, you can click ![Level Editor](../icon_images/level_editor2_Selected.png) and drop all levels of *helmet_12m* except for the level of interest, *never*.
+
 
 ```{r text_and_helmet_tabulation, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Using Data Tabulation to get a conditional proportion*",out.width="75%"}
 knitr::include_graphics("img/text_and_helmet_tabulation.png")
 ```
-
-To get a cleaner output, you can click ![Level Editor](../icon_images/level_editor2_Selected.png) and only retain the level *never* of *helmet_12m* by dropping all other levels.
 
 Let's calculate the above proportions in another way, namely by subsetting the data. When we calculated the conditional proportion in the Exercise above, we were only concerned with those who had stated that they never wore a helmet. Also, it will be easier if we create a new variable, *text_ind*, that specifies whether the individual has texted every day while driving over the past 30 days or not. We could use Rguroo's **Subset** function to get the subset with only those that never wore a helmet, and then use the **Transform** function on the subsetted data to create the variable *text_ind*. However, by using the **Transform** function cleverly, we can accomplish both in the **Transform** function.
 
