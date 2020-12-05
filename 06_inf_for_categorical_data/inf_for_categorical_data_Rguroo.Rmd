@@ -64,7 +64,7 @@ knitr::include_graphics("img/transform_never_only.png")
 
 Now, right-click on the *never_helmet* dataset in the **Data** toolbox and select **Dataset Summary**. Then, in the **Categorical Variables** table, you will see the counts of the variable *text_ind* for its levels *yes* and *no*. Use these values to see if you can come up with the same conditional proportion that you computed in Exercise 3.
 
-## Inference on proportions
+## Confidence Intervals for Proportions
 
 When summarizing the YRBSS, the Centers for Disease Control and Prevention seeks 
 insight into the population *parameters*. To do this, you can answer the question,
@@ -73,9 +73,7 @@ driving each day for the past 30 days?" with a statistic; while the question
 "What proportion of people on earth have texted while driving each day for the 
 past 30 days?" is answered with an estimate of the parameter.
 
-The inferential tools for estimating population proportion are analogous to 
-those used for means in the last chapter: the confidence interval and the 
-hypothesis test. Here we construct a confidence interval for the proportion of non-helmet wearers who have consistently texted while driving the past 30 days. 
+Recall from the previous lab that we can use a confidence interval to obtain an interval estimate of a parameter. Here we construct a confidence interval for the population proportion of non-helmet wearers who have consistently texted while driving the past 30 days. 
 To do so, we use the dataset *never_helmet* that we created, which consists of data only for non-helmet wearers, and the *text_ind* variable, which has the value "yes" for those who texted each day for the past 30 days and "no" otherwise.
 
 To construct a confidence interval for a population proportion, open the **Analytics** toolbox, then click on **Analysis** $\rightarrow$ **Proportion Inference** $\rightarrow$ **One Population**. In the **One Population Proportion Inference** dialog, select the dataset *never_helmet*. Select *text_ind* in the `Factor` dropdown and choose *yes* from the `Success` dropdown. The three gray textboxes showing the sample size (`Sample Size`), number of successes (`# of Succ.`), and proportion of successes (`Prop. of Succ.`) auto-fill with their corresponding value. The value for the proportion of successes should be familiar! 
@@ -91,7 +89,7 @@ knitr::include_graphics("img/ci_text_ind.png")
 </div>
 
 <div id="boxedtext">
-**Rguroo's Bootstrap Computations:** As we saw in the previous lab, the bootstrap sample consists of simulated values from a population with a probability of success equal to the observed sample proportion $\hat p$ (i.e., the proportion of the successes that we observe in our sample). The `Bootstrap (Percentile)` option computes the lower and upper confidence levels of a $100(1-\alpha)%$ confidence interval, respectively, from the $\alpha/2$ and $(1-\alpha)/2$ quantiles of the simulated bootstrap values. For the option `Bootstrap (SE)`, the lower and upper confidence levels are computed using the formula $\hat p \pm z^\star \times SE_{\hat p}$, where $z^\star$ is the $(1-\alpha)/2$ quantile of the standard normal distribution, and $SE_{\hat p}$ is the standard deviation of the simulated bootstrap proportions (*not* the standard deviation given by the formula in the previous lab!). Recall that the quantity $z^\star \times SE_{\hat p}$ is called the *margin of error*.
+**Rguroo's Bootstrap Computations:** As we saw in a previous lab, the bootstrap sample consists of simulated values from a population with a probability of success equal to the observed sample proportion $\hat p$ (i.e., the proportion of the successes that we observe in our sample). The `Bootstrap (Percentile)` option computes the lower and upper confidence levels of a $100(1-\alpha)%$ confidence interval, respectively, from the $\alpha/2$ and $(1-\alpha)/2$ quantiles of the simulated bootstrap values. For the option `Bootstrap (SE)`, the lower and upper confidence levels are computed using the formula $\hat p \pm z^\star \times SE_{\hat p}$, where $z^\star$ is the $(1-\alpha)/2$ quantile of the standard normal distribution, and $SE_{\hat p}$ is the standard deviation of the simulated bootstrap proportions (*not* the standard deviation given by the formula in the previous lab!). Recall that the quantity $z^\star \times SE_{\hat p}$ is called the *margin of error*.
 </div>
 
 With 10,000 replications and 95% confidence level, the lower and upper confidence levels for the *Percentile* method are respectively the $250^{th}$ and the $9,750^{th}$ values in the ascending sorted bootstrap sample. For the *SE* method with 95% confidence level, the $z^\star$ value is 1.96.
@@ -147,12 +145,69 @@ knitr::include_graphics("img/scatter_margin_of_error.png")
 
 1.  Describe the relationship between *p* and *ME*. Include the margin of
     error vs. population proportion plot you constructed in your answer. For
-    a given sample size, for which value of *p* is margin of error maximized?
+    a given sample size (such as $n = 1000$), for which value of *p* is the margin of error maximized?
 
-## Success-failure condition
 
-We have emphasized that you must always check conditions before making 
-inference. For inference on proportions, the sample proportion can be assumed 
+## Hypothesis Testing for Proportions
+
+In this section of the lab, you will conduct a hypothesis test to compare two proportions. In such cases, you have a response variable that is categorical, and
+an explanatory variable that is also categorical, and you are comparing the 
+proportion of success of the response variable across the levels of the 
+explanatory variable. 
+
+1.  Is there convincing evidence that those who sleep 10+ hours per day are more
+    likely to strength train every day of the week? Write out the null and alternative hypothesis for this test. 
+
+
+As a first step to answering this question using Rguroo, we should use the **Transform** function to create two variables from the yrbss data that are indicators for sleeping 10+ hours and strength training every day. Call the variables *sleep_10_plus* and *train_every_day*. For *sleep_10_plus*, in the center box type the R code:
+
+```{r sleep_10_plus, eval=FALSE}
+ifelse(school_night_hours_sleep == "10+", "sleep_10_plus_hours","not_sleep_10_plus_hours")
+```
+
+For *train_every_day*, in the center box type the R code:
+
+```{r train_every_day, eval = FALSE}
+ifelse(strength_training_7d == 7, "train_every_day", "not_train_every_day")
+```
+
+
+```{r subset_train_sleep, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Using Transform to obtain a subset of the yrbss dataset*",out.width="75%"}
+knitr::include_graphics("img/subset_train_sleep.png")
+```
+
+Save the transformed dataset as *training_and_sleep*.
+
+In the **Analytics** toolbox, select **Proportion Inference** $\rightarrow$ **Two Populations**. Fill out the **Two Population Proportion Inference** dialog as shown in the screenshot below.
+
+
+```{r Entering_data_two_pop, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Entering data to test a hypothesis about a difference of two population proportions.*",out.width="75%"}
+knitr::include_graphics("img/Entering_data_two_pop.png")
+```
+
+Click on the `Test of Hypothesis` tab, enter the appropriate alternative hypothesis, select `Permutation Test`, and `Preview` ![eye](../icon_images/preview.png) the result. In the output you will find the p-value.
+
+```{r two_pop_proportion_test_of_hypothesis, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Specifying the test method and the alternative hypothesis*",out.width="75%"}
+knitr::include_graphics("img/two_pop_proportion_test_of_hypothesis.png")
+```
+
+1.  Is there convincing evidence that those who sleep 10+ hours per day are more
+    likely to strength train every day of the week? Write out your conclusion based on the results of your hypothesis test.
+
+
+
+
+1.  Let's say there has been no difference in likeliness to strength train every
+    day of the week for those who sleep 10+ hours. What is the probablity that
+    you could detect a change (at a significance level of 0.05) simply by chance?
+    *Hint:* Review the definition of the Type 1 error.
+
+
+* * *
+
+## Investigating Assumptions About the Sampling Distribution
+
+For inference on proportions, the sample proportion can be assumed 
 to be nearly normal if it is based upon a random sample of independent 
 observations and if both $np \geq 10$ and $n(1 - p) \geq 10$. This rule of 
 thumb is easy enough to follow, but it makes you wonder: what's so special 
@@ -163,6 +218,8 @@ that you really should be using 11. What is the "best" value for such a rule of
 thumb is, at least to some degree, arbitrary. However, when $np$ and $n(1-p)$ 
 both reach 10, the sampling distribution is sufficiently normal to use confidence 
 intervals and hypothesis tests that are based on the normal approximation.
+
+We should emphasize the importance of investigating your assumptions about the sampling distribution before making inference. If your assumptions are not met, then the results of your inference will be misleading. For example, if the sampling distribution of the sample proportion is not close to normal, the result of a confidence interval or hypothesis test procedure based on the normal approximation will not be very accurate. 
 
 You can investigate the interplay between $n$ and $p$ and the shape of the 
 sampling distribution by using simulations. Let's see how we can visualize the sampling distribution of $\hat p$ for a given sample size and a value of the population proportion $p$. The easiest approach is to simulate values from the so-called Bernoulli random variable.
@@ -180,7 +237,7 @@ You should have 300 rows of data (by default 100 is shown), with most of the val
 Now click the ![Simulate](../icon_images/simulate.png) button to reopen the **Multiple Distribution Random Generator** dialog. Leave everything as is, except change the value of `Replications` from 1 to 5, and click the `Preview` button ![eye](../icon_images/preview.png).  This time you should see five columns labeled *Bern_1*, *Bern_2* ... *Bern_5* with each column being a sample of size 300 from $Bernoulli(p=0.1)$.
 
 Now let's have Rguroo compute the sample proportions $\hat p$ for each of the samples. 
-Again, click the ![Simulate](../icon_images/simulate.png) button to reopen the **Multiple Distribution Random Generator** dialog. Click the `Custom Statistic` button at the bottom of the dialog to open the **Custom Statistic** dialog. Click ![plus](../icon_images/add.png) and change the name *Statistic_1* to *phat*, and in the text area to the right type in the following R code:
+Again, click the ![Simulate](../icon_images/simulate.png) button to reopen the **Multiple Distribution Random Generator** dialog. Click the `Custom Statistic` button at the bottom of the dialog to open the **Custom Statistic** dialog. Click ![plus](../icon_images/add.png) and change the name *Statistic_1* to *p_hat*, and in the text area to the right type in the following R code:
 
 ```{r, eval = FALSE}
 sum(x) / length(x)
@@ -192,17 +249,17 @@ The command `sum(x)` adds all the values in each sample (in our example the zero
 knitr::include_graphics("img/custom_stats.png")
 ```
 
-The result is five values, under the variable name *Bern_phat* that are the proportions of successes (or 1's) for each of the five samples that we simulated. What are these values close to?
+The result is five values, under the variable name *Bern_p_hat* that are the proportions of successes (or 1's) for each of the five samples that we simulated. What are these values close to?
 
 Now that we know how to simulate sample proportions $\hat p$, we can investigate its  sampling distribution for various values of $n$ and $p$ by simulating a large number of $\hat p$'s.
 
-Click ![Simulate](../icon_images/simulate.png) to reopen the dialog, increase the number of `Replications` to 1000, `Preview` ![eye](../icon_images/preview.png), and **Save** the resulting dataset as *phat_n300*. It's best to **Save** the process as well; call it *simulating_phat*. When you save the process, you can come back to the dialog box and change values of `Sample Size` ($n$) and `Prob. of Success` ($p$) to see other sampling distributions.
+Click ![Simulate](../icon_images/simulate.png) to reopen the dialog, increase the number of `Replications` to 1000, `Preview` ![eye](../icon_images/preview.png), and **Save** the resulting dataset as *p_hat_n300*. It's best to **Save** the process as well; call it *simulating_p_hat*. When you save the process, you can come back to the dialog box and change values of `Sample Size` ($n$) and `Prob. of Success` ($p$) to see other sampling distributions.
 
-By right-clicking on the dataset name *phat_n300*, you can see the mean and standard deviation of the variable *Bern_phat*. Compare these values to the values of $p$ and $SE = \sqrt{p(1-p)/n}$. 
+By right-clicking on the dataset name *p_hat_n300* and selecting **Dataset Summary**, you can see the mean and standard deviation of the variable *Bern_p_hat*. Compare these values to the values of $p$ and $SE = \sqrt{p(1-p)/n}$. 
 
-To see the shape of the distribution, in the **Plots** toolbox select **Create Plot** $\rightarrow$ **Dotplot**. In the **Dotplot** dialog select the `Dataset` *phat_n300* and in the `Numerical Variables` section of the dialog move the variable name *Bern_phat* to the `Selected` column. Click the `Preview` button ![eye](../icon_images/preview.png) to see the distribution of $\hat p$ for $n=300$ and $p=10$. 
+To see the shape of the distribution, in the **Plots** toolbox select **Create Plot** $\rightarrow$ **Dotplot**. In the **Dotplot** dialog select the `Dataset` *p_hat_n300* and in the `Numerical Variables` section of the dialog move the variable name *Bern_p_hat* to the `Selected` column. Click the `Preview` button ![eye](../icon_images/preview.png) to see the distribution of $\hat p$ for $n=300$ and $p=10$. 
 
-```{r phat_dotplot, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Creating a dotplot of the simulated p-hat values*",out.width="75%"}
+```{r p_hat_dotplot, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Creating a dotplot of the simulated p-hat values*",out.width="90%"}
 knitr::include_graphics("img/phat_dotplot.png")
 ```
 
@@ -210,72 +267,31 @@ knitr::include_graphics("img/phat_dotplot.png")
     $p = 0.1$. Be sure to note the center, spread, and shape.
 
 1.  Keep $n=300$ constant and change $p$. How does the shape, center, and spread 
-    of the sampling distribution vary as $p$ changes? For example try the following values for $p$: 0.005, 0.01, 0.2, 0.5, 0.7, 0.99, and 0.995. **Hint**: Go back to the *simulating_phat* simulation that you saved to the **Probability-Simulation** toolbox. For each of the above values of $p$, click ![plus](../icon_images/add.png) and create a new *Bernoulli* `Distribution` variable with `Sample Size` equal to 300, 1000 `Replications`, and `Prob. of Success` equal to the value of $p$. Make sure to click `Custom Statistic` and add the *phat* variable (= `sum(x)/length(x)`) before clicking the ![plus](../icon_images/add.png) button to add the next simulation. If you have added all seven simulations correctly, when you `Preview` ![eye](../icon_images/preview.png) the result, you should see eight columns of data, each corresponding to one of the probability values.
+    of the sampling distribution vary as $p$ changes? For example try the following values for $p$: 0.005, 0.01, 0.2, 0.5, 0.7, 0.99, and 0.995. **Hint**: Go back to the *simulating_p_hat* simulation that you saved to the **Probability-Simulation** toolbox. For each of the above values of $p$, click ![plus](../icon_images/add.png) and create a new *Bernoulli* `Distribution` variable with `Sample Size` equal to 300, 1000 `Replications`, and `Prob. of Success` equal to the value of $p$. Make sure to click `Custom Statistic` and add the *p_hat* variable (= `sum(x)/length(x)`) before clicking the ![plus](../icon_images/add.png) button to add the next simulation. If you have added all seven simulations correctly, when you `Preview` ![eye](../icon_images/preview.png) the result, you should see eight columns of data, each corresponding to one of the probability values.
     
 <div id="boxedtext">
 **How to see all plots simultaneously: ** If you want to see all of the distributions at the same time, use the option `Stacked with Sample IDs` in the **Multiple Distribution Random Generator** dialog box, and plot the values by the `Factor Variable` *ID* in the **Dotplot** function.
 </div>
 
     
-1.  Now also change $n$. How does $n$ appear to affect the distribution of $\hat{p}$? For example, keep `Prob. of Success` $p = 0.1$ and try the following values of $n$ (`Sample Size`): 10, 50, 100, 300, and 1000. Again, if you open up the original *simulating_phat* simulation and add all five simulations correctly, when you `Preview` ![eye](../icon_images/preview.png) the result, you should see six columns of data, each corresponding to one of the sample size values.
+1.  Now also change $n$. How does $n$ appear to affect the distribution of $\hat{p}$? For example, keep `Prob. of Success` $p = 0.1$ and try the following values of $n$ (`Sample Size`): 10, 50, 100, 300, and 1000. Again, if you open up the original *simulating_p_hat* simulation and add all five simulations correctly, when you `Preview` ![eye](../icon_images/preview.png) the result, you should see six columns of data, each corresponding to one of the sample size values.
+
+Earlier in the lab, we performed a hypothesis test to determine if those who sleep 10+ hours per day are more likely to strength train every day of the week. Before we perform inference about the difference of population proportions, we should investigate the assumptions in each population separately. However, in this case, we do not know or hypothesize a value for $p$, so instead we use an estimate of $p$ (the combined proportion of success across the two sample groups) to check our assumptions.
+
+1. What is the combined proportion of people in the sample who strength train every day, across *both* those who sleep 10+ hours and those who do not? Use this estimate of $p$ to investigate our assumptions in the sample of those who sleep 10+ hours and the sample of those who do not. Is the sampling distribution of the sample proportion $\hat{p}$ approximately normal in each group? **Hint:** The sample sizes for the two groups are not equal.
 
 * * *
 
 ## More Practice
 
-For some of the exercises below, you will conduct inference comparing two 
-proportions. In such cases, you have a response variable that is categorical, and
-an explanatory variable that is also categorical, and you are comparing the 
-proportions of success of the response variable across the levels of the 
-explanatory variable. 
-
-1.  Is there convincing evidence that those who sleep 10+ hours per day are more
-    likely to strength train every day of the week? As always, write out the 
-    hypotheses for any tests you conduct and outline the status of the conditions
-    for inference. If you find a significant difference, also quantify this 
-    difference with a confidence interval. See instructions below on how to use Rguroo to solve this problem.
-    
-As a first step, use the **Transform** function to create two variables from the yrbss data that are indicators for sleep 10+ hours and strength training every day. Call the variables *sleep_10_plus* and *train_every_day*. For *sleep_10_plus*, in the center box type the R code:
-
-```{r sleep_10_plus, eval=FALSE}
-ifelse(school_night_hours_sleep == "10+", "sleep_10_plus_hours","not_sleep_10_plus_hours")
-```
-
-For *train_every_day*, in the center box type the R code:
-
-```{r train_every_day, eval = FALSE}
-ifelse(strength_training_7d == 7, "train_every_day", "not_train_every_day")
-```
-
-
-```{r subset_train_sleep, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Using Transform to obtain a subset of the yrbss dataset*",out.width="75%"}
-knitr::include_graphics("img/subset_train_sleep.png")
-```
-
-In the **Analytics** toolbox, select **Proportion Inference** $\rightarrow$ **Two Populations**. Fill out the **Two Population Proportion Inference** dialog as shown in the screenshot below.
-
-
-```{r Entering_data_two_pop, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Entering data to test a hypothesis about a difference of two population proportions.*",out.width="75%"}
-knitr::include_graphics("img/Entering_data_two_pop.png")
-```
-
-Click on the `Test of Hypothesis` tab, enter the appropriate alternative hypothesis, select `Permutation Test`, and `Preview` ![eye](../icon_images/preview.png) the result. In the output you will find the p-value.
-
-```{r two_pop_proportion_test_of_hypothesis, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Specifying the test method and the alternative hypothesis*",out.width="75%"}
-knitr::include_graphics("img/two_pop_proportion_test_of_hypothesis.png")
-```
-
-To obtain a confidence interval for the difference of the two proportions, select the `Confidence Interval` tab and check the method `Bootstrap (Percentile)`.
+To obtain a confidence interval for the difference in the proportion of people who strength train every day between those who sleep 10+ hours and those who do not, we can select the `Confidence Interval` tab and check the method `Bootstrap (Percentile)`.
 
 ```{r ci_diff_two_prop, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Obtaining a bootstrap confidence interval for difference of two proportions*",out.width="75%"}
 knitr::include_graphics("img/ci_diff_two_prop.png")
 ```
 
+1.  Report, and write a sentence interpreting, a 95% confidence interval for the difference in population proportions of people who strength train every day of the week between those who sleep 10+ hours per day and those who do not.
 
-1.  Let's say there has been no difference in likeliness to strength train every
-    day of the week for those who sleep 10+ hours. What is the probablity that
-    you could detect a change (at a significance level of 0.05) simply by chance?
-    *Hint:* Review the definition of the Type 1 error.
 
 1.  Suppose you're hired by the local government to estimate the proportion of 
     residents that attend a religious service on a weekly basis. According to 
@@ -283,7 +299,7 @@ knitr::include_graphics("img/ci_diff_two_prop.png")
     1% with 95% confidence. You have no idea what to expect for $p$. How many 
     people would you have to sample to ensure that you are within the 
     guidelines?
-    *Hint:* Refer to your plot of the relationship between $p$ and margin of 
+    **Hint:** Refer to your plot of the relationship between $p$ and margin of 
     error. This question does not require using a dataset.
 
 * * *
