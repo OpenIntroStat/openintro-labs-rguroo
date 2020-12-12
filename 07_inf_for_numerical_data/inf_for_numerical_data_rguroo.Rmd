@@ -73,41 +73,63 @@ knitr::include_graphics("img/summarystat1-1.png")
 There is an observed difference, but is this difference statistically 
 significant? In order to answer this question we will conduct a hypothesis test.
 
-## Inference
+## Hypothesis Test Step-by-Step
+
+### Step 0: Ensure all necessary conditions for performing inference are met
+
+Before doing the hypothesis test, we need to look at our graphical and numerical summaries to determine which conditions for performing our desired inference are satisfied. If all conditions are satisfied, then we can proceed. If not, then we need to find a different type of hypothesis test that only requires the conditions that are satisfied.
 
 1.  Are all conditions necessary for inference satisfied? Comment on each. You can 
 see the group sizes in the **Summary Statistic** output that you created above.
 
-1.  Write the (null and alternative) hypotheses for testing if the average weights are different between those
-who exercise at least times a week and those who don't.
+### Step 1: Specify the null hypothesis, alternative hypothesis, and significance level
 
-Next, we will use the **Mean Inference** dialog from the **Analytics** toolbox to conduct hypothesis tests. Since we are looking at a difference between two groups, we select the **One and Two Population** option under **Mean Inference**.
+We write each hypothesis as a complete sentence and also, if possible, as a "mathematical sentence" (equation or inequality) about the parameter(s) of interest.
 
-In the **One & Two Population Mean Inference** dialog, select the *yrbss_transformed* `Dataset`. We want to look at the values of a numerical `Variable`, *weight*, grouped `By Factor`, *physical_3plus*. Select either "yes" or "no" as the `Level` in the `Population 1` section and the other value as the `Level` in the `Population 2` section. In the screenshot below, Population 1 represents the people who are physically active at least 3 days a week ("yes") and Population 2 represents the people who are not ("no").
+1.  Write the (null and alternative) hypotheses for testing if the average weights are different between those who exercise at least three times a week and those who don't.
+
+We also specify our significance level $\alpha$ in this step. This removes the temptation to define our $\alpha$ level after seeing the results of the test. For this lab example, we will use $\alpha = 0.05$, a typical default significance level.
+
+### Step 2: Choose the appropriate procedure in your statistical software
+
+Since our null and alternative hypothesis concern population means, we use Rguroo's  **Mean Inference** dialog from the **Analytics** toolbox to conduct this hypothesis test. Since our null and alternative hypothesis discuss a difference between two groups, we select the **One and Two Population** option under **Mean Inference**.
+
+### Step 3: Set up the test in your statistical software
+
+To fill out the **One & Two Population Mean Inference** dialog for this test, select the *yrbss_transformed* `Dataset`. We want to look at the values of a numerical `Variable`, *weight*, grouped `By Factor`, *physical_3plus*. Select either "yes" or "no" as the `Level` in the `Population 1` section and the other value as the `Level` in the `Population 2` section. In the screenshot below, Population 1 represents the people who are physically active at least 3 days a week ("yes") and Population 2 represents the people who are not ("no").
 
 ```{r HT1, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Testing a hypothesis about difference of two population means*", out.width="80%"}
 knitr::include_graphics("img/hypothesistest1-1.png")
 ```
 
-In the tabs below, click `Population 1-2` to indicate that we are comparing two populations, then click the `Test of Hypothesis` tab. The default option in Rguroo is to do a test using a `z-statistic`; uncheck that box and instead check the `Permutation Unscaled` box to do a simulation-based test for the difference of means. Fill in the appopriate alternative hypothesis and view the results.
+In the tabs below, click `Population 1-2` to indicate that we are comparing two populations, then click the `Test of Hypothesis` tab. The default option in Rguroo is to do a test using a `z-statistic`; uncheck that box and instead check the `Permutation Unscaled` box to do a simulation-based test for the difference of means. Fill in the appropriate alternative hypothesis.
 
 ```{r HT2, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Specifying the method and the alternative hypothesis*", out.width="80%"}
 knitr::include_graphics("img/hypothesistest1-2b.png")
 ```
 
-We can visualize the null distribution by finding in the output the graph labeled "Distribution of Permutation Replicates".
+### Step 4: Run the test and identify the p-value in the output
+
+Now, we can `Preview` ![eye](../icon_images/preview.png) the Rguroo output for our hypothesis test. We can visualize the null distribution (the sampling distribution of the test statistic, assuming the null hypothesis is true) by finding in the output the graph labeled "Distribution of Permutation Replicates."
 
 1. According to the graph, what is the p-value? How many replicates were generated, and how many of them produced a difference at least as great as the observed difference in sample means?
 
-This the standard workflow for performing hypothesis tests.
+### Step 5: Make a conclusion in context
 
-1.  Construct and record a confidence interval for the difference between the 
-weights of those who exercise at least three times a week and those who don't, and
-interpret this interval in context of the data. To construct a bootstrap confidence interval, select the `Confidence Interval` tab, and select the option `Bootstrap Percentile`.
+A conclusion requires two steps. First, we must decide whether to reject the null hypothesis. Second, we must explain what that decision means in the context of our original question.
+
+1. Using our $\alpha = 0.05$ significance level, do we have enough statistical evidence to reject the null hypothesis? What does this suggest about the difference in average weight between those who exercise at least three times a week and those who don't?
+
+This process is the standard workflow for performing hypothesis tests.
+
 
 * * *
 
 ## More Practice
+
+1.  Construct and record a 95% confidence interval for the difference between the average 
+weights of those who exercise at least three times a week and those who don't, and
+interpret this interval in context of the data. This exercise uses the same data as in the previous section. To construct a bootstrap confidence interval using this data, click the ![Basics](../icon_images/basics2_selected.png) button to reopen the dialog box, select the `Confidence Interval` tab, and select the option `Bootstrap Percentile`.
 
 1.  Calculate a 95% confidence interval for the average height in meters (*height*)
 and interpret it in context.
@@ -117,7 +139,7 @@ confidence level. Comment on the width of this interval versus
 the one obtained in the previous exercise.
 
 1.  Conduct a hypothesis test evaluating whether the average height is different
-for those who exercise at least three times a week and those who don't.
+for those who exercise at least three times a week and those who don't. Follow all steps in the workflow.
 
 1.  Now, a non-inference task: Determine the number of different options there 
 are in the dataset for the variable *hours_tv_per_school_day*.
