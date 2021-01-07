@@ -116,7 +116,7 @@ used to compute the residuals.
 
 Now we will check your answer to the previous exercise.
 
-Click ![Details](../icon_images/details.png), go to the `Diagnostic Indices Table` section, and check `Include Diagnostics Table`. First, we will select *countries* as our `ID Variable`, which will make it easy to identify which country each residual corresponds to. Then click `Preview` ![eye](../icon_images/preview.png) to see the updated output, which now contains a table labeled **Predicted Values, Residuals, and Diagnostic Indices**. 
+Go back to your **Linear Regression** output for the model relating *pf_expression_control* and *pf_score*. Click ![Details](../icon_images/details.png), go to the `Diagnostic Indices Table` section, and check `Include Diagnostics Table`. First, we will select *countries* as our `ID Variable`, which will make it easy to identify which country each residual corresponds to. Then click `Preview` ![eye](../icon_images/preview.png) to see the updated output, which now contains a table labeled **Predicted Values, Residuals, and Diagnostic Indices**. 
 
 ```{r diagnostic table, echo= FALSE, results = "asis", fig.cap = "*Obtaining a table including the residuals*", fig.align='center'}
 knitr::include_graphics("img/diagnostic-table-1.png")
