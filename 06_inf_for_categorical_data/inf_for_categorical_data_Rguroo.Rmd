@@ -178,8 +178,7 @@ knitr::include_graphics("img/subset_train_sleep.png")
 
 Save the transformed dataset as *training_and_sleep*.
 
-In the **Analytics** toolbox, select **Proportion Inference** $\rightarrow$ **Two Populations**. Fill out the **Two Population Proportion Inference** dialog as shown in the screenshot below.
-
+In the **Analytics** toolbox, select **Proportion Inference** $\rightarrow$ **Two Populations**. Fill out the **Two Population Proportion Inference** dialog as shown in the screenshot below. Once you select the appropriate levels for **Population 1** and **Population 2**, you will need to click the ![refresh](../icon_images/refresh.png) buttons to get the correct numbers to appear.
 
 ```{r Entering_data_two_pop, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Entering data to test a hypothesis about a difference of two population proportions.*",out.width="75%"}
 knitr::include_graphics("img/Entering_data_two_pop.png")
@@ -208,7 +207,7 @@ knitr::include_graphics("img/two_pop_proportion_test_of_hypothesis.png")
 ## Investigating Assumptions About the Sampling Distribution
 
 For inference on proportions, the sample proportion can be assumed 
-to be nearly normal if it is based upon a random sample of independent 
+to have a nearly normal sampling distribution if it is based upon a random sample of independent 
 observations and if both $np \geq 10$ and $n(1 - p) \geq 10$. This rule of 
 thumb is easy enough to follow, but it makes you wonder: what's so special 
 about the number 10?
@@ -276,9 +275,9 @@ knitr::include_graphics("img/phat_dotplot.png")
     
 1.  Now also change $n$. How does $n$ appear to affect the distribution of $\hat{p}$? For example, keep `Prob. of Success` $p = 0.1$ and try the following values of $n$ (`Sample Size`): 10, 50, 100, 300, and 1000. Again, if you open up the original *simulating_p_hat* simulation and add all five simulations correctly, when you `Preview` ![eye](../icon_images/preview.png) the result, you should see six columns of data, each corresponding to one of the sample size values.
 
-Earlier in the lab, we performed a hypothesis test to determine if those who sleep 10+ hours per day are more likely to strength train every day of the week. Before we perform inference about the difference of population proportions, we should investigate the assumptions in each population separately. However, in this case, we do not know or hypothesize a value for $p$, so instead we use an estimate of $p$ (the combined proportion of success across the two sample groups) to check our assumptions.
+Earlier in the lab, we performed a hypothesis test to determine if those who sleep 10+ hours per day are more likely to strength train every day of the week. Before we perform inference about the difference of population proportions, we should investigate the assumptions in each population separately. However, in this case, we do not know or hypothesize a value for $p$, so instead we use an estimate of $p$ to check our assumptions. A natural estimate of the value of $p$ is the *pooled proportion* of success; that is, the overall proportion of success in the sample looking at both groups combined.
 
-1. What is the combined proportion of people in the sample who strength train every day, across *both* those who sleep 10+ hours and those who do not? Use this estimate of $p$ to investigate our assumptions in the sample of those who sleep 10+ hours and the sample of those who do not. Is the sampling distribution of the sample proportion $\hat{p}$ approximately normal in each group? **Hint:** The sample sizes for the two groups are not equal.
+1. What is the pooled proportion of people in the sample who strength train every day (looking at *both* those who sleep 10+ hours and those who do not)? Use this estimate of $p$ to investigate our assumptions in the sample of those who sleep 10+ hours and the sample of those who do not. Is the sampling distribution of the sample proportion $\hat{p}$ approximately normal in each group? **Hint:** The sample sizes for the two groups are not equal.
 
 * * *
 
