@@ -31,7 +31,7 @@ A 2019 Pew Research report states the following:
 
 In this lab, you will assume this 62% is a true population proportion and learn about how sample proportions can vary from sample to sample by taking smaller samples from the population. 
 
-First, open Rguroo's data editor by selecting **Create New Dataset** in the **Data** toolbox. In the data editor, create the variable *Affects* with two values of "yes" and "no." To add variables click `Add Column`  ![add column](../icon_images/add_column.png) and to add rows click *Add Row* ![add row](../icon_images/add_row.png). Next, add a "Probability" column to the dataset, which provides a vector of the two probability weights. Here, since we assume 62% of responses will be from people who think climate change impacts their community, the probability of "yes" should be 0.62 and the probability of "no" should be 0.38, as shown in the figure below. **Save** the dataset with the name *climate_change_affects*.
+First, open Rguroo's data editor by selecting **Create New Dataset** in the **Data** toolbox. In the data editor, create the variable *Affects* with two values of "yes" and "no." To add variables click *Add Column*  ![add column](../icon_images/add_column.png) and to add rows click *Add Row* ![add row](../icon_images/add_row.png). Next, add a "Probability" column to the dataset, which provides a vector of the two probability weights. Here, since we assume 62% of responses will be from people who think climate change impacts their community, the probability of "yes" should be 0.62 and the probability of "no" should be 0.38, as shown in the figure below. **Save** the dataset with the name *climate_change_affects*.
 
 ```{r create dataset, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Creating a dataset with two variables Affects and Probability*", out.width="90%"}
 knitr::include_graphics("img/data-editor-1.png")
@@ -43,7 +43,7 @@ We can visualize the distribution of these responses using a bar plot.
 knitr::include_graphics("img/barplot-1a.png")
 ```
 
-In this lab, you'll start with a simple random sample of size 60 from the population. Remember that we use the **Random Selection** function in the **Probability-Simulation** section to take random samples from our dataset. Again, change the `Seed` from 100 to a different number of your choice. In this example, we have arbitrarily chosen the number 32055.
+In this lab, you'll start with a simple random sample of size 60 from the population. Remember that we use the **Random Selection** function in the **Probability-Simulation** section to take random samples from our dataset. Again, change the `Seed` from 100 to a different number of your choice. In this example, we have arbitrarily chosen the number 32055. Also, to ensure that only the *Affects* variable is chosen, we have limited the selected **Columns:** to the Column 1. (1 is the leftmost column. If the *Affects* variable is in a different column, you will need to input that column number instead.)
 
 ```{r sample, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Taking a sample of size 60 from the climate_change_affects dataset*", out.width="75%"}
 knitr::include_graphics("img/SRS-1a.png")
@@ -93,7 +93,7 @@ knitr::include_graphics("img/bootstrap-1-revised.png")
 - **Step 2.** Click the ![Statistic](../icon_images/statistic2_selected.png) button and create the bootstrap statistic we want. In this case we want to compute $\hat{p}$, the proportion of adults in the bootstrap sample who believe that climate change affects their community.
 
 ```{r CI Step 2, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Creating the bootstrap statistic*", out.width="70%"}
-knitr::include_graphics("img/bootstrap-2-revised.png")
+knitr::include_graphics("img/bootstrap-2-revised2.png")
 ```
 
 - **Step 3.** Go back to the **Dataset Random Selection** dialog and indicate the number of bootstrap samples we want as the number of `Replications`. In this example we want 1000 replications.
