@@ -82,7 +82,7 @@ Click ![Basics](../icon_images/details.png) and add the line of the best fit to 
 knitr::include_graphics("img/scatterplot1-2.png")
 ```
 
-1. Let’s see if the apparent trend in the plot is something more than natural variation. Use Rguroo's **Linear Regression** module in the **Analytics** toolbox to fit a linear model to predict average professor score by average beauty rating. Write out the equation for the linear model and interpret the slope. Is average beauty score a statistically significant predictor? Does it appear to be a practically significant predictor?
+1. Let’s see if the apparent trend in the plot is something more than natural variation. Use Rguroo's **Linear Regression (Simple and Multiple Regression)** module in the **Analytics** toolbox to fit a linear model to predict average professor score by average beauty rating. Write out the equation for the linear model and interpret the slope. Is average beauty score a statistically significant predictor? Does it appear to be a practically significant predictor?
 
 
 1.  Use residual plots to evaluate whether the conditions of least squares
