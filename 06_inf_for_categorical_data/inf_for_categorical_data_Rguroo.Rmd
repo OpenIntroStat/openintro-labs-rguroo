@@ -26,7 +26,7 @@ one of the years the YRBSS was conducted.
 The dataset is called *yrbss* and can be imported to your Rguroo workspace from Rguroo's `OpenIntro` **Dataset Repository**. Before importing the dataset, remind yourself of the variables in the dataset by clicking on the information icon ![info](../icon_images/info.png), shown to the right of the dataset name. 
 
 1.   What are the counts within each category for the number of days these students
-have texted while driving within the past 30 days? **Hint:** Go to the **Analytics** toolbox, select **Analysis** $\rightarrow$ **Tabulation**, select the `Dataset` *yrbss*, and tabulate the values for the variable *text_while_driving_30d*. If you need help using the **Data Tabulation** dialog, click the video icon [![video](../icon_images/video_blue_Over.png)](https://youtu.be/GEYd98LwxiE) here or on the dialog box to watch the video tutorial *Tabulation and Distribution of Categorical Data*.
+have texted while driving within the past 30 days? **Hint:** Go to the **Analytics** toolbox, select **Analysis** $\rightarrow$ **Tabulation** $\rightarrow$ **Categorical**, select the `Dataset` *yrbss*, and tabulate the values for the variable *text_while_driving_30d*. If you need help using the **Data Tabulation** dialog, click the video icon [![video](../icon_images/video_blue_Over.png)](https://youtu.be/GEYd98LwxiE) here or on the dialog box to watch the video tutorial *Tabulation and Distribution of Categorical Data*.
 
 Note that *text_while_driving_30d* has a level *NA*. Because this *NA* value represents missing data, you should click ![Level Editor](../icon_images/level_editor2_Selected.png) and drop the *NA* level for *text_while_driving_30d*.
 
