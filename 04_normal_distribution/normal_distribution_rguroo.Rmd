@@ -72,7 +72,7 @@ To see how accurate that description is, you can plot a normal distribution curv
 on top of a histogram to see how closely the data follow a normal distribution. 
 This normal curve should have the same mean and standard deviation as the data. 
 
-In Rguroo, this can be done by clicking ![Basics](../icon_images/basics2_Selected.png) and, in the `Smoothing` section, checking the `Normal` box. The screenshot below shows this for the *dairyqueen* dataset.
+In Rguroo, this can be done by clicking ![Basics](../icon_images/basics2_Selected.png) and, in the `Smoothing` section, checking the `Normal` box. The screenshot below shows this for the *fastfood* dataset. In the **Plot by Group** section, we have selected the factor variable *restaurant*, so we will get one histogram for each level of the factor *restaurant* that is not dropped in the **Factor Level Editor**. Finally, in the **smoothing** section, we have selected the `Normal` checkbox to superimpose a normal curve on top of each of the histograms.
 
 ```{r hist_calories_each_level_with_normal, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Superimposing a normal density curve on a histogram*", out.width="75%"}
 knitr::include_graphics("img/hist_calories_each_level_with_normal.png")
@@ -103,27 +103,26 @@ constructing a *normal probability plot*, also called a quantile-quantile plot (
 
 This plot is not part of the **Plots** toolbox in Rguroo; instead, we will have to go to the **Analytics** toolbox. If you want to get a single normal probability plot for a numerical variable without involving any factors, you can select  **Mean Inference** $\rightarrow$ **One Population** and in the dialog box that opens select your `Dataset`, your `Variable`, and the option `Normal Probability Plot`. In our example, however, we want to get a normal probability plot at a specific level of the factor variable $restaurant$. 
 
-To draw a normal probability plot for each level of the factor $restaurant$, select **Mean Inference** $\rightarrow$ **One & Two Population**. In the dialog box that opens, select the *fastfood* `Dataset`, and check the box `Normal Probability Plot`. There are two options to choose your variable(s). The first option includes `Variable 1` and `Variable 2`. You would use this option if you want to make a normal probability plot for one or two numerical variables in your dataset without taking into account a factor variable. In our example, we want to draw a normal probability plot for the numerical variable *cal_fat* for the level *Dairy Queen* of the factor variable *restaurant*. So, choose the second option. As shown in the figure below, select `Variable` *cal_fat* and `By Factor` *restaurant*. In section `Population 1`, select the `Level` of the factor, namely  *Dairy Queen*, for which we want a normal probability plot. By clicking the `Preview` button ![eye](../icon_images/preview.png), we get a normal probability plot for the fat calories (variable *cal_fat*) for Dairy Queen restaurants. The resulting graph is shown below.
+To draw a normal probability plot for each level of the factor $restaurant$, select **Mean Inference** $\rightarrow$ **One & Two Population**. In the dialog box that opens, select the *fastfood* `Dataset`. There are two options to choose your variable(s). The first option includes `Variable 1` and `Variable 2`. You would use this option if you want to make a normal probability plot for one or two numerical variables in your dataset without considering a factor variable. In our example, we want to draw a normal probability plot for the numerical variable *cal_fat* for the level *Dairy Queen* of the factor variable *restaurant*. So, choose the second option labeled `Variable`, as shown in the figure below. Then, select *cal_fat* from the first dropdown menu, and in the `By Factor` dropdown, select *restaurant*. In the section `Population 1`, select the `Level` of the factor, namely  *Dairy Queen*, for which we want a normal probability plot. As a last step, check the box `Normal Probability Plot` that is on top of the dialog box. By clicking the `Preview` button ![eye](../icon_images/preview.png), we get a normal probability plot for the fat calories (variable *cal_fat*) for Dairy Queen restaurants. The resulting graph is shown below.
 
 ```{r normal_probability_plot_GUI, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Obtaining the normal probability plot*", out.width="75%"}
 knitr::include_graphics("img/normal_probability_plot_GUI.png")
 ```
 
 ```{r normal_probability_plot, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Data summary and normal probability plot for calories from fat for Dairy Queen menu items*", out.width="80%"}
-knitr::include_graphics("img/normal_probability_plot2.png")
+knitr::include_graphics("img/normal_probability_plot2.svg")
 ```
 
 The x-axis values correspond to the quantiles of a theoretically normal curve 
 with mean 0 and standard deviation 1 (i.e., the standard normal distribution).  The 
 y-axis values correspond to the quantiles of the original unstandardized sample 
-data. However, even if we were to standardize the sample data values, the Q-Q
-plot would look identical. A data set that is nearly normal will result in a
-probability plot where the points closely follow the red line shown.  Any deviations
-from normality leads to deviations of the points from that line.
+data. However, even if we standardize the sample data values, the Q-Q
+plot would look identical. Data that are nearly normal will result in a
+probability plot where the points closely follow the green line shown.  Any deviation
+from normality leads to deviations of the points from that line. The two red dotted lines are called 95% confidence bands. If all the points fall within these confidence bands or only a few data points fall outside of the confidence bands, then we feel comfortable that the data are normal. 
 
 The plot for Dairy Queen's calories from fat shows points that tend to follow the
-line but with some errant points towards the upper tail.  You're left with the same
-problem that we encountered with the histogram above: how close is close enough and how far is too far?
+line but with some errant points towards the upper tail that fall outside of the confidence band.  You are left with the same problem we encountered with the histogram above: how many points outside the band would be considered few enough to say that our data follow a normal distribution?
 
 A useful way to address this question is to rephrase it as: what do probability 
 plots look like for data that I *know* came from a normal distribution?  We can 
