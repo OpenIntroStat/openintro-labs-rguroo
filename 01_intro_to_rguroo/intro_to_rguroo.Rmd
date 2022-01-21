@@ -20,20 +20,20 @@ The goal of this lab is to introduce you to Rguroo, which you'll use throughout 
 
 Today we begin with the fundamental building blocks of Rguroo: the interface, reading in data, and basic functions. Functions in Rguroo consist of dialog boxes where you input information, usually by selecting checkboxes or typing in values in text boxes, to perform a specific task. 
 
-To start, you will need to create a Rguroo account. Go to Rguroo ([https://rguroo.com/](https://rguroo.com/)) and select **Register**. Next, click **Student** to obtain student access. Then, select **Obtain 12 month access (New Account)** and enter your student email address in both the **Email** and **Verify Email** boxes. Click **Submit**, and a verification code will be sent to your student email address. In case you don't see the email in your Inbox, check your Spam folder. In the next section, type your verification code in the **Email Verification Code** box and click **Submit**.
+To start, you will need to create a Rguroo account. Go to Rguroo ([https://rguroo.com/](https://rguroo.com/)) and select **Register**. The link [Registration Instructions](https://www.rguroo.com/AccountCreation.html) provides details for registering your account. To begin, click on the **Student** button and fill out the needed information. There is an email verification step where you enter your email address. Make sure to type your email address correctly since an email will be sent to the address that you type. If you don't see the email in your Inbox within a few minutes, check your Spam folder. 
 
 **IMPORTANT!** It is very easy to accidentally include a leading or trailing space when copying/pasting the verification code. This is the most common reason why Rguroo declines verification codes!
 
-Once Rguroo has verified your code, proceed to the registration screen. You will need to type your first and last name and the ZIP (postal) code for your institution. Select your **Institution** and its **State**. Leave the **Access Key** field blank. Read and accept the terms of service, then click **Submit** to get to the Billing Details page.
+Once Rguroo has verified your code, proceed to the registration screen. You will need to type your first and last name and your institution's ZIP (postal) code. Select your **Institution** and its **State**. If you have an **Access Key** enter it in the space provided. Otherwise, leave the **Access Key** field blank. Read and accept the terms of service, then click **Submit** to get to the Billing Details page. If you filled out the Access Key portion, you would not see a billing page.
 
-You may need to purchase a Rguroo license. However, some colleges and universities have site license deals with Rguroo that make student accounts available at reduced or no cost. If your institution has such a license, and there is a discounted amount to pay, the discount will be automatically reflected in the billing process that you would go through. If there is a non-zero balance that you have to pay, go through the billing process and click **Place Order**.
+Some colleges and universities have site license deals with Rguroo that make student accounts available at reduced or no cost. If your institution has such a license, and there is a discounted amount to pay, the discount will be automatically reflected in the billing process that you would go through. If there is a non-zero balance that you have to pay, go through the billing process and click **Place Order**.
 
-Upon completion of the registration, a message will be sent to the email address you used to register your Rguroo account, which includes a temporary password. Follow the instructions in the email to set up your Rguroo account.
+Upon completing the registration, you will receive an email that contains a temporary password. Follow the instructions in the email to log in to your Rguroo account.
 
-Once you have set up your Rguroo account, you should see a fairly open browser window similar to that shown below.
+Once you log in to your Rguroo account, you should see a fairly open browser window similar to that shown below.
 
 ```{r rguroo-interface-2020, echo=FALSE, results="asis", fig.cap="*A view of the Rguroo interface*", fig.align='center', outwidth = "80%"}
-knitr::include_graphics("img/rguroo-interface-v1_4_7.png")
+knitr::include_graphics("img/rguroo-interface-v1_9_7.png")
 ```
 
 The sidebar on the left contains five toolboxes: **Data**, **Plots**, **Analytics**, **Probability-Simulation**, and **Applets**. You can click on any of these toolboxes to view the Rguroo objects you have saved to that toolbox. You can also access a specific toolbox via the keyboard by pressing Alt + the second letter of the toolbox name (Alt + A for **Data**, Alt + L for **Plots**, Alt + N for **Analytics**, Alt + R for **Probability-Simulation**, and Alt + P for **Applets**). There is also a **Quick Access Tools** button on the top right that you can use to access a few frequently used functions, such as **Import Dataset** or a list of shortcut keys.
@@ -41,19 +41,19 @@ The sidebar on the left contains five toolboxes: **Data**, **Plots**, **Analytic
 
 ## Dr. Arbuthnot's Baptism Records
 
-To get started, let's take a peek at the data. To access the data, go to the **Data** toolbox, select **Data Import**, and click on **Dataset Repository**, as shown in the figure below. In the dialog box that opens, type *open* in the upper search box and you should see the option to select the `OpenIntro` repository. Once selected, the lower panel of the dialog box should show all the datasets in the repository. Click on the `Dataset` column in the lower panel to sort the datasets alphabetically, then find the *arbuthnot* dataset, select it, and click on the `Import` button. You should now see an Rguroo data file called *arbuthnot* in the **Data** toolbox on the sidebar. This dataset is now available for use in Rguroo functions. 
+To get started, let's take a peek at the data. To access the data, go to the **Data** toolbox, select **Data Import**, and click on **Dataset Repository**, as shown in the figure below. In the dialog box that opens, type *open* in the upper search box and you should see the option to select the `OpenIntro` repository. Once selected, the lower panel of the dialog box will show all the datasets in the repository. Click on the `Dataset` column in the lower panel to sort the datasets alphabetically, then find the *arbuthnot* dataset, select it, and click on the `Import` button. You should now see an Rguroo data file called *arbuthnot* in the **Data** toolbox on the sidebar. This dataset is now available for use in Rguroo functions. 
 
 ```{r arbuthnot-upload, echo=FALSE, results="asis", fig.align="center", fig.cap = "*Importing data from the Rguroo Dataset Repository*", out.width = "90%"}
 knitr::include_graphics("img/figure_2_data_repository.png")
 ```
 
-As you work with Rguroo, you will create a series of objects. Objects include datasets, plots, output reports, etc., which can be saved under the **Data**, **Plots**, **Analytics**, and **Probability-Simulation** toolboxes in Rguroo.  Sometimes you import objects as we have done here, but most of the time, you create them as the byproduct of computation or some analysis you have performed. 
+As you work with Rguroo, you will create a series of objects. Objects include datasets, plots, output reports, etc., which can be saved under the **Data**, **Plots**, **Analytics**, and **Probability-Simulation** toolboxes in Rguroo.  Sometimes, you import objects as we have done here, but you often create them as the byproduct of computation or some analysis you have performed. 
 
-As you add Rguroo objects to your account, it will become difficult to find the object you want immediately. Thus, you can type text in the "Search" box to filter the objects in each section. You can also take advantage of the folder system to organize your objects.
+As you add Rguroo objects to your account, it will become difficult to immediately find the object you want. Thus, you can type text in the "Search" box to filter the objects in each section. You can also take advantage of the folder system to organize your objects.
 
 The Arbuthnot dataset refers to the work of Dr. John Arbuthnot, an 18th-century physician, writer, and mathematician. He was interested in the ratio of newborn boys to newborn girls, so he gathered the baptism records for children born in London every year from 1629 to 1710. 
 
-To view the *arbuthnot* dataset that you imported, select the dataset's name in the **Data** toolbox (in the sidebar) and press Enter to view it. Alternatively, you can double-click the dataset name. The dataset opens in Rguroo's **Data Viewer**, as shown in the figure below. You should see four columns of numbers, each row representing a different year: the first entry in each row is simply the case number (an index we can use to access the data from individual years if we want), the second is the year, and the third and fourth are the numbers of boys and girls baptized that year, respectively. Use the scroll bar on the right side of the window to examine the complete data set. By default, Rguroo will show up to 100 rows and 15 columns of the dataset. You can use the **Row** and **Column** options at the bottom of the **Data Viewer** window to navigate any part of the data. 
+To view the *arbuthnot* dataset that you imported, select the dataset's name in the **Data** toolbox (in the sidebar), and press Enter to view it. Alternatively, you can double-click the dataset name. The dataset opens in Rguroo's **Data Viewer**, as shown in the figure below. You should see four columns of numbers, each row representing a different year: the first entry in each row is simply the case number (an index we can use to access the data from individual years if we want), the second is the year, and the third and fourth are the numbers of boys and girls baptized that year, respectively. Use the scroll bar on the right side of the window to examine the complete data set. By default, Rguroo will show up to 100 rows and 15 columns of the dataset. You can use the **Row** and **Column** options at the bottom of the **Data Viewer** window to navigate any part of the data. 
 
 ```{r arbuthnot-data-view, echo=FALSE, results="asis", fig.align="center", fig.cap="*A portion of the Arbuthnot dataset*", out.width = "80%"}
 knitr::include_graphics("img/Figure_3_arbuthnot_data.png")
@@ -259,6 +259,8 @@ You can get help in how to use Rguroo in several ways.
 ```{r dialog-help, tidy = FALSE, echo=FALSE, results="asis", fig.align = "center", fig.cap = "*Video and text help on dialog boxes*", out.width="50%"}
 knitr::include_graphics("img/rguroo-help1.png")
 ```
+
+* You can click on the ![Quick Users Guide](img/Quick_Users_Guide_Icon.png) icon that appears on top of the Rguroo application to get quick instructions on how to perform various tasks in Rguroo.
 
 * The top right of the workspace (by **Settings**) contains two options for getting general help, as shown in the figure below. You can click the video camera icon to bring up a searchable list of tutorial videos or the book icon to open the Rguroo User's Guide in a separate tab. The Rguroo User's Guide contains many examples and even some formulas on how the numbers in Rguroo are calculated.
 
