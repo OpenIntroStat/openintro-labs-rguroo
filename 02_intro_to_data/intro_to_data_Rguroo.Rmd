@@ -301,9 +301,9 @@ creating a new variable. In the **Data** toolbox, click **Functions** and select
 knitr::include_graphics("img/figure_6_transform-1.png")
 ```
 
-**Save** the new dataset as *nycflights_ontime*.
+Click on the Preview button ![eye](../icon_images/preview.png) and **Save** the new dataset as *nycflights_ontime*.
 
-With the new dataset saved, we can find the proportion of on-time flights out of each airport. In the **Analytics** toolbox, select **Tabulation**. Click `Add Table` to add a table. We want to find the distribution of *dep_type* conditional on *origin*, so select those variables as `Factor 1` and `Factor 2` respectively. Check the `Cond.` box and `Proportions` box to tell Rguroo to calculate conditional proportions.
+With the new dataset saved, we can find the proportion of on-time flights out of each airport. In the **Analytics** toolbox, select **Tabulation $\rightarrow$ Categorical** and then select the dataset *nycflights_ontime*. Click the ![plus sign](../icon_images/add.png) to add a table. We want to find the distribution of *dep_type* conditional on *origin*, so select those variables as `Factor 1` and `Factor 2`, respectively. Check the conditional box labeled as `Cond.`  and check the `Proportions` box to tell Rguroo to calculate conditional proportions.
 
 ```{r ot-dep-rate, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Tabulating New York flights based on delay_type and origin*", out.width="80%"}
 knitr::include_graphics("img/tabulation-1.png")
