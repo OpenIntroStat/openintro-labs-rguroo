@@ -95,14 +95,14 @@ In the R code above, line number 1, which starts with `#`, is a comment and not 
 
 The variable *basket* in the dataset *kobe_basket* consists of "H" and "M" values. Line 13 shows how you can apply the function `calc_streak` to the variable *basket* to obtain a vector comprising the streak lengths of "H" in the *basket* variable.
 
-To use the above code in Rguroo's **Transform** function, go to the **Data** toolbox, and in the **Functions** dropdown select **Transform**. The **Transform** dialog box opens. Select the dataset *kobe_basket* from the `Dataset` dropdown, and click the plus sign ![plus](../icon_images/add.png) to create a new `Transform`. A `Transform` in Rguroo consists of a new variable and the set of R code that you write to create it. On the left column, name your variable `kobe_streak` and copy and paste the above R code in the center panel of the `Transformation` function dialog, as shown below. You will notice that the variable *kobe_streak* gets added to the top  of the `Returned Variable` column on the right. We only like to retain the streak lengths, so drag all other variables to the lower panel labeled `Excluded Variable`. Click the `Preview` button ![eye](../icon_images/preview.png), and you will see a dataset with the *kobe_streak* variable only. **Save** the dataset as *kobe_streak*. 
+To use the above code in Rguroo's **Transform** function, go to the **Data** toolbox, and in the **Functions** dropdown, select **Transform**. The **Transform** dialog box opens. Select the dataset *kobe_basket* from the `Dataset` dropdown, and click the plus sign ![plus](../icon_images/add.png) to create a new `Transform`. A `Transform` in Rguroo consists of a new variable and the set of R code that you write to create it. On the left column, name your variable `kobe_streak` and copy and paste the above R code in the center panel of the `Transformation` function dialog, as shown below. You will notice that the variable *kobe_streak* gets added to the top  of the `Returned Variable` column on the right. We only like to retain the streak lengths, so drag all other variables to the lower panel labeled `Excluded Variable`. Make sure that the `Complete Cases Only` checkbox is checked. Click the `Preview` button ![eye](../icon_images/preview.png), and you will see a dataset with the *kobe_streak* variable only. **Save** the dataset as *kobe_streak*. 
 
 ```{r kobe_streak_transform, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Using Rguroo's Transform function to compute streak lengths*", out.width="90%"}
 knitr::include_graphics("img/kobe_streak_Transform.png")
 ```
 
 <div id="boxedtext">
-**Details of kobe_streak dataset: ** The *kobe_streak* variable that you obtained using the `Transform` function consists of 76 values, but 133 rows. Rows 77 to 133 are *NA*'s, denoting missing values. This is because the *kobe_streak* variable was an addition to the *kobe_basket* dataset, which had 133 rows. In the Rguroo's **Subset** function, select the *kobe_streak* `Dataset` and use the `Sequence` option with the sequence `1:76` to retain only the first 76 rows and remove the *NA*'s.
+**Why do we select Complete Cases Only? ** The *kobe_streak* variable that you obtained using the Transform function consists of 76 values, but since the `kobe_streak` dataset has 133 rows, if you don’t check the Complete Cases Only checkbox, you would get rows 77 to 133 consisting of NA's, denoting missing values. By selecting `Complete Cases Only`, those unwanted NA's are removed, and you get the 76 values for the *kobe_streak* variable. 
 </div>
 
 #### Now that we have the Kobe Streak lengths!
@@ -211,13 +211,13 @@ You see two text boxes labeled **Save As ...** and **Save Dataset As ...** on to
 
 Now, in the text box next to **Save Dataset As ...**, type in  *sim_fair_coin*, and click the **Save Dataset As ...** button. This will save the dataset containing the  *coin_outcomes* variable as an independent dataset in the **Data** toolbox. The  *sim_fair_coin* dataset can now be used in all functions of Rguroo.
 
-You can tabulate the results of your simulation in Rguroo. Go to the **Analytics** toolbox, and in the **Analysis** dropdown, select **Tabulation** to open the **Data Tabulation** dialog box shown below.
+You can tabulate the results of your simulation in Rguroo. Go to the **Analytics** toolbox, and in the **Analysis** dropdown, select **Tabulation $\rightarrow$ Categorical** to open the **Data Tabulation** dialog box shown below.
 
 ```{r tabulate_fair_coin, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Tabulation dialog to tabulate the result of the fair coin simlation*", out.width="75%"}
 knitr::include_graphics("img/tabulate_fair_coin.png")
 ```
 
-Select the `Dataset` *sim_fair_coin*. Click on `Add Table`, and type in a  name like *Fair Coin Flips*. In the `Parameters` toolbox of the dialog, choose *Coin_outcomes* from the `Factor 1` dropdown to tabulate this variable's values. Also, check `Totals` and `Proportions`, and click the `Preview` button ![eye](../icon_images/preview.png). You will see two tables that show the number of heads and tails and the proportion of heads and tails that your simulation resulted in.
+Select the `Dataset` *sim_fair_coin*. Click on the ![plus sign](../icon_images/add.png), and type in a  name like *Fair Coin Flips* in the text area that appears. In the `Parameters` toolbox of the dialog, choose *Coin_outcomes* from the `Factor 1` dropdown to tabulate this variable's values. Also, check `Counts` and `Proportions`, and click the `Preview` button ![eye](../icon_images/preview.png). You will see two tables that show the number of heads and tails and the proportion of heads and tails that your simulation resulted in.
 
 Since there are only two elements in *coin_outcomes*, the probability that we "flip" 
 a coin and it lands heads is 0.5. Say we're trying to simulate an unfair coin 
