@@ -238,7 +238,7 @@ Let's think about how you could answer this question. We need to do three things
 - `summarize` the average departure delays for each month
 - `sort` the months based on their average departure delays
 
-We now know how to do the first two of these things, but there's a bit of a problem. When we open the **Summary Statistic** dialog, we can't select *month* as `Factor 1`. The reason for this is that Rguroo has classified month as a *numerical* variable, not a *categorical* variable. To overwrite this classification, we need to right-click the *nycflights* dataset and select **Open** to open the Data Editor. Click click `Add Rows/Variables`  ![add rows/variables](../icon_images/add_column.png) and in the dialog that pops up, select `Variable Properties`. Select the *month* variable and change its `Type` to `Nominal`, as shown below.
+We now know how to do the first two of these things, but there's a bit of a problem. When we open the **Summary Statistic** dialog, we can't select *month* as `Factor 1`. The reason for this is that Rguroo has classified month as a *numerical* variable, not a *categorical* variable. To overwrite this classification, we need to right-click the *nycflights* dataset and select **Open** to open the Data Editor. Click  `Add Rows/Variables`  ![add rows/variables](../icon_images/add_column.png) and in the dialog that pops up, select `Variable Properties`. Select the *month* variable and change its `Type` to `Nominal`, as shown below.
 
 ```{r mean-dep-delay-months-1, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Data Editor to modify variable types*", out.width="80%"}
 #knitr::include_graphics("img/variable-type-editor.png")
@@ -334,7 +334,7 @@ You may want to play around with changing from `Side by side` to `Stacked` and/o
     between average speed and distance.
     
 
-1.  Replicate the following plot. **Hint:** The plot shows only flights from American Airlines (AA), Delta Airlines (DL), and United Airlines (UA), and the points are colored based on the `Factor` variable *carrier*. Rather than using **Subset**, you can click ![Level Edtior](../icon_images/level_editor2_Selected.png) and use the **Factor Level Editor** attached to the plot to drop the unused levels and change the colors/symbols. Once you replicate
+1.  Replicate the following plot. **Hint:** The plot shows only flights from American Airlines (AA), Delta Airlines (DL), and United Airlines (UA), and the points are colored based on the `Factor` variable *carrier*. Rather than using **Subset**, you can click ![Level Editor](../icon_images/level_editor2_Selected.png) and use the **Factor Level Editor** attached to the plot to drop the unused levels and change the colors/symbols. Once you replicate
     the plot, determine (roughly) what the cutoff point is for departure
     delays where you can still expect to get to your destination on time.
 
