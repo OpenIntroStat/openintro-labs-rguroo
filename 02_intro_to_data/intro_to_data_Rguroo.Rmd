@@ -238,13 +238,13 @@ Let's think about how you could answer this question. We need to do three things
 - `summarize` the average departure delays for each month
 - `sort` the months based on their average departure delays
 
-We now know how to do the first two of these things, but there's a bit of a problem. When we open the **Summary Statistic** dialog, we can't select *month* as `Factor 1`. The reason for this is that Rguroo has classified month as a *numerical* variable, not a *categorical* variable. To overwrite this classification, we need to right-click the *nycflights* dataset and select the **Variable Type Editor**. Then we drag-and-drop the month variable from the `Numerical` column to the `Factor/Categorical` column, as shown below.
+We now know how to do the first two of these things, but there's a bit of a problem. When we open the **Summary Statistic** dialog, we can't select *month* as `Factor 1`. The reason for this is that Rguroo has classified month as a *numerical* variable, not a *categorical* variable. To overwrite this classification, we need to right-click the *nycflights* dataset and select **Open** to open the Data Editor. Click click `Add Rows/Variables`  ![add rows/variables](../icon_images/add_column.png) and in the dialog that pops up, select `Variable Properties`. Select the *month* variable and change its `Type` to `Nominal`, as shown below.
 
-```{r mean-dep-delay-months-1, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Variable Type Editor to modify variable types*", out.width="80%"}
-knitr::include_graphics("img/variable-type-editor.png")
+```{r mean-dep-delay-months-1, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Data Editor to modify variable types*", out.width="80%"}
+#knitr::include_graphics("img/variable-type-editor.png")
 ```
 
-Click `Update` to make the changes, and click `Close` to close the dialog box. Now open a new **Summary Statistic** dialog, select the dataset *nycflights*, and *month* will now appear as a `Factor 1` option, as shown in the dialog below.
+Because you have made changes to the dataset after creating and saving output based on the dataset, you cannot overwrite the original dataset. Use the **Save As** text box at the top of the tab to save the new dataset as *nycflights1*. Now open a new **Summary Statistic** dialog, select the dataset *nycflights1*, and *month* will now appear as a `Factor 1` option, as shown in the dialog below.
 
 ```{r mean-dep-delay-months-2, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Summary Statistic dialog to get summary by month*", out.width="80%"}
 knitr::include_graphics("img/summarystat3-1.png")
