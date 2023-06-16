@@ -36,16 +36,15 @@ The data we're working with is in the `OpenIntro` **Dataset Repository** and it'
 
 #### Subsetting the data
 
-This dataset has **a lot** of variables, but we are only interested in a few. There are also nine years of data in this dataset, but we are only interested in 2016. We can use Rguroo's **Subset** function to obtain only the variables of interest for 2016.
+This dataset has **a lot** of variables, but we are only interested in a few. There are also nine years of data in this dataset, but we are only interested in 2016. We can use Rguroo's **Subset** function to obtain only the variables of interest for 2016, but it is simpler to use the built-in filters in the Data Editor.
 
-1. Using the `Logical Expression` dialog, select only the rows that have *year* equal to 2016. `Preview` ![eye](../icon_images/preview.png) the resulting dataset and **Save** it as *hfi_2016*. How many rows and columns are in the new dataset?
+In the **Data** toolbox, right-click the dataset *hfi* and select *Open*. On the very right, select ![filters](../icon_images/filter.png) and open *year*. Click *Select All* to de-select everything, then check the *2016* box to select only the year 2016. Then, on the very right, select ![columns](../icon_images/columns.png) to choose the columns in the dataset. Click the checkbox next to the *Search* function to de-select everything, then check the boxes next to the variables we will use in this lab: *pf_score*, *pf_expression_control*, *hf_score*, and *countries*. It may be easiest to search for these variables individually in the search box rather than scroll through the entire list, as demonstrated in the figure below. **Save** the new dataset as *hfi_2016*.
 
-To select columns, click ![Basics](../icon_images/basics2_selected.png) to reopen the **Data Subset** dialog. Then, click the `Select Columns` button and a new dialog will open. The variables we will use in this lab are *pf_score*, *pf_expression_control*, *hf_score*, and *countries*. Find these variables in the `Variables` list on the left and drag-and-drop them to the `Selected Variables` list on the right. The easiest strategy for finding each variable is to type the first few characters of the variable name in the `Search Variable` box above the `Variables` list on the left. Once your have selected all four variables, as shown in the screenshot below, click `Done`. `Preview` ![eye](../icon_images/preview.png) the output and click the **Save As** button to overwrite the *hfi_2016* dataset.
+1. How many rows and columns are in the new *hfi_2016* dataset?
 
-```{r subset1, echo= FALSE, results = "asis", fig.cap = "*Subsetting columns in Rguroo*", fig.align='center'}
-knitr::include_graphics("img/hifi_2016.png")
+```{r subset1, echo= FALSE, results = "asis", fig.cap = "*Subsetting columns in Rguroo using the Data Editor*", fig.align='center'}
+#knitr::include_graphics("img/hfi_2016.png")
 ```
-
 
 
 ## Exploring the data

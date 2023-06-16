@@ -158,7 +158,7 @@ This section shows how you can create a single graph that simultaneously consist
 
 The five steps are as follows: 
 
-*Step 1*: Use the **Transform** function to obtain the subset of the *fastfood* dataset that consists of only the fat calories (*cal_fat*) for Dairy Queen. 
+*Step 1*: Obtain a subset of the *fastfood* dataset that consists of only the fat calories (*cal_fat*) for Dairy Queen. 
 
 *Step 2*:  Simulate eight samples of normal random values, simultaneously. 
 
@@ -186,7 +186,8 @@ knitr::include_graphics("img/scatterplot_single.png")
 
 Now that we know how to create a normal probability plot in the **Scatterplot** function, let's go through the five steps.
 
-In Step 1, we create a dataset with a single variable that consists of the fat calories for the Dairy Queen restaurants. You can use the **Subset** function to do this. But to see an alternative method, let's use the **Transform** function. From the **Data** toolbox, select the **Transform** function. Choose the `Dataset` *fastfood*, click the ![plus](../icon_images/add.png) button, and in the `Variable` column type in a new variable name; call it *DQ*. In the middle panel, type ```cal_fat[restaurant == "Dairy Queen"]```. This R code extracts values of the variable *cal_fat* for the restaurant *Dairy Queen*. Now on the right panel, move all variables except the newly constructed *DQ* to the `Excluded Variable` list, and select the `Complete Cases Only` checkbox on the top. This will result in a dataset with one variable consisting of the fat calories for the Dairy Queen restaurant. The **Data Transform** dialog is shown below. Click the `Preview` button ![eye](../icon_images/preview.png). You should see the DQ variable with 42 values. **Save** this dataset as *DQ_cal_fat*.
+In Step 1, we create a dataset with a single variable that consists of the calories from fat for the menu items at Dairy Queen restaurants. You can use the **Subset** function to do this. But to see an alternative method, let's use the **Data Editor** itself. In the **Data** toolbox, right-click the dataset *fastfood* and select *Open*. On the very right, select ![filters](../icon_images/filter.png) and open *restaurant*. Click *Select All* to de-select everything, then in the text box enter "Dairy" and check the *Dairy Queen* box that shows up. You should now see only the 42 menu items from the Dairy Queen restaurant. Then, on the very right, select ![columns](../icon_images/columns.png) to choose the columns in the dataset. Click the checkbox next to the *Search* function to de-select everything, then check the box next to *cal_fat*, as shown in the dialog below. You should now see only the 42 values of the *cal_fat* variable. Finally, click  `Add Rows/Variables`  ![add rows/variables](../icon_images/add_column.png) and in the dialog that pops up, select `Variable Properties`. Select the *cal_fat* variable and change its `Name` to *DQ*. 
+**Save** your final dataset as *DQ_cal_fat*.
 
 ```{r transform_dq_cal_fa, echo=FALSE, results = "asis", fig.align = "center", fig.cap = "*Getting the values of cal_fat for only Dairy Queen restaurants*", out.width="75%"}
 knitr::include_graphics("img/transform_dq_cal_fat.png")
