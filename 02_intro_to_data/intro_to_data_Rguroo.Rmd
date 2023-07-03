@@ -130,9 +130,33 @@ knitr::include_graphics("img/figure_2_hist_dep_delay_LAX.png")
 
 Let's understand this command. Square brackets that follow a variable name are used to extract a subset of elements of the variable. For example, if you write ```dep_delay[3:10]```, the result is a new variable that consists of the third through the tenth component of the variable ```dep_delay```. In our example, the command ```dest == "LAX"``` is a new variable with logical values of ```TRUE``` corresponding to every destination that is LAX and ```FALSE``` corresponding to destinations that are not LAX. So, the final result of ```dep_delay[dest == "LAX"]``` in Rguroo is that only elements with destination LAX will be included from the variable ```dep_delay```. That is, the values corresponding to the ```FALSE``` elements of ```dest == "LAX"``` will be dropped.
 
-#### Subsetting by using the Subset function
+#### Subsetting (filtering) the data 
 
-As noted earlier, another way to get a histogram of departure delays for LAX is to get a subset of the data that only includes data values with destination LAX, and then use that dataset in the **Histogram** function to plot the variable *dep_delay*. To do this, go to the **Data** toolbox, select **Functions**, and then click on **Subset**. A dialog box titled **Data Subset** should appear.
+As noted earlier, another way to get a histogram of departure delays for LAX is to get a subset of the data that only includes data values with destination LAX, and then use that dataset in the **Histogram** function to plot the variable *dep_delay*. Below, we show two approaches for obtaining a subset of the data: one utilizes the filtering functionality in Rguroo's dataset editor, while the other employs Rguroo's **Subset** function. Note that subsetting a dataset (typically, to select specific observations) is also referred to as filtering. For straightforward subsets like the one in this lab, using the dataset editor is more convenient. However, Rguroo's subset editor provides the capability to subset data based multiple criteria.
+
+##### Filtering using Rguroo's dataset editor
+
+To obtain a dataset containing only data values with the destination LAX using Rguroo's dataset editor, follow these steps:
+
+  - Open the dataset editor by going to the **Data** toolbox and double-clicking on the name of the dataset, *nycflights*. Alternatively, you can right-click on the dataset name and select the `Edit` option.
+
+  - In the dataset editor, locate the filter tab ![Filter tab](../icon_images/filters.png), which is vertically displayed on the right-hand side of the editor. You will see a list of the names of the variables. 
+  
+  - Expand the *dest* dropdown menu to display the list of available destinations and uncheck the `(Select All)` checkbox to remove all current selections.
+
+  - Check the checkbox next to LAX. You can also type "LAX" in the search box to quickly find and select it.
+
+  - Save the newly created subset of data as *lax_flights*, by typing the name in the the *Save As* ![Save As](../icon_images/save_as_button.png) textbox.  
+
+```{r lax-filter-editor, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Filtering data using Rguroo's dataset editor*", out.width="80%"}
+knitr::include_graphics("img/figure_3_subset-1-editor.png")
+```
+
+#### Subsetting (filtering) the data by using the Subset function
+
+If you have already used the dataset editor to subset your data and do not wish to learn about Rguroo's Subset function, you can skip this subsection and proceed to the next section, "Making a histogram."
+
+To subset the data using Rguroo's subset function, go to the **Data** toolbox, select **Functions**, and then click on **Subset**. A dialog box titled **Data Subset** should appear.
 
 As usual, we first need to select the *nycflights* `Dataset`. Next, we want to filter to get specific observations in the dataset (rows), so we look at the `Row Selection` section. There are two buttons in this box. The `Sequence` button is used when we know the specific row numbers we want to include. The `Logical Expression` button is used when we know the condition(s) that the rows that we want to include from the dataset should satisfy. In our case here, we want the `Logical Expression` option. Specifically, we want to subset based on the logical expression ```dest == "LAX"```. 
 
@@ -162,7 +186,11 @@ analysis are as follows:
 - `>=` or `<=` means "greater than or equal to" or "less than or equal to"
 </div>
 
-**Save** your new data subset as *lax_flights* and then make a histogram of the departure delays of only those flights.
+**Save** your new data subset as *lax_flights*. 
+
+#### Graphical and numerical summaries of a subset
+
+Once you have saved a subset in Rguroo, you can use it as an Rguroo dataset. For example, you can make a histogram of the departure delays of only LAX flights, using the *lax_flights* dataset that you created.
 
 ```{r lax-flights-hist, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Histogram dialog box to plot the departure delays for flights to LAX*", out.width="80%"}
 knitr::include_graphics("img/histogram2-1.png")
@@ -190,8 +218,36 @@ single numerical variable are as follows:
 
 See if you can find each of those summary statistics in the Rguroo dialog. Check the boxes for those statistics, then View ![eye](../icon_images/preview.png) the output. Note that you will have to click the **+** sign next to "All Observations" to view the values. 
 
+#### Filtering based on multiple criteria
+
 You can also filter based on multiple criteria. Suppose you are interested in
-flights headed to San Francisco (SFO) in February. To do this, you need to find flights that are headed to SFO **AND** are in February. This consists of a combination of two logical expressions. To set this up, in the **Data** toolbox, click **Functions**, select **Subset**, select the *nycflights* dataset, then click `Logical Expression`, just like we did earlier. First, we'll put in a logical expression for flights headed to SFO, and then we'll put in another logical expression for the flights in February (month 2). Note that we'll have to type in both *'SFO'* and the number *2* in the `Value` column, as shown in the figure below. 
+flights headed to San Francisco (SFO) in February. Again, you can use the dataset editor to filter the data or Rguroo's subset function. We show both methods in the subsections below.
+
+##### Multiple criteria filtering using the dataset editor
+
+To filter the *nycflights* dataset and obtain a subset that includes only data values with the destination San Francisco (SFO) in February you can use the dataset editor and follow these steps:"
+
+  - Open the dataset editor by going to the **Data** toolbox and double-clicking on the name of the dataset, *nycflights*. Alternatively, you can right-click on the dataset name and select the `Edit` option.
+
+  - In the dataset editor, locate the filter tab ![Filter tab](../icon_images/filters.png), which is vertically displayed on the right-hand side of the editor. You will see a list of the names of the variables. 
+  
+  - Expand the *dest* dropdown menu to display the list of destinations and uncheck the `(Select All)` checkbox to remove all current selections.
+
+  - Check the checkbox next to SFO. You can also type "SFO" in the search box to quickly find and select it.
+  
+  - Similarly, expand the *month* dropdown menu to display the list of months, uncheck the `(Select All)` checkbox to remove all current selections, then check the checkbox next to *2*. 
+
+  - Save the newly created subset of data as *sfo_feb_flights*, by typing the name in the the *Save As* ![Save As](../icon_images/save_as_button.png) textbox.  
+
+```{r sfo-feb-flights-editor, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Multiple criteria filtering*", out.width="80%"}
+knitr::include_graphics("img/figure_4_subset-2-editor.png")
+```
+
+##### Multiple criteria filtering using the Subset function
+
+If you have already used the dataset editor to subset your data and do not wish to learn about Rguroo's subset function, youcan skip this subsection and proceed to the next subsection.
+
+To use Rguroo's **Subset** function to filter the *nycflights* dataset and obtain a subset that includes only data values with the destination San Francisco (SFO) in February, you need to find flights that are headed to SFO **AND** are in February. This consists of a combination of two logical expressions. To set this up, in the **Data** toolbox, click **Functions**, select **Subset**, select the *nycflights* dataset, then click `Logical Expression`, just like we did earlier. First, we'll put in a logical expression for flights headed to SFO, and then we'll put in another logical expression for the flights in February (month 2). Note that we'll have to type in both *'SFO'* and the number *2* in the `Value` column, as shown in the figure below. 
 
 ```{r sfo-feb-flights, echo = FALSE, results = "asis", fig.align = "center", fig.cap = "*Combining logical expressions*", out.width="80%"}
 knitr::include_graphics("img/figure_4_subset-2.png")
@@ -238,13 +294,13 @@ Let's think about how you could answer this question. We need to do three things
 - `summarize` the average departure delays for each month
 - `sort` the months based on their average departure delays
 
-We now know how to do the first two of these things, but there's a bit of a problem. When we open the **Summary Statistic** dialog, we can't select *month* as `Factor 1`. The reason for this is that Rguroo has classified month as a *numerical* variable, not a *categorical* variable. To overwrite this classification, we need to right-click the *nycflights* dataset and select **Open** to open the Data Editor. Click  `Add Rows/Variables`  ![add rows/variables](../icon_images/add_column.png) and in the dialog that pops up, select `Variable Properties`. Select the *month* variable and change its `Type` to `Nominal`, as shown below.
+We now know how to do the first two of these things, but there's a bit of a problem. When we open the **Summary Statistic** dialog, we can't select *month* as `Factor 1`. The reason for this is that Rguroo has classified month as a *numerical* variable, not a *categorical* variable. To overwrite this classification, we need to right-click the *nycflights* dataset and select **Open** to open the *nycflights* in the Dataset Editor (alternatively, you can double click on the name of the dataset.). Click  the `Variable Properties icon`  ![variable properties](../icon_images/row_variable_property_icon.png) and in the dialog that pops up, select `Variable Properties`. Select the *month* variable and change its `Type` to `Nominal`, as shown below.
 
 ```{r mean-dep-delay-months-1, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Data Editor to modify variable types*", out.width="80%"}
-#knitr::include_graphics("img/variable-type-editor.png")
+knitr::include_graphics("img/variable_property_month.png")
 ```
 
-Because you have made changes to the dataset after creating and saving output based on the dataset, you cannot overwrite the original dataset. Use the **Save As** text box at the top of the tab to save the new dataset as *nycflights1*. Now open a new **Summary Statistic** dialog, select the dataset *nycflights1*, and *month* will now appear as a `Factor 1` option, as shown in the dialog below.
+Because you have made changes to the dataset after creating and saving output based on the dataset, you cannot overwrite the original dataset. Use the *Save As* ![Save As](../icon_images/save_as_button.png) textbox at the top of the tab to save the new dataset as *nycflights1*. Now open a new **Summary Statistic** dialog, select the dataset *nycflights1*, and *month* will now appear as a `Factor 1` option, as shown in the dialog below.
 
 ```{r mean-dep-delay-months-2, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Summary Statistic dialog to get summary by month*", out.width="80%"}
 knitr::include_graphics("img/summarystat3-1.png")
