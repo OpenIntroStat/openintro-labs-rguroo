@@ -32,20 +32,27 @@ about freedom.
 
 The data we're working with is in the `OpenIntro` **Dataset Repository** and it's called *hfi*, short for Human Freedom Index.
 
-1.  What are the dimensions of the dataset? (How many rows, how many columns?)
+1.  What are the dimensions of the dataset? (How many rows, how many columns?) [Hint: Move your mouse over the dataset name in the **Data** toolbox, and you will see this information.]
 
 #### Subsetting the data
 
 This dataset has **a lot** of variables, but we are only interested in a few. There are also nine years of data in this dataset, but we are only interested in 2016. We can use Rguroo's **Subset** function to obtain only the variables of interest for 2016, but it is simpler to use the built-in filters in the Data Editor.
 
-In the **Data** toolbox, right-click the dataset *hfi* and select *Open*. On the very right, select ![filters](../icon_images/filter.png) and open *year*. Click *Select All* to de-select everything, then check the *2016* box to select only the year 2016. Then, on the very right, select ![columns](../icon_images/columns.png) to choose the columns in the dataset. Click the checkbox next to the *Search* function to de-select everything, then check the boxes next to the variables we will use in this lab: *pf_score*, *pf_expression_control*, *hf_score*, and *countries*. It may be easiest to search for these variables individually in the search box rather than scroll through the entire list, as demonstrated in the figure below. **Save** the new dataset as *hfi_2016*.
+ - In the **Data** toolbox, right-click the dataset *hfi* and select *Edit*.
+ 
+ - On the very right, select the Filters tab ![filters](../icon_images/filters.png) and open the *year* dropdown.
+ 
+ - Uncheck the *(Select All)* to de-select everything, then check the *2016* box to select only the year 2016. 
+ 
+ - Again, on the very right, select ![columns](../icon_images/columns.png) to choose columns in the dataset. Uncheck the checkbox next to the *Search* textbox to de-select everything, then check the boxes next to the variables we will use in this lab: *pf_score*, *pf_expression_control*, *hf_score*, and *countries*. It may be easiest to search for these variables individually in the search box rather than scroll through the entire list.
+ 
+ - In the Save As textbox, enter *hfi_2016* as the name of the dataset. Finally, click the Save As ![save as](../icon_images/save_as_button.png) button to save the dataset.
 
 1. How many rows and columns are in the new *hfi_2016* dataset?
 
-```{r subset1, echo= FALSE, results = "asis", fig.cap = "*Subsetting columns in Rguroo using the Data Editor*", fig.align='center'}
-#knitr::include_graphics("img/hfi_2016.png")
+```{r subset1, echo= FALSE, results = "asis", fig.cap = "*A view of the *hfi_2016* dataset after it has been saved.*", fig.align='center'}
+knitr::include_graphics("img/hfi_2016.png")
 ```
-
 
 ## Exploring the data
 
