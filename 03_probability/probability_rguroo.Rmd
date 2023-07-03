@@ -174,10 +174,22 @@ generate an outcome that adheres to those rules.
 
 As a simple example, you can simulate flipping a fair coin using the **Random Selection** function in the **Probability-Simulation** toolbox of Rguroo. 
 
-First, open Rguroo's Data Editor by selecting **Create New Dataset** in the **Data** toolbox. By default, a blank dataset with 500 rows and 30 variables (labeled *Var1* to *Var30*) is created. Click  `Add Rows/Variables`  ![add rows/variables](../icon_images/add_column.png) and in the dialog that pops up, select `Variable Properties`. Select the *Var1* variable; change its `Name` to *coin_outcomes* and change its `Type` to `Nominal`, as shown below. Then, close the dialog, and in the first two rows of the *coin_outcomes* variable, type in the values of "heads" and "tails." Save this dataset with the name *Coin*, as shown below. The saved dataset *Coin* should now only contain one variable, *coin_outcomes*, and two rows; the empty rows and variables are automatically deleted when the dataset is saved. The variable *coin_outcomes* can be thought of as a hat with two slips of paper in it: 
-one slip says *heads* and the other says *tails*. 
+Follow the steps below to create a dataset that includes the two possibilities of heads and tails (see images below).
 
-```{r coin_data_editor, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Rguroo data editor to create the Coin dataset*", out.width="80%"}
+  - Select *Create New Dataset* from the `Data Import` dropdown in the **Data** toolbox. This opens the *Create New Dataset* dialog where you need to specify the number of rows and columns for the dataset. 
+  
+  - In the `No. of Rows` textbox, enter *2*, and in the `No. of Columns` textbox, enter *1*. Then, click the `Create Dataset` button. This creates a dataset with two empty rows and one column.
+  
+  - Move your mouse to the header labeled `Var1` and click on the three-horizontal-line icon ![three horizontal line icon](../icon_images/three_horizontal_line_icon.png) that appears. 
+  
+  - From the menu that appears, select `Rename`. A textbox will appear where you can enter the name of the variable. Type in *Coin_outcomes* as the name.
+  
+  - In the first (top) cell of the dataset, type in *heads* and in the second (bottom) cell type in *tails*.
+  
+  - In the Save As textbox, enter *coin* as the name of the dataset. Finally, click the Save as ![save as](../icon_images/save_as_button.png) button to save the dataset.
+
+
+```{r coin_data_editor, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Rguroo dataset editor to create the Coin dataset*", out.width="90%"}
 knitr::include_graphics("img/coin_data_editor.png")
 ```
 
@@ -221,11 +233,27 @@ Select the `Dataset` *sim_fair_coin*. Click on the ![plus sign](../icon_images/a
 
 Since there are only two elements in *coin_outcomes*, the probability that we "flip" 
 a coin and it lands heads is 0.5. Say we're trying to simulate an unfair coin 
-that we know only lands heads 20% of the time. To simulate this unfair coin, we add a "Probability" column to the *Coin* dataset, which provides a vector of the two probability weights. To do so, right-click on the *Coin* dataset name and select **Edit**. In Rguroo data editor, add probabilities 0.2 and 0.8 corresponding to heads and tails, as shown in the figure below. Then **Save** the new dataset with the name *unfair_coin*.
+that we know only lands heads 20% of the time. To simulate this unfair coin, we need to add a "Probability" column to the "Coin" dataset. This column will contain a vector with the two probability weights.
+
+Follow the steps below to add the *Probability* column and create the *unfair_coin* dataset:
+
+  - Right-click on the *Coin* dataset name in the **Data Toolbox** and select **Edit**. 
+  
+  - Click on the Add Rows/Variables icon ![Add rows variable icon](../icon_images/row_variable_property_icon.png), and choose **Add Variables** from the menu. 
+  
+  - In the **Add Variables** dialog, enter *1* for the `No. of Variables` field, select `End` for the "Position", and name the variable `Probability`. Then, click the `Add Variables` button to add the new variable.
+  
+```{r , echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Add Variable Dialog*", out.width="65%"}
+knitr::include_graphics("img/add_prob_variable.png")
+```
+
+  - In Rguroo dataset editor, add probabilities 0.2 and 0.8 corresponding to heads and tails, respectively, as shown in the figure below.
 
 ```{r unfair_coin, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Adding a probability column to simulate an unfair coin*", out.width="75%"}
 knitr::include_graphics("img/unfair_coin.png")
 ```
+
+ - Finally, click the Save as ![save as](../icon_images/save_as_button.png) button to save the dataset with the name *unfair_coin*.
 
 Now, open the **Random Selection** dialog box and select the `Dataset` *unfair_coin*. This time we chose the seed "32658" arbitrarily. You can choose a seed of your own. Also, in the `Probability` dropdown, we select the *Probability* column that we added to the *unfair_coin* dataset. This ensures that heads is selected with probability 0.2, and tails is selected with probability 0.8. One more detail: in the section `Sample a subset`, type in the number 1 for `Columns`, as shown in the figure below. This is because the dataset *unfair_coin* has two columns of *Coin_outcome* and *Probability*, and we want to only to sample the first column, which is *Coin_outcome*.
 
