@@ -31,8 +31,21 @@ A 2019 Pew Research report states the following:
 
 In this lab, you will assume this 62% is a true population proportion and learn about how sample proportions can vary from sample to sample by taking smaller samples from the population. 
 
-First, open Rguroo's data editor by selecting **Create New Dataset** in the **Data** toolbox. In the data editor, click  `Add Rows/Variables`  ![add rows/variables](../icon_images/add_column.png) and in the dialog that pops up, select `Variable Properties`. Select the *Var1* variable; change its `Name` to *Affects* and change its `Type` to `Nominal`. Next, select the *Var2* variable; change its `Name` to *Probability* and keep its `Type` as `Numerical`. Then, close the dialog, and in the first two rows of the *coin_outcomes* variable, type in the values of "yes" and "no" for *Affects* and their corresponding probability weights for *Probability*. Here, since we assume 62% of responses will be from people who think climate change impacts their community, the probability of "yes" should be 0.62 and the probability of "no" should be 0.38, as shown in the figure below. **Save** the dataset with the name *climate_change_affects*.
+First, we use Rguroo's dataset editor to create a dataset called *climate_change_affects*.
 
+ - Select *Create New Dataset* from the `Data Import` dropdown in the **Data** toolbox. This open the *Create New Dataset* dialog where you specify the number of rows and columns for the dataset. 
+  
+  - In the `No. of Rows` textbox, enter *2*, and in the `No. of Columns` textbox, enter *2*. Then, click the `Create Dataset` button. This creates a dataset with two empty rows and two empty columns.
+  
+  - Move your mouse to the header labeled `Var1` and click on the three-horizontal-line icon ![three horizontal line icon](../icon_images/three_horizontal_line_icon.png) that appears. From the menu that appears, select `Rename`. A textbox will appear where you can enter the name of the variable. Type in *Affects* as the name.
+  
+  - Repeat the previous step to change the variable name *Var2* to *Probability*.
+  
+  - In the Affects (first) column of the dataset type in *yes* and *no*, and in the Probability (second) column enter *0.62* and *0.38*, in that order.
+  
+  - In the Save As textbox, enter *climate_change_affects* as the name of the dataset. Finally, click the Save As ![save as](../icon_images/save_as_button.png) button to save the dataset.
+
+ 
 ```{r create dataset, echo= FALSE, results = "asis", fig.align = "center", fig.cap = "*Creating a dataset with two variables Affects and Probability*", out.width="90%"}
 knitr::include_graphics("img/data-editor-1.png")
 ```
