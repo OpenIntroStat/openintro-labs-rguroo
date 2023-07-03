@@ -26,7 +26,7 @@ generate random numbers from a normal distribution.
 This week you'll be working with fast food data.  This data set contains data on
 515 menu items from some of the most popular fast food restaurants worldwide.
 
-As usual, find the *fastfood* dataset in the `OpenIntro` Repository, view the information about the dataset by clicking ![info](../icon_images/info.png), and then import the dataset to your **Data** toolbox. Then, view the **Dataset Summary** and **View** the data in Rguroo's Data Viewer.
+As usual, find the *fastfood* dataset in the `OpenIntro` Repository, view the information about the dataset by clicking ![info](../icon_images/info.png), and then import the dataset to your **Data** toolbox. Then, in the **Data** toolbox, double-click on the dataset to view it in the dataset editor. In the dataset editor, you can also view a summary of the data by clicking on the **Summary Statistic** icon ![data summary icon](../icon_images/data_summary_icon.png).
 
 ```{r fastfood_data_view, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*A portion of the fast food dataset*", out.width="90%"}
 knitr::include_graphics("img/fastfood_data_view.png")
@@ -186,11 +186,20 @@ knitr::include_graphics("img/scatterplot_single.png")
 
 Now that we know how to create a normal probability plot in the **Scatterplot** function, let's go through the five steps.
 
-In Step 1, we create a dataset with a single variable that consists of the calories from fat for the menu items at Dairy Queen restaurants. You can use the **Subset** function to do this. But to see an alternative method, let's use the **Data Editor** itself. In the **Data** toolbox, right-click the dataset *fastfood* and select *Open*. On the very right, select ![filters](../icon_images/filter.png) and open *restaurant*. Click *Select All* to de-select everything, then in the text box enter "Dairy" and check the *Dairy Queen* box that shows up. You should now see only the 42 menu items from the Dairy Queen restaurant. Then, on the very right, select ![columns](../icon_images/columns.png) to choose the columns in the dataset. Click the checkbox next to the *Search* function to de-select everything, then check the box next to *cal_fat*, as shown in the dialog below. You should now see only the 42 values of the *cal_fat* variable. Finally, click  `Add Rows/Variables`  ![add rows/variables](../icon_images/add_column.png) and in the dialog that pops up, select `Variable Properties`. Select the *cal_fat* variable and change its `Name` to *DQ*. 
-**Save** your final dataset as *DQ_cal_fat*.
+In Step 1, we create a dataset with a single variable that consists of the calories from fat for the menu items at Dairy Queen restaurants. You can use the **Subset** function to do this. But to see an alternative method, let's use the **Dataset Editor** itself. 
 
-```{r transform_dq_cal_fa, echo=FALSE, results = "asis", fig.align = "center", fig.cap = "*Getting the values of cal_fat for only Dairy Queen restaurants*", out.width="75%"}
-knitr::include_graphics("img/transform_dq_cal_fat.png")
+  - In the **Data** toolbox, right-click the dataset *fastfood* and select *Edit*. This opens the *fastfood* data in the Dataset Editor. 
+  
+  - On the very right, select ![filters](../icon_images/filters.png) and click the *restaurant* dropdown.
+  
+  - Click `(Select All)` to de-select everything, then in the search textbox enter "Dairy" to locate *Dairy Queen* and check the box that shows up. This will remove all resturants from the dataset, except for Dairy Queen. You should now see only the 42 menu items from the Dairy Queen restaurant. 
+  
+  - On the very right, select ![columns](../icon_images/columns.png) to choose the columns in the dataset. Click the checkbox next to the *Search* textbox to de-select everything, then check the box next to *cal_fat*, as shown in the dialog below. You should now see only the 42 values of the *cal_fat* variable. 
+  
+  - Finally, in the Save As textbox enter *DQ_cal_fat* as the name of the dataset, and click the Save as ![save as](../icon_images/save_as_button.png) button to save the dataset.
+
+```{r transform_dq_cal_fa, echo=FALSE, results = "asis", fig.align = "center", fig.cap = "*A portion of the DQ_cal_fat dataset*", out.width="75%"}
+knitr::include_graphics("img/dq_cal_fat_dataset.png")
 ```
 
 In Step 2, we simulate 8 samples of size 42 from a normal distribution with mean 260.48 and standard deviation 156.49. To do this, we use the **Multiple Distribution Generator** function the same way that we simulated a single sample, except here we change the value of 1 in the `Replications` box to 8. The dialog box is shown below. Click the `Preview`  button ![eye](../icon_images/preview.png). You should see a dataset with 42 rows and 8 columns with variable names *sim_1*, *sim_2*, ..., *sim_8*. Each column is a sample of size 42 from the normal distribution with mean of 260.48 and standard deviation of 156.49. **Save** this dataset as *normal_sims*.
@@ -221,7 +230,7 @@ To change the data from a wide format to a long format, we use the **Reshape** f
 knitr::include_graphics("img/reshape.png")
 ```
 
-Portions of the *all_data_long* dataset are shown below. This dataset has 378 rows since we stacked 9 columns of size 42. The first 42 rows are the Dairy Queen data, identified by *DQ* in the identification variable *Sample*. Then rows 43 to 84 consist of data from the *sim_1* variable, rows 85 to 126 consist of data from the *sim_2* variable, and so on. The last 42 rows are values from the *sim_8* variable.
+Portions of the *all_data_long* dataset are shown below. This dataset has 378 rows since we stacked 9 columns of size 42. The first 42 rows represent calories from fat for the 42 actual menu items from the Dairy Queen restaurant, identified by the variable *cal_fat* in the Sample identification variable. Rows 43 to 84 correspond to data from the *sim_1* variable, rows 85 to 126 correspond to the *sim_2* variable, and so on. The last 42 rows contain values from the *sim_8* variable.
 
 ```{r all_data_long, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*A portion of the all_data_long dataset*", out.width="65%"}
 knitr::include_graphics("img/all_data_long.png")
@@ -234,10 +243,10 @@ We are now ready to create the normal probability plots. Open the **Scatterplot*
 knitr::include_graphics("img/npp_all.png")
 ```
 
-The figure below shows the 9 normal probability plots. We have changed the dots' color for the Dairy Queen data in the **Factor Level Editor** so it stands out.
+The figure below displays the 9 normal probability plots. To distinguish the Dairy Queen data, we have altered the color of its dots. Additionally, we have made some adjustments to make the plot more visually appealing. Specifically, in the **Details** section, we have reduced the number of tick labels on the y-axis. Furthermore, in the **Factor Level Editor**, we have decreased the point size for all variables.
 
-```{r npp_all_graph, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Normal probability plots of Dairy Queen and eight simulated samples*", out.width="85%"}
-knitr::include_graphics("img/npp_all_graph.png")
+```{r npp_all_graph, echo=FALSE, results="asis" , fig.align = "center", fig.cap = "*Normal probability plots of fat calories for Dairy Queen and eight simulated samples*", out.width="85%"}
+knitr::include_graphics("img/npp_all_graph.svg")
 ```
 
 4.  Does the normal probability plot for the calories from fat for the Dairy Queen restaurant look similar to the plots created for the simulated data?  That is, do the plots provide evidence that the fat calories for Dairy Queen are nearly normal?
@@ -268,7 +277,7 @@ knitr::include_graphics("img/normalcalc1-1.png")
 
 You can also see how the probability corresponds to the area under the normal density curve by checking the `Graph` box. When you `Preview` ![eye](../icon_images/preview.png) the output, you will see a graph showing the distribution of the variable, in which the gold shaded region visually displays the probability as an area under the density curve.
 
-```{r pnorm 2, echo=FALSE, results = "asis", fig.cap = "*The theoretical probability that a Dairy Queen item has more than 600 calories from fat*"}
+```{r pnorm 2, echo=FALSE, fig.align = "center", results = "asis", fig.cap = "*The theoretical probability that a Dairy Queen item has more than 600 calories from fat*"}
 knitr::include_graphics("img/normalcalc1-output.png")
 ```
 
@@ -277,9 +286,9 @@ probability.  If we want to calculate the probability empirically, we simply
 need to determine how many observations fall above 600 then divide this number 
 by the total sample size.
 
-There are a variety of ways to do this in Rguroo. Probably the easiest way to do this is with the **Transform** dialog. Recall that the fat calories for Dairy Queen were saved in the dataset *DQ_cal_fat* in the variable *DQ*. In the **Transform** dialog, select the *DQ_cal_fat* dataset; you should see the variable *DQ* on the left column. Click the ![plus](../icon_images/add.png) sign, and in the middle panel type ```sum(DQ > 600) / length(DQ)```. Note that here we add a logical variable. Rguroo interprets TRUE as 1 and FALSE as 0, so the statement ```sum(DQ > 600)``` is essentially counting the number of Dairy Queen items with more than 600 calories. The R code ```length(DQ)``` gives the number of Dairy Queen items. The ratio of these two values gives us the proportion of Dairy Queen items with more than 600 calories. Move the *DQ* variable to `Excluded Variable` section, as we don't need to see its values, and make sure to check `Complete Cases Only`. Otherwise, you will see a whole bunch of NA's below the proportion value. The figure below shows the dialog. Click the `Preview` button ![eye](../icon_images/preview.png), and you will see the result.
+There are a variety of ways to do this in Rguroo. Probably the easiest way to do this is with the **Transform** dialog. Recall that the fat calories for Dairy Queen were saved in the dataset *DQ_cal_fat* in the variable *cal_fat*. In the **Transform** dialog, select the *DQ_cal_fat* dataset; you should see the variable *cal_fat* on the left column. Click the ![plus](../icon_images/add.png) sign, and in the middle panel type ```sum(cal_fat > 600) / length(cal_fat)```. Note that here we add a logical variable. Rguroo interprets TRUE as 1 and FALSE as 0, so the statement ```sum(cal_fat > 600)``` is essentially counting the number of Dairy Queen items with more than 600 calories. The R code ```length(cal_fat)``` gives the number of Dairy Queen items. The ratio of these two values gives us the proportion of Dairy Queen items with more than 600 calories. Move the *cal_fat* variable to `Excluded Variable` section, as we don't need to see its values, and make sure to check `Complete Cases Only`. Otherwise, you will see a whole bunch of NA's below the proportion value. The figure below shows the dialog. Click the `Preview` button ![eye](../icon_images/preview.png), and you will see the result.
 
-```{r calculate_proportion, echo=FALSE, results = "asis", fig.cap = "*Calculating the empirical probability that a Dairy Queen menu item has over 600 calories from fat*"}
+```{r calculate_proportion, echo=FALSE, fig.align = "center", results = "asis", fig.cap = "*Calculating the empirical probability that a Dairy Queen menu item has over 600 calories from fat*"}
 knitr::include_graphics("img/calculate_proportion.png")
 ```
 
