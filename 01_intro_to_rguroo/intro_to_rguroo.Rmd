@@ -30,13 +30,13 @@ Some colleges and universities have site license deals with Rguroo that make stu
 
 Upon completing the registration, you will receive an email that contains a temporary password. Follow the instructions in the email to log in to your Rguroo account.
 
-Once you log in to your Rguroo account, you should see a fairly open browser window similar to that shown below.
+Once you log in to your Rguroo account, Rguroo will open with its dataset editor, which you can use to input data. If you don't need to use the dataset editor, you can simply close the tab. To learn more about the dataset editor, refer to [Rguroo User's guide](http://files.rguroo.com/guides/quick_userguide.html#rguroo-dataset-editor).
 
 ```{r rguroo-interface-2020, echo=FALSE, results="asis", fig.cap="*A view of the Rguroo interface*", fig.align='center', outwidth = "80%"}
-knitr::include_graphics("img/rguroo-interface-v1_9_7.png")
+knitr::include_graphics("img/rguroo-interface-v1_9_40.png")
 ```
 
-The sidebar on the left contains five toolboxes: **Data**, **Plots**, **Analytics**, **Probability-Simulation**, and **Applets**. You can click on any of these toolboxes to view the Rguroo objects you have saved to that toolbox. You can also access a specific toolbox via the keyboard by pressing Alt + the second letter of the toolbox name (Alt + A for **Data**, Alt + L for **Plots**, Alt + N for **Analytics**, Alt + R for **Probability-Simulation**, and Alt + P for **Applets**). There is also a **Quick Access Tools** button on the top right that you can use to access a few frequently used functions, such as **Import Dataset** or a list of shortcut keys.
+The sidebar on the left contains five toolboxes: **Data**, **Plots**, **Analytics**, **Probability-Simulation**, and **Applets**. You can click on any of these toolboxes to view the Rguroo objects you have saved to that toolbox. You can also access a specific toolbox via the keyboard by pressing Alt + the second letter of the toolbox name (Alt + a for **Data**, Alt + l for **Plots**, Alt + n for **Analytics**, Alt + r for **Probability-Simulation**, and Alt + p for **Applets**). There is also a **Quick Access Tools** button on the top right that you can use to access a few frequently used functions, such as *Import Dataset*, *Dataset Repository*, a *Scientific Calculator*, and  a list of shortcut keys.
 
 
 ## Dr. Arbuthnot's Baptism Records
@@ -49,28 +49,31 @@ knitr::include_graphics("img/figure_2_data_repository.png")
 
 As you work with Rguroo, you will create a series of objects. Objects include datasets, plots, output reports, etc., which can be saved under the **Data**, **Plots**, **Analytics**, and **Probability-Simulation** toolboxes in Rguroo.  Sometimes, you import objects as we have done here, but you often create them as the byproduct of computation or some analysis you have performed. 
 
-As you add Rguroo objects to your account, it will become difficult to immediately find the object you want. Thus, you can type text in the "Search" box to filter the objects in each section. You can also take advantage of the folder system to organize your objects.
+The more you add Rguroo objects to your account, the more difficult it will become to immediately find the object you want. Thus, you can type text in the "Search" box to filter the objects in each section. You can also take advantage of the folder system to organize your objects.
 
 The Arbuthnot dataset refers to the work of Dr. John Arbuthnot, an 18th-century physician, writer, and mathematician. He was interested in the ratio of newborn boys to newborn girls, so he gathered the baptism records for children born in London every year from 1629 to 1710. 
 
-To view the *arbuthnot* dataset that you imported, select the dataset's name in the **Data** toolbox (in the sidebar), and press Enter to view it. Alternatively, you can double-click the dataset name. The dataset opens in Rguroo's **Data Viewer**, as shown in the figure below. You should see four columns of numbers, each row representing a different year: the first entry in each row is simply the case number (an index we can use to access the data from individual years if we want), the second is the year, and the third and fourth are the numbers of boys and girls baptized that year, respectively. Use the scroll bar on the right side of the window to examine the complete data set. By default, Rguroo will show up to 100 rows and 15 columns of the dataset. You can use the **Row** and **Column** options at the bottom of the **Data Viewer** window to navigate any part of the data. 
+To view the *arbuthnot* dataset that you imported, select the dataset's name in the **Data** toolbox (in the sidebar) and press Enter to view it. Alternatively, double-click the dataset name or right-click and select the `Edit` option. The dataset opens in Rguroo's **Dataset Editor**, as shown in the figure below. The names of variables *year*, *boys*, and *girls* are shown on the header. The leftmost, unlabeled column with a gray background shows row numbers. Each row in the dataset represents a different year: the first element of each row is the year, and the second and third elements are the numbers of boys and girls baptized that year, respectively. Use the scroll bar on the right side of the window to navigate up and down in the dataset.
 
 ```{r arbuthnot-data-view, echo=FALSE, results="asis", fig.align="center", fig.cap="*A portion of the Arbuthnot dataset*", out.width = "80%"}
 knitr::include_graphics("img/Figure_3_arbuthnot_data.png")
 ```
 
-The row numbers in the first column are not part of Arbuthnot's dataset. Rguroo adds them as part of its printout. You can think of them as the index that you see on the left side of a spreadsheet. In fact, the comparison to a spreadsheet will generally be helpful. Rguroo has stored Arbuthnot's data in a kind of spreadsheet or table called a **data frame**. We can see that there are 82 observations and 3 variables in this dataset. The variable names are year, boys, and girls.
+Note that the row numbers in the first column are not part of Arbuthnot's dataset. You can think of them as the index that you see on the left side of a spreadsheet. In fact, the comparison to a spreadsheet will generally be helpful. Rguroo has stored Arbuthnot's data in a kind of spreadsheet or table called a **data frame**. At the bottom of the dataset editor, you can see that there are 82 rows in the data frame, so there are 82 observations in the dataset. Also, to the right of the scroll bar, in the `Columns` tab, Rguroo lists the variables in the dataset. You can see that there are 3 variables in this dataset, and the variable names are year, boys, and girls.
 
+## Some Data Exploration
 
-## Some Exploration
+To include or remove specific variables (columns), you can simply check or uncheck the corresponding checkbox for each variable. These checkboxes are located in the `Columns` tab to the right of the scroll bar in the dataset editor. By default, all variables are shown. When you uncheck a checkbox, you remove the associated variable from the display. Conversely, checking the checkbox will include the variable again. In the provided figure below, we have unchecked the checkbox for the "girls" variable. As a result, only the variables "year" and "boys" remain visible.
 
-Let’s start to examine the data a little more closely. As mentioned earlier, you can use the navigation toolbar in **Data Viewer** to explore your data by selecting specific rows and columns to view. Alternatively, you can right-click on a column heading to get a menu, as shown in the figure below, to explore the columns of a dataset. In that menu, you can select or deselect columns to view or hide them. In the figure, we have chosen the columns “year” and “boys” to be shown and deselected the columns “Case No.” and “girls” so they are hidden. You get a few other options for sorting, grouping, etc., which we will explore as needed.
+You might have observed an up-arrow symbol on the "boys" column in the figure below. This arrow indicates that the data within the "boys" column is sorted in ascending order. To sort the data within a column, simply click on the column header. The first time you click the header, the data will be sorted in ascending (smallest to largest, or A to Z) order. If you click the header again, the data will be sorted in descending (largest to smallest, or Z to A) order. Lastly, clicking the header for the third time will revert the data back to its original order. 
+
+You can use the `Quick Search` textbox on the top to search for words in your dataset. Simply type a word or phrase in the textbox, and the occurrences of that word within the dataset will be highlighted. In addition, the `Quick Filter` feature allows you to see a subset of the data containing a specific word. Just type the word you're looking for in the `Quick Filter` textbox, immediately to the right of the `Quick Search` textbox, and the dataset will be filtered to show only the relevant rows that include that word.
 
 ```{r column-navigation, echo=FALSE, results="asis", fig.align="center", fig.cap="*The menu for exploring columns*", out.width = "80%"}
 knitr::include_graphics("img/Figure_4_exploring_columns.png")
 ```
 
-1. In the **Data Viewer**, view *only* the counts of girls baptized by right-clicking on one of the columns and deselecting all variables except for "girls." Take a screenshot showing (at least) the first ten cases and include it below.
+1. To view only the counts of girls baptized in the **Dataset Editor**, go to the `Columns` tab on the right-hand side of the interface and uncheck the checkboxes for "year" and "boys" variables. Make sure to keep the checkbox for the "girls" variable checked. This will result in displaying only the column representing the counts of girls baptized. Capture a screenshot of the **Dataset Editor** showing at least the first ten cases for the "girls." Copy-paste your screenshot below.
 
 ### Data visualization
 
@@ -240,7 +243,7 @@ You can learn more about them by clicking the the information icon ![info](../ic
 
 1.  In what year did we see the most total number of births in the U.S.? **Hint:**
     First, use the **Transform** dialog to add a `total` variable to the dataset. 
-    Then, sort your dataset in descending order based on the total column. You can do this using the **Sort** dialog (in the **Data** toolbox, click **Functions**, then **Sort**) as shown in the screenshot below.
+    Then, sort your dataset in descending order based on the total variable. You can do this using the **Sort** dialog (in the **Data** toolbox, click **Functions**, then **Sort**) as shown in the screenshot below, or you can open the dataset in the **Dataset Editor** and click on the header of the variable that you want to sort, as shown earlier.
     
 ```{r sort-function, echo=FALSE, results="asis", fig.align = "center", fig.cap = "*Rguroo `Sort` function*", out.width="60%"}
 knitr::include_graphics("img/sort.png")
@@ -260,7 +263,7 @@ You can get help in how to use Rguroo in several ways.
 knitr::include_graphics("img/rguroo-help1.png")
 ```
 
-* You can click on the ![Quick Users Guide](img/Quick_Users_Guide_Icon.png) icon that appears on top of the Rguroo application to get quick instructions on how to perform various tasks in Rguroo.
+* You can click on the ![Quick User's Guide](img/Quick_Users_Guide_Icon.png) icon that appears on top of the Rguroo application to get quick instructions on how to perform various tasks in Rguroo. You can also access the Quick User's Guide through the [Rguroo website](https://rguroo.com) under the `Resources` tab.
 
 * The top right of the workspace (by **Settings**) contains two options for getting general help, as shown in the figure below. You can click the video camera icon to bring up a searchable list of tutorial videos or the book icon to open the Rguroo User's Guide in a separate tab. The Rguroo User's Guide contains many examples and even some formulas on how the numbers in Rguroo are calculated.
 
