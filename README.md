@@ -1,7 +1,7 @@
 OpenIntro Labs - Rguroo
 ==============
 
-OpenIntro Labs promote the understanding and application of statistics through applied data analysis. Labs are titled based on topic area, which correpond to particular chapters in all three versions of OpenIntro Statistics, a free and open-source textbook. The textbook as well as the html version of the labs can be found at [http://www.openintro.org/stat/labs.php](http://www.openintro.org/stat/labs.php).
+OpenIntro Labs promote the understanding and application of statistics through applied data analysis. Labs are titled based on topic area, which correpond to particular chapters in all three versions of OpenIntro Statistics, a free and open-source textbook. The textbook as well as the html version of the labs can be found at [https://openintrostat.github.io/openintro-labs-rguroo/](https://openintrostat.github.io/openintro-labs-rguroo/).
 
 This repository is a fork of the [tidyverse labs](https://github.com/openintrostat/oilabs-tidy), converted to use the [Rguroo](https://rguroo.com/) web-based statistical software by [Dwight Wynne](https://github.com/dpwynne) and [Mortaza (Mori) Jamshidian](http://www.fullerton.edu/math/faculty/jamshidian/index.php). Since Rguroo is primarily GUI-based, most code chunks have been replaced with screenshots. The screenshots accurately display Rguroo function dialogs as of Version 1.5.8.
 
@@ -15,9 +15,9 @@ using the [knitr](http://yihui.name/knitr/) package in R, and are easiest to use
 2. [Intro to data](https://openintrostat.github.io/openintro-labs-rguroo/02_intro_to_data/intro_to_data_Rguroo.html)
 3. [Probability](https://openintrostat.github.io/openintro-labs-rguroo/03_probability/probability_rguroo.html)
 4. [Normal distributions](https://openintrostat.github.io/openintro-labs-rguroo/04_normal_distribution/normal_distribution_rguroo.html)
-5. Foundations of inference
-    a. [Sampling distributions](https://openintrostat.github.io/openintro-labs-rguroo/05a_sampling_distributions/sampling_distributions_Rguroo.html)
-    b. [Confidence intervals](https://openintrostat.github.io/openintro-labs-rguroo/05b_confidence_intervals/confidence_intervals_rguroo.html)
+5. Foundations of inference  
+  a. [Sampling distributions](https://openintrostat.github.io/openintro-labs-rguroo/05a_sampling_distributions/sampling_distributions_Rguroo.html)  
+  b. [Confidence intervals](https://openintrostat.github.io/openintro-labs-rguroo/05b_confidence_intervals/confidence_intervals_rguroo.html)
 6. [Inference for categorical data](https://openintrostat.github.io/openintro-labs-rguroo/06_inf_for_categorical_data/inf_for_categorical_data_Rguroo.html)
 7. [Inference for numerical data](https://openintrostat.github.io/openintro-labs-rguroo/07_inf_for_numerical_data/inf_for_numerical_data_rguroo.html)
 8. [Simple linear regression](https://openintrostat.github.io/openintro-labs-rguroo/08_simple_regression/simple_regression_rguroo.html)
